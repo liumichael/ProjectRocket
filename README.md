@@ -1,5 +1,3 @@
-<main>
-
 # Assignment 3
 
 ## Final Project
@@ -33,4 +31,3 @@ The assignment sits here: [https://classroom.github.com/g/NqxhWiJM.](https://cla
 *   Your application allows individual users to manage their own sessions without creating conflicts among themselves
 *   You will be marked on the functionality of your application, its style and usability, its responsiveness, code quality and structure, and how well the application serves your end-user.
 
-</main>
