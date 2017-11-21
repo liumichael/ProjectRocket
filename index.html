@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Project Rocket</title>
+    <link rel="icon" type="image/png" href="pictures/tab-icon.png">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="new.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assignment2.js"></script>
+</head>
+
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #211105;">
+      <a href="#" id="home" class="navbar-brand"><img src="pictures/rocket-logo.png" width=auto><span style=font-size:14pt;>Project Rocket</span></a>
+
+      <div class="navbar-collapse collapse show" id="navbarsExampleDefault" style="">
+        <ul class="navbar-nav mr-auto">
+
+        </ul>
+        <form class="form-inline" id="countrySearch">
+            <input class="form-control mr-sm-2" type="search" placeholder="Enter a country name" aria-label="Search" style="font-family: 'Ubuntu', sans-serif;" id="info">
+            <button class="btn btn-primary btn-lg outline" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+
+    <!-- <div class="container">
+        <h1> LOGO PLACEHOLDER </h1>
+
+    </div>
+
+    <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
+
+
+    <main role="main" class="container">
+
+        <div class="starter-template">
+            <h1 id="currentTitle">Project Rocket</h1>
+            <p id="appDescription">Search for a Country. Share your Experience.</p>
+            <img src="pictures/world-map.png" id="worldMap" alt="World Map">
+        </div>
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8" id="flag"></div>
+            <div class="col-sm-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-6" id="capital"></div>
+                    <div class="col-sm-6" id="region"></div>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-6" id="population"></div>
+                    <div class="col-sm-6" id="languages"></div>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-6" id="currency"></div>
+                    <div class="col-sm-6" id="code"></div>
+                </div>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8" id="timezone"></div>
+            <div class="col-sm-2"></div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8" id="currencyConverter">
+                <p><b>Currency Converter </b></p>
+                <form class="form-group" id="currencyConvert">
+                    <input class="form-control" type="convert" placeholder="Enter amount in CAD" aria-label="Currency Converter" style="font-family: 'Ubuntu', sans-serif;" id="currencyInput">
+                    </br>
+                    <div id="conversionResult"></div>
+                    <button class="btn btn-info" type="submit" id="convertButton">Convert</button>
+                </form>
+		 </div>
+		<div class="col-sm-2"></div>
+    </div><hr id = "reviewLine">
+
+<!-- reviews start here -->
+        <div class="row">
+	    <div class="col-sm-2"></div>
+	    <div class="col-sm-8" id="Reviews"><br>
+	    <div class="wrapper">
+	        <p><b>Rate and Review Country</b></p>
+		    <span class="rating">
+                <input id="rating5" type="radio" name="rating" value="5">
+                <label for="rating5">5</label>
+                <input id="rating4" type="radio" name="rating" value="4">
+                <label for="rating4">4</label>
+                <input id="rating3" type="radio" name="rating" value="3">
+                <label for="rating3">3</label>
+                <input id="rating2" type="radio" name="rating" value="2" checked>
+                <label for="rating2">2</label>
+                <input id="rating1" type="radio" name="rating" value="1">
+                <label for="rating1">1</label>
+            </span>
+        </div>
+
+        <form class="form-group" id="writeReview">
+           <textarea id="reviewInput" placeholder="Write your own review of this country!" cols="90" rows="25" wrap="soft|hard" style="opacity: 1;"></textarea><br>
+           <button class="btn btn-info" style="float: right" type="submit" id="reviewSubmit">Submit Review</button>
+        </form><br>
+        <p><b>Other Reviews</b></p>
+        <form class="form-group" id="existingReview">
+            <img src="pictures/star-on.png" width=30px>
+            <img src="pictures/star-on.png" width=30px>
+            <img src="pictures/star-on.png" width=30px>
+            <img src="pictures/star-on.png" width=30px>
+            <img src="pictures/star-off.png" width=30px><br>
+            <textarea class="existingReview" readonly  name="Review1" cols="90" rows="25" style="opacity: 1;">Wonderful country with a lot to see!</textarea><br>
+            <br> <img src="pictures/star-on.png" width=30px>
+            <img src="pictures/star-on.png" width=30px>
+            <img src="pictures/star-on.png" width=30px>
+            <img src="pictures/star-on.png" width=30px>
+            <img src="pictures/star-on.png" width=30px><br>
+            <textarea class="existingReview" readonly name="Review2" cols="90" rows="25" style="opacity: 1;">Highly recommended vacation destination.</textarea><br>
+        </form>
+        <div class="col-sm-2"></div>
+        </div>
+        </div>
+        <!-- reviews end here -->
+        <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8" id="errorHandling"></div>
+        <div class="col-sm-2"></div>
+
+    </div>
+    </div>
+    </main>
+
+
+</body>
+
+
+</html>
