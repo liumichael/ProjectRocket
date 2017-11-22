@@ -1,0 +1,26 @@
+{
+  "name": "assignment-3-teamrocket",
+  "version": "1.0.0",
+  "description": "\"Assignment 3\"",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FallCSC309/assignment-3-teamrocket.git"
+  },
+  "author": "Yun-Yi Liu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FallCSC309/assignment-3-teamrocket/issues"
+  },
+  "homepage": "https://github.com/FallCSC309/assignment-3-teamrocket#readme"
+}
