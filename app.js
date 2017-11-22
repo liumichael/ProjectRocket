@@ -26,6 +26,7 @@ app.listen(port, () => {
 /**data = {
     'Canada': {
         name: 'Canada',
+        flag: 'img url',
         capital: 'Ottawa',
         region: 'Northern America',
         population: 36155487,
@@ -69,17 +70,26 @@ const countrydb = (function () {
                     var countryName = info[i].name;
                     var countryInfo = {};
                     countryInfo['name'] = countryName;
+                    countryInfo['flag'] = info[i].flag;
                     countryInfo['capital'] = info[i].capital;
                     countryInfo['region'] = info[i].subregion;
                     countryInfo['population'] = info[i].population;
-                    countryInfo['languages'] = info[i].languages;
+                    var languages = [];
+                    var officialLanguages = info[i].languages;
+                    for (index in officialLanguages){
+                        languages.push(officialLanguages[index].name);
+                    }
+                    countryInfo['languages'] = languages;
                     countryInfo['currency'] = info[i].currencies[0].code;
                     countryInfo['callingCodes'] = info[i].callingCodes;
                     countryInfo['timezones'] = info[i].timezones;
                     countryInfo['reviews'] = {};
                     database[countryName] = countryInfo;
                 }
-                //console.log(database);
+                console.log(database);
+                var jsdata = JSON.stringify(database);
+                var fs = require('fs');
+                fs.writeFile("countries.json", jsdata);
                 return database;
             });
         },
