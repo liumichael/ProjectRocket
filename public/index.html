@@ -8,11 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap_css/bootstrap.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="assignment2.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 
 
@@ -24,13 +27,13 @@
         <ul class="navbar-nav mr-auto">
 
         </ul>
-        <form class="form-inline" id="countrySearch">
+        <!--<form class="form-inline" id="countrySearch">
             <input class="form-control mr-sm-2" type="search" placeholder="Enter a country name" aria-label="Search" style="font-family: 'Ubuntu', sans-serif;" id="country">
+            <script type="text/javascript" src="auto-complete.js"></script>
             <button class="btn btn-primary btn-lg outline" type="submit">Search</button>
-        </form>
+        </form>-->
       </div>
     </nav>
-
 
     <!-- <div class="container">
         <h1> LOGO PLACEHOLDER </h1>
@@ -42,12 +45,16 @@
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form> -->
 
-
     <main role="main" class="container">
 
         <div class="starter-template">
             <h1 id="currentTitle">Project Rocket</h1>
             <p id="appDescription">Search for a Country. Share your Experience.</p>
+            <form class="form-inline" id="countrySearch">
+                <input class="form-control mr-sm-2" type="search" placeholder="Enter a country name" aria-label="Search" style="font-family: 'Ubuntu', sans-serif;" id="country">
+                <script type="text/javascript" src="auto-complete.js"></script>
+                <button class="btn btn-primary btn-lg outline" type="submit">Search</button>
+            </form>
             <img src="images/world-map.png" id="worldMap" alt="World Map">
         </div>
         <div class="row">

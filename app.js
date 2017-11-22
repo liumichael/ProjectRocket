@@ -13,7 +13,7 @@ app.get('/', function (req, res) {
 
 });
 
-app.get('/countries', function (req, res) {
+app.get('/search', function (req, res) {
     res.send(countrydb.loadAll());
 })
 
@@ -43,7 +43,7 @@ app.listen(port, () => {
     }
 } **/
 
-function getCountryPageInfo() {
+function getCountryAPIInfo() {
 
     return new Promise((resolve, reject) => {
         var request = require('request');
@@ -59,12 +59,28 @@ function getCountryPageInfo() {
         });
     });
 }
+
+function getCurrencyAPI() {
+    return new Promise((resolve, reject) => {
+        var request = require('request');
+        var url = "http://api.fixer.io/latest?base=CAD";
+        request.get(url, function(error, response, body) {
+            if (error) {
+                reject(error);
+            }
+            else if (response.statusCode == 200) {
+                var data = JSON.parse(body);
+                resolve(data);
+            }
+        });
+    });
+}
+
 const countrydb = (function () {
 
     return { // public interface to the DB layer
         loadAll: function () {
-            var data;
-            getCountryPageInfo().then(info => {
+            getCountryAPIInfo().then(info => {
                 var database = {};
                 for (i = 0; i < info.length; i ++) {
                     var countryName = info[i].name;
@@ -86,11 +102,20 @@ const countrydb = (function () {
                     countryInfo['reviews'] = {};
                     database[countryName] = countryInfo;
                 }
-                console.log(database);
-                var jsdata = JSON.stringify(database);
+                //console.log(database);
+                // Below is for creating JSON file
+                /*var jsdata = JSON.stringify(database);
                 var fs = require('fs');
-                fs.writeFile("countries.json", jsdata);
+                fs.writeFile("countries.json", jsdata);*/
                 return database;
+            });
+            getCurrencyAPI().then(info => {
+                var exchangeRates = info['rates'];
+                console.log(exchangeRates);
+                /*var jsdata = JSON.stringify(exchangeRates);
+                var fs = require('fs');
+                fs.writeFile("currencies.json", jsdata);*/
+                return exchangeRates;
             });
         },
         findOne: function (name) {
