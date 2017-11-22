@@ -14,48 +14,77 @@ app.get('/', function (req, res) {
 });
 
 app.get('/countries', function (req, res) {
-    res.send(countrydb.findAll());
+    res.send(countrydb.loadAll());
 })
 
 app.listen(port, () => {
     console.log('RESTful API server listening on: ' + port);
 });
 
-// Country Data
-const countrydb = (function () {
+// Data we need for a country page
+// Ex:
+/**data = {
+    'Canada': {
+        name: 'Canada',
+        capital: 'Ottawa',
+        region: 'Northern America',
+        population: 36155487,
+        languages: ['English', 'French'],
+        currency: 'CAD',
+        callingCodes: 1,
+        timezones: ['UTC-08:00', 'UTC-07:00', 'UTC-06:00', 'UTC-05:00', 'UTC-04:00', 'UTC-03:30']
+        reviews: {review1: {
+                    userID: 15431,
+                    rate: 4,
+                    detail: 'Love this place'},
+                  review2......
+                }
+    }
+} **/
 
-    function getCountryInfo(foundInfo) {
+function getCountryPageInfo() {
+
+    return new Promise((resolve, reject) => {
         var request = require('request');
         var url = "https://restcountries.eu/rest/v2";
-        request(url, function (error, response, body) {
+        request.get(url, function(error, response, body) {
             if (error) {
-                console.log(error);
+                reject(error);
             }
-            if (response.statusCode === 200) {
-                data = JSON.parse(body);
-                //console.log(data);
-                foundInfo(data);
+            else if (response.statusCode == 200) {
+                var data = JSON.parse(body);
+                resolve(data);
             }
         });
-    }
+    });
+}
+const countrydb = (function () {
 
     return { // public interface to the DB layer
-        findAll: function () {
-            var database = getCountryInfo(function (info) {
+        loadAll: function () {
+            var data;
+            getCountryPageInfo().then(info => {
                 var database = {};
-                var countryName;
                 for (i = 0; i < info.length; i ++) {
-                    countryName = info[i].name;
-                    //console.log(countryName);
-                    database[countryName] = info[i];
+                    var countryName = info[i].name;
+                    var countryInfo = {};
+                    countryInfo['name'] = countryName;
+                    countryInfo['capital'] = info[i].capital;
+                    countryInfo['region'] = info[i].subregion;
+                    countryInfo['population'] = info[i].population;
+                    countryInfo['languages'] = info[i].languages;
+                    countryInfo['currency'] = info[i].currencies[0].code;
+                    countryInfo['callingCodes'] = info[i].callingCodes;
+                    countryInfo['timezones'] = info[i].timezones;
+                    countryInfo['reviews'] = {};
+                    database[countryName] = countryInfo;
                 }
-                console.log(database);
+                //console.log(database);
                 return database;
             });
-            return database;
         },
         findOne: function (name) {
-            return database[name]
+            return name;
         },
         add: function(r) {
             database[r.id] = r
