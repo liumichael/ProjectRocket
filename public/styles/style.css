@@ -148,7 +148,7 @@ div > p {
                 position: relative;
                 display: block;
                 float: right;
-                background: url('./images/star-off.png');
+                background: url('../images/star-off.png');
                 background-size: 30px 30px;
             }
             .rating > label:before{
@@ -157,7 +157,7 @@ div > p {
                 content: '';
                 width: 30px;
                 height: 30px;
-                background: url('./images/star-on.png');
+                background: url('../images/star-on.png');
 	        background-size: 30px 30px;
                 transition: opacity 0.8s linear;
             }
