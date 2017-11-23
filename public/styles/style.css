@@ -12,6 +12,7 @@ h1 {
     font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
     color: #211105;
+    margin-bottom: 20px;
 }
 
 #countryName {

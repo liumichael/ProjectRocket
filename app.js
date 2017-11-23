@@ -9,8 +9,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 // Routes
 app.get('/', function (req, res) {
-    res.render('http://localhost:' + port + '/static/index.html');
-
+    res.redirect('/index.html');
 });
 
 app.get('/search', function (req, res) {
