@@ -23,6 +23,8 @@ $(document).ready(function() {
             console.log("There is no account associated with this email.");
             alert("There is no account associated with this email. Sign up and join us!");
         }
+        $("#email").val('').focus().blur();
+        $("#pwd").val('').focus().blur();
         // Make email the key of the schema
 
         return false
@@ -50,7 +52,11 @@ $(document).ready(function() {
         }
         else {
             userData[email] = userInfo;
+            alert("Yay! You're good to go!");
         }
+        $("#email").val('').focus().blur();
+        $("#pwd").val('').focus().blur();
+        $("#username").val('').focus().blur();
         // Make email the key of the schema
 
         return false
