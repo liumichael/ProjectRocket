@@ -8,14 +8,6 @@ body {
   text-align: center;
 }
 
-#worldMap {
-    padding: 0;
-    display: block;
-    margin: 0 auto;
-    max-height: 100%;
-    max-width: 100%;
-}
-
 h1 {
     font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
@@ -27,12 +19,38 @@ p {
     color: #211105;
 }
 
+#worldMap {
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+@media only screen and (max-width: 576px) and (orientation: landscape) {
+    .form-inline {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+
+@media only screen and (min-width: 576px) and (orientation: landscape) {
+    .form-inline {
+        display: inline;
+    }
+}
+
 .img-thumbnail {
     margin: 30px;
 }
 
 div > p {
 	text-align: center;
+}
+
+#country {
+    max-width: 200px;
+    margin: 10px;
 }
 
 .btn {
@@ -46,8 +64,10 @@ div > p {
 }
 
 .btn-primary.outline {
-	border: 2px solid #80bbe5;
-	color: #80bbe5;
+	/*border: 2px solid #80bbe5;
+	color: #80bbe5;*/
+    border: 2px solid #211105;
+    color: #211105;
 }
 
 .btn-info {
@@ -128,7 +148,7 @@ div > p {
                 position: relative;
                 display: block;
                 float: right;
-                background: url('./images/star-off.png');
+                background: url('../images/star-off.png');
                 background-size: 30px 30px;
             }
             .rating > label:before{
@@ -137,7 +157,7 @@ div > p {
                 content: '';
                 width: 30px;
                 height: 30px;
-                background: url('./images/star-on.png');
+                background: url('../images/star-on.png');
 	        background-size: 30px 30px;
                 transition: opacity 0.8s linear;
             }
