@@ -14,9 +14,14 @@ h1 {
     color: #211105;
 }
 
+#countryName {
+    text-align: center;
+}
+
 p {
     font-family: 'Roboto', sans-serif;
     color: #211105;
+    font-size: 13.5pt;
 }
 
 #worldMap {
