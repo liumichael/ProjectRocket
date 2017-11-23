@@ -188,8 +188,23 @@ const db = (function () {
         deleteCountry: function(countryName) {
             delete apiData['Countries'].countryName;
         },
+        
         // For Currencies
-
+        getAllCurrencies: function () {
+            return apiData['Currencies'];
+        },
+        getCurrency: function (currencyCode) {
+            return apiData['Currencies'].currencyCode;
+        },
+        putCurrency: function(currencyData) {
+            apiData['Currencies'][currencyData.code] = currencyData;
+        },
+        postCurrency: function(currencyData) {
+            apiData['Currencies'][currencyData.code] = currencyData;
+        },
+        deleteCurrency: function(currencyCode) {
+            delete apiData['Currencies'].currencyCode;
+        },
 
         // For Messages
         getAllMessages: function () {
