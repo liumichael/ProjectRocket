@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Log In</title>
+    <title>Sign up</title>
     <link rel="icon" type="image/png" href="images/tab-icon.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,18 +19,20 @@
 
       <div class="navbar-collapse collapse show" id="navbarsExampleDefault" style="">
         <ul class="navbar-nav mr-auto"></ul>
-        <a href="signup.html" button class="btn btn-info"role="button">Sign Up</a>
+        <a href="login.html" button class="btn btn-info"role="button">Log In</a>
       </div>
     </nav>
 
     <main role="main" class="container">
 
         <div class="starter-template">
-            <h1 id="currentTitle">Log In to Project Rocket</h1>
-            <p id="greeting">Already one of us? Log in to share you experience!</p>
+            <h1 id="currentTitle">Sign Up for Project Rocket</h1>
+            <p id="greeting">Yes! Come share you experience with us!</p>
             <img src="images/rocket-login.png" id="login-logo">
-            <form id="loginForm">
+            <form id="signupForm">
                 <div class="formContainer">
+                    <label><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" id="username" required>
                     <label><b>Email</b></label>
                     <input type="text" placeholder="Enter Email" id="email" required>
                     <label><b>Password</b></label>
