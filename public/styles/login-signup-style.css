@@ -1,0 +1,113 @@
+body {
+  padding-top: 5rem;
+  font-family: 'Ubuntu', sans-serif;
+  color: #211105;
+}
+.starter-template {
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+h1 {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    color: #211105;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    color: #211105;
+    font-size: 13.5pt;
+    margin-bottom: 50px;
+}
+
+.btn {
+    font-size: 12pt;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.btn.outline {
+	background: none;
+	padding: 4px 8px;
+}
+
+.btn-primary.outline {
+	/*border: 2px solid #80bbe5;
+	color: #80bbe5;*/
+    border: 2px solid #211105;
+    color: #211105;
+}
+
+.btn-info {
+    font-size: 10pt;
+    color: #211105;
+    background-color: #eae2d5;
+    border-color: #211105;
+}
+
+.btn-info:hover {
+    background-color: #605a50;
+    border-color: #211105;
+}
+
+.btn-primary:hover {
+    color: #d8ebff;
+}
+
+.img-thumbnail.mx-auto.d-block {
+    max-width: 300px;
+}
+
+#login-logo {
+    margin-bottom: 30px;
+}
+
+/* Add padding to containers */
+.formContainer {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 16px;
+    border-color: #211105;
+    border-style: double;
+    border-radius: 25px;
+    min-width: 300px;
+    width: 50%;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+    color: #eae2d5;
+    background-color: #211105;
+    border-color: #eae2d5;
+    padding: 14px 20px;
+    margin: 8px 0;
+    max-width: 150px;
+    min-width: 100px;
+    width: 30%;
+    height: 50px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+}

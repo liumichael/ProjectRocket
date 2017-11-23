@@ -47,13 +47,23 @@
         <div class="starter-template">
             <h1 id="currentTitle">Project Rocket</h1>
             <p id="appDescription">Search for a Country. Share your Experience.</p>
-            <form class="form-inline" id="countrySearch">
-                <input class="form-control mr-sm-2" type="search" placeholder="Enter a country name" aria-label="Search" style="font-family: 'Ubuntu', sans-serif;" id="country">
-                <script src="scripts/auto-complete.js" type="text/javascript"></script>
-                <button class="btn btn-primary btn-lg outline" type="submit">Search</button>
+            <form class="form-horizontal" id="countrySearch">
+                <div class="search-group">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Enter a country name" aria-label="Search" style="font-family: 'Ubuntu', sans-serif;" id="country">
+                    <script src="scripts/auto-complete.js" type="text/javascript"></script>
+                    <button class="btn btn-primary btn-lg outline" type="submit">Search</button>
+                </div>
             </form>
             <img src="images/world-map.png" id="worldMap" alt="World Map">
         </div>
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <h1 id="countryName"></h1>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8" id="flag"></div>

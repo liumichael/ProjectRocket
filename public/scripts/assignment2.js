@@ -37,7 +37,7 @@ function getCountryInfo(country) {
                 }
               //suggest other countries
             }
-            $('#currentTitle').text(data[i].name)
+            $('#countryName').text(data[i].name)
             $('#region').html("<p><b>Region: </b></br>" + data[i].subregion + "</p>")
             $('#capital').html("<p><b> Capital: </b></br>" + data[i].capital + "</p>")
             $('#currency').html("<p><b> Currency: </b>"+ data[i].currencies[0].code + "</p>")
@@ -57,8 +57,10 @@ function getCountryInfo(country) {
             $('#flag').html(imageTag + "</br>")
 
             $('#worldMap').hide()
-            $('#currentTitle').show()
-            $('#appDescription').hide()
+            $('#currentTitle').hide()
+            $('#countryName').show()
+            $('#appDescription').text("Share your Experience.")
+            $('#appDescription').show()
             $('#capital').show()
             $('#region').show()
             $('#currency').show()
@@ -95,6 +97,7 @@ function getCountryInfo(country) {
             $('#rating5').hide()
             $('#worldMap').hide()
             $('#currentTitle').hide()
+            $('#countryName').hide()
             $('#appDescription').hide()
             $('#capital').hide()
             $('#region').hide()
@@ -175,6 +178,7 @@ $(document).ready(function() {
             $('#worldMap').hide()
             $('#appDescription').hide()
             $('#currentTitle').hide()
+            $('#countryName').hide()
             getCountryInfo(info)
             $("#currencyInput").val('').focus().blur();
             $("#country").val('').focus().blur();
@@ -184,8 +188,9 @@ $(document).ready(function() {
     });
     $('#home').click(function() {
         $('#worldMap').show()
-        $('#currentTitle').text("Project Rocket")
         $('#currentTitle').show()
+        $('#countryName').hide()
+        $('#appDescription').text("Search for a Country. Share your Experience.")
         $('#appDescription').show()
         $('#capital').empty()
         $('#region').empty()

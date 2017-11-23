@@ -14,9 +14,14 @@ h1 {
     color: #211105;
 }
 
+#countryName {
+    text-align: center;
+}
+
 p {
     font-family: 'Roboto', sans-serif;
     color: #211105;
+    font-size: 13.5pt;
 }
 
 #worldMap {
@@ -27,19 +32,6 @@ p {
     max-width: 100%;
 }
 
-@media only screen and (max-width: 576px) and (orientation: landscape) {
-    .form-inline {
-        display: flex;
-        flex-direction: column-reverse;
-    }
-}
-
-@media only screen and (min-width: 576px) and (orientation: landscape) {
-    .form-inline {
-        display: inline;
-    }
-}
-
 .img-thumbnail {
     margin: 30px;
 }
@@ -48,9 +40,15 @@ div > p {
 	text-align: center;
 }
 
+.search-group {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
 #country {
-    max-width: 200px;
+    max-width: 300px;
     margin: 10px;
+    text-align: center;
 }
 
 .btn {
@@ -59,8 +57,13 @@ div > p {
 }
 
 .btn.outline {
-	background: none;
 	padding: 4px 8px;
+}
+
+.btn-primary {
+    color: #211105;
+    background-color: #eae2d5;
+    border-color: #211105;
 }
 
 .btn-primary.outline {
@@ -83,7 +86,7 @@ div > p {
 }
 
 .btn-primary:hover {
-    color: #d8ebff;
+    background-color: #605a50;
 }
 
 .img-thumbnail.mx-auto.d-block {
