@@ -12,9 +12,36 @@ app.get('/', function (req, res) {
     res.redirect('/index.html');
 });
 
-app.get('/search', function (req, res) {
-    res.send(countrydb.loadAll());
-})
+app.get('/api', function (req, res) {
+    // This doesn't send users the right things without the database
+    // db.loadAll() gets the data from other API and returns a promise
+    // I called it just to test the data format
+    // After we have the database, we'll just set apiData = all country and
+    // currency data from the database and call res.send(apiData);
+    res.send(db.loadAll());
+});
+
+app.get('/api/countries', function (req, res) {
+    res.send(db.getAllCountries());
+});
+
+app.get('/api/messages', function (req, res) {
+    res.send(db.getAllMessages());
+});
+
+app.post('/api/messages', function (req, res) {
+    db.postMessage({
+        id: req.body.id,
+        msg: req.body.msg
+    });
+    res.redirect("/index.html");
+});
+
+app.delete('/api/messages/:id', function (req, res) {
+    db.deleteMessage(req.params.id);
+    res.redirect("/index.html");
+});
+
 
 app.listen(port, () => {
     console.log('RESTful API server listening on: ' + port);
@@ -42,6 +69,9 @@ app.listen(port, () => {
     }
 } **/
 
+/* getCountryAPIInfo and getCurrencyAPI extract the data we want from the APIs
+ * we use. We might need to add things to some fields by ourselves like reviews.
+ */
 function getCountryAPIInfo() {
 
     return new Promise((resolve, reject) => {
@@ -75,9 +105,34 @@ function getCurrencyAPI() {
     });
 }
 
-const countrydb = (function () {
+const db = (function () {
+    // Temptative data structure
+    /**apidata = {
+        'Countries':['Canada': {
+            name: 'Canada',
+            flag: 'img url',
+            capital: 'Ottawa',
+            region: 'Northern America',
+            population: 36155487,
+            languages: ['English', 'French'],
+            currency: 'CAD',
+            callingCodes: 1,
+            timezones: ['UTC-08:00', 'UTC-07:00', 'UTC-06:00', 'UTC-05:00', 'UTC-04:00', 'UTC-03:30']
+            reviews: {review1: {
+                        userID: 15431,
+                        rate: 4,
+                        detail: 'Love this place'},
+                      review2......
+                    }
+            }],
+        'Currencies': ["AUD": {code: "AUD", value: 1.0357},"BGN": {code: "BGN", value: 1.3066},....],
+        'Messages': ['1': {id: 1, msg: 'blah'}, '1234': {id: 1234, msg: 'blah'}]}
+    } **/
+    let apiData = {};
 
     return { // public interface to the DB layer
+        // After we run it once to get all the data we need to the database, we
+        //don't need this loadAll anymore
         loadAll: function () {
             getCountryAPIInfo().then(info => {
                 var database = {};
@@ -117,14 +172,40 @@ const countrydb = (function () {
                 return exchangeRates;
             });
         },
-        findOne: function (name) {
-            return name;
+        // For Countries.
+        getAllCountries: function () {
+            return apiData['Countries'];
         },
-        add: function(r) {
-            database[r.id] = r
+        getCountry: function (countryName) {
+            return apiData['Countries'].countryName;
         },
-        remove: function(i) {
-            delete database[i]
+        putCountry: function(countryData) {
+            apiData['Countries'][countryData.name] = countryData;
+        },
+        postCountry: function(countryData) {
+            apiData['Countries'][countryData.name] = countryData;
+        },
+        deleteCountry: function(countryName) {
+            delete apiData['Countries'].countryName;
+        },
+        // For Currencies
+
+
+        // For Messages
+        getAllMessages: function () {
+            return apiData['Messages'];
+        },
+        getMessage: function (messageID) {
+            return apiData['Messages'].messageID;
+        },
+        putMessage: function(messageData) {
+            apiData['Messages'][messageData.ID] = messageData;
+        },
+        postMessage: function(messageData) {
+            apiData['Messages'][countryData.ID] = messageData;
+        },
+        deleteMessage: function(messageID) {
+            delete apiData['Messages'].messageID;
         }
     };
 })();
