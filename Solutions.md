@@ -24,7 +24,7 @@ When the application is first opened, users are directed to the homepage. Here t
 
 ### TODO:
 - Display the reviews in "Other Reviews" in pages (maybe 5 reviews per page or something)
-- Implement the front and back end for Sign Up and Log in (session management)
+- Implement the <del>front</del> and back end for Sign Up and Log in (session management) (front end done, need to work with the database for login-signup.js to work)
 - Database
 - Server side (things should be responsive and shown in real-time)
 - Implement a RESTful API that allows individual users to perform the 4 basic REST operations (even if the original API doesn't allow those operations)
