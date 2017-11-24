@@ -111,7 +111,7 @@ function getCountryInfo(country) {
 	    $('#Reviews').hide()
             $('#languages').hide()
             $('#reviewLine').hide()
-            $('#errorHandling').html("<img class='img-thumbnail mx-auto d-block panel-transparent' src=\"images/errorLogo.png\" alt=\"errorLogo\"> <p><b>Country Not Found!</b></p>")
+            $('#errorHandling').html("<p><b>Country Not Found!</b></p> <img class='img-thumbnail mx-auto d-block panel-transparent' src=\"images/errorLogo.png\" alt=\"errorLogo\">")
             $('#errorHandling').show()
         }
     });
@@ -241,4 +241,5 @@ $(document).ready(function() {
         $("#reviewInput").val('').focus().blur();
         return false
     });
+    
 });

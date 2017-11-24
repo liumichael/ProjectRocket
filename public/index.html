@@ -43,6 +43,16 @@
     </form> -->
 
     <main role="main" class="container">
+        <h5 id="adminMsg">System Messages</h5>
+        <div class="scroll">
+            <ul>
+                <li id="msgList">The server is currently down</li>
+                <li id="msgList">The server is currently down</li>
+                <li id="msgList">The server is currently down</li>
+                <li id="msgList">The server is currently down</li>
+                <li id="msgList">The server is currently down</li>
+            </ul>
+        </div>
 
         <div class="starter-template">
             <h1 id="currentTitle">Project Rocket</h1>
@@ -56,6 +66,7 @@
             </form>
             <img src="images/world-map.png" id="worldMap" alt="World Map">
         </div>
+
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
@@ -107,7 +118,6 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-8" id="timezone"></div>
             <div class="col-sm-2"></div>
-
         </div>
 
         <div class="row">
@@ -120,60 +130,59 @@
                     <div id="conversionResult"></div>
                     <button class="btn btn-info" type="submit" id="convertButton">Convert</button>
                 </form>
-		 </div>
-		<div class="col-sm-2"></div>
-    </div><hr id = "reviewLine">
+            </div>
+            <div class="col-sm-2"></div>
+        </div><hr id = "reviewLine">
 
-<!-- reviews start here -->
+        <!-- reviews start here -->
         <div class="row">
-	    <div class="col-sm-2"></div>
-	    <div class="col-sm-8" id="Reviews"><br>
-	    <div class="wrapper">
-	        <p><b>Rate and Review Country</b></p>
-		    <span class="rating">
-                <input id="rating5" type="radio" name="rating" value="5">
-                <label for="rating5">5</label>
-                <input id="rating4" type="radio" name="rating" value="4">
-                <label for="rating4">4</label>
-                <input id="rating3" type="radio" name="rating" value="3">
-                <label for="rating3">3</label>
-                <input id="rating2" type="radio" name="rating" value="2" checked>
-                <label for="rating2">2</label>
-                <input id="rating1" type="radio" name="rating" value="1">
-                <label for="rating1">1</label>
-            </span>
-        </div>
+    	    <div class="col-sm-2"></div>
+    	    <div class="col-sm-8" id="Reviews"><br>
+    	    <div class="wrapper">
+    	        <p><b>Rate and Review Country</b></p>
+    		    <span class="rating">
+                    <input id="rating5" type="radio" name="rating" value="5">
+                    <label for="rating5">5</label>
+                    <input id="rating4" type="radio" name="rating" value="4">
+                    <label for="rating4">4</label>
+                    <input id="rating3" type="radio" name="rating" value="3">
+                    <label for="rating3">3</label>
+                    <input id="rating2" type="radio" name="rating" value="2" checked>
+                    <label for="rating2">2</label>
+                    <input id="rating1" type="radio" name="rating" value="1">
+                    <label for="rating1">1</label>
+                </span>
+            </div>
 
-        <form class="form-group" id="writeReview">
-           <textarea id="reviewInput" placeholder="Write your own review of this country!" cols="90" rows="25" wrap="soft|hard" style="opacity: 1;"></textarea><br>
-           <button class="btn btn-info" style="float: right" type="submit" id="reviewSubmit">Submit Review</button>
-        </form><br>
-        <p><b>Other Reviews</b></p>
-        <form class="form-group" id="existingReview">
-            <img src="images/star-on.png" width=30px>
-            <img src="images/star-on.png" width=30px>
-            <img src="images/star-on.png" width=30px>
-            <img src="images/star-on.png" width=30px>
-            <img src="images/star-off.png" width=30px><br>
-            <textarea class="existingReview" readonly  name="Review1" cols="90" rows="25" style="opacity: 1;">Wonderful country with a lot to see!</textarea><br>
-            <br> <img src="images/star-on.png" width=30px>
-            <img src="images/star-on.png" width=30px>
-            <img src="images/star-on.png" width=30px>
-            <img src="images/star-on.png" width=30px>
-            <img src="images/star-on.png" width=30px><br>
-            <textarea class="existingReview" readonly name="Review2" cols="90" rows="25" style="opacity: 1;">Highly recommended vacation destination.</textarea><br>
-        </form>
-        <div class="col-sm-2"></div>
-        </div>
+            <form class="form-group" id="writeReview">
+               <textarea id="reviewInput" placeholder="Write your own review of this country!" cols="90" rows="25" wrap="soft|hard" style="opacity: 1;"></textarea><br>
+               <button class="btn btn-info" style="float: right" type="submit" id="reviewSubmit">Submit Review</button>
+            </form><br>
+            <p><b>Other Reviews</b></p>
+            <form class="form-group" id="existingReview">
+                <img src="images/star-on.png" width=30px>
+                <img src="images/star-on.png" width=30px>
+                <img src="images/star-on.png" width=30px>
+                <img src="images/star-on.png" width=30px>
+                <img src="images/star-off.png" width=30px><br>
+                <textarea class="existingReview" readonly  name="Review1" cols="90" rows="25" style="opacity: 1;">Wonderful country with a lot to see!</textarea><br>
+                <br> <img src="images/star-on.png" width=30px>
+                <img src="images/star-on.png" width=30px>
+                <img src="images/star-on.png" width=30px>
+                <img src="images/star-on.png" width=30px>
+                <img src="images/star-on.png" width=30px><br>
+                <textarea class="existingReview" readonly name="Review2" cols="90" rows="25" style="opacity: 1;">Highly recommended vacation destination.</textarea><br>
+            </form>
+            <div class="col-sm-2"></div>
+            </div>
         </div>
         <!-- reviews end here -->
         <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8" id="errorHandling"></div>
-        <div class="col-sm-2"></div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8" id="errorHandling"></div>
+            <div class="col-sm-2"></div>
+        </div>
 
-    </div>
-    </div>
     </main>
 </body>
 </html>
