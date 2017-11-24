@@ -19,33 +19,25 @@ function getCountryInfo(country) {
     else if (country == "Korea") {
         fullText = ""
     }
-    //url = "https://restcountries.eu/rest/v2/name/" + country + fields
     // Changed url to search by country full name
-    var url = "https://restcountries.eu/rest/v2/name/" + country + fullText
+    //var url = "https://restcountries.eu/rest/v2/name/" + country + fullText
+    var url = "https://mysterious-hollows-73808.herokuapp.com/api/countries/" + country
 
     // Use ajax to handle errors
     $.ajax({
         url: url,
         dataType: 'json',
+        type: "GET",
         success: function(data) {
-            var i = 0
-            if (data.length > 1) {
-                if (country == "Korea"){
-                    if (kimJongUn != 1) {
-                        i = 1
-                    }
-                }
-              //suggest other countries
-            }
-            $('#countryName').text(data[i].name)
-            $('#region').html("<p><b>Region: </b></br>" + data[i].subregion + "</p>")
-            $('#capital').html("<p><b> Capital: </b></br>" + data[i].capital + "</p>")
-            $('#currency').html("<p><b> Currency: </b>"+ data[i].currencies[0].code + "</p>")
-            $('#population').html("<p><b> Population: </b></br>"+ data[i].population + "</p>")
-            $('#code').html("<p><b> Calling Codes: </b>"+ data[i].callingCodes + "</p>")
-            $('#timezone').html("<p><b> Timezones: </b></br>"+ data[i].timezones + "</p>")
+            $('#countryName').text(data.name)
+            $('#region').html("<p><b>Region: </b></br>" + data.region + "</p>")
+            $('#capital').html("<p><b> Capital: </b></br>" + data.capital + "</p>")
+            $('#currency').html("<p><b> Currency: </b>"+ data.currency + "</p>")
+            $('#population').html("<p><b> Population: </b></br>"+ data.population + "</p>")
+            $('#code').html("<p><b> Calling Codes: </b>"+ data.callingCodes + "</p>")
+            $('#timezone').html("<p><b> Timezones: </b></br>"+ data.timezones + "</p>")
 
-            var officialLanguages = data[i].languages
+            var officialLanguages = data.languages
             var language = ""
             for (index in officialLanguages){
                 language += officialLanguages[index].name + ", "
@@ -53,7 +45,7 @@ function getCountryInfo(country) {
             language = language.replace(/,\s*$/, "");
             $('#languages').html("<p><b> Languages: </b></br>" + language + "</p>")
 
-            var imageTag = "<img class='img-thumbnail mx-auto d-block' src=" + data[i].flag + " alt=" + data[i].name + "'s Flag>"
+            var imageTag = "<img class='img-thumbnail mx-auto d-block' src=" + data.flag + " alt=" + data.name + "'s Flag>"
             $('#flag').html(imageTag + "</br>")
 
             $('#worldMap').hide()
@@ -82,7 +74,7 @@ function getCountryInfo(country) {
             $('#rating3').show()
             $('#rating4').show()
             $('#rating5').show()
-            currencyCode = data[i].currencies[0].code
+            currencyCode = data.currency
         },
         error: function(data) {
             $('#writeReview').hide()
