@@ -2,10 +2,11 @@ var express = require('express');
 var port = process.env.PORT || 3964;
 //var MongoClient = require('mongodb').MongoClient;
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var app = express();
 
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Routes
 app.get('/', function (req, res) {
@@ -30,16 +31,18 @@ app.get('/api/messages', function (req, res) {
 });
 
 app.post('/api/messages', function (req, res) {
+    console.dir(req.body);
     db.postMessage({
         id: req.body.id,
         msg: req.body.msg
     });
-    res.redirect("/index.html");
+    res.send(db.getMessage(req.body.id));
 });
 
 app.delete('/api/messages/:id', function (req, res) {
+    console.dir(req.params);
     db.deleteMessage(req.params.id);
-    res.redirect("/index.html");
+    res.send("Message deleted");
 });
 
 
@@ -107,28 +110,104 @@ function getCurrencyAPI() {
 
 const db = (function () {
     // Temptative data structure
-    /**apidata = {
-        'Countries':['Canada': {
-            name: 'Canada',
-            flag: 'img url',
-            capital: 'Ottawa',
-            region: 'Northern America',
-            population: 36155487,
-            languages: ['English', 'French'],
-            currency: 'CAD',
-            callingCodes: 1,
-            timezones: ['UTC-08:00', 'UTC-07:00', 'UTC-06:00', 'UTC-05:00', 'UTC-04:00', 'UTC-03:30']
-            reviews: {review1: {
-                        userID: 15431,
-                        rate: 4,
-                        detail: 'Love this place'},
-                      review2......
-                    }
-            }],
-        'Currencies': ["AUD": {code: "AUD", value: 1.0357},"BGN": {code: "BGN", value: 1.3066},....],
-        'Messages': ['1': {id: 1, msg: 'blah'}, '1234': {id: 1234, msg: 'blah'}]}
-    } **/
-    let apiData = {};
+    /* apidata = {
+        'Countries': {
+            'Canada': {
+                "name": 'Canada',
+                "flag": 'https://restcountries.eu/data/can.svg',
+                "capital": 'Ottawa',
+                "region": 'Northern America',
+                "population": 36155487,
+                "languages": ['English', 'French'],
+                "currency": 'CAD',
+                "callingCodes": '1',
+                "timezones": ['UTC-08:00', 'UTC-07:00', 'UTC-06:00', 'UTC-05:00', 'UTC-04:00', 'UTC-03:30'],
+                "reviews": {'review1': {
+                            'userID': 15431,
+                            'rate': 4,
+                            'detail': 'Love this place'}}
+            },
+            'Australia': {
+                "name": 'Australia',
+                "flag": 'https://restcountries.eu/data/aus.svg',
+                "capital": 'Canberra',
+                "region": 'Australia and New Zealand',
+                "population": 24117360,
+                "languages": ['English'],
+                "currency": 'AUD',
+                "callingCodes": '61',
+                "timezones": ['UTC+05:00', 'UTC+06:30', 'UTC+07:00', 'UTC+08:00', 'UTC+09:30', 'UTC+10:00', 'UTC+10:30', 'UTC+11:30'],
+                "reviews": {'review1': {
+                            'userID': 15431,
+                            'rate': 4,
+                            'detail': 'Love this place'}}
+            },
+        },
+
+        'Currencies': {
+            "AUD": {"code": "AUD", "value": 1.0357},"BGN": {"code": "BGN", "value": 1.3066}
+        },
+
+        'Messages': {
+            '1': {"id": '1', "msg": 'blah'}, '1234': {"id": '1234', "msg": 'blah'}
+        }
+    }
+    */
+    // hardcoded apiData for testing purpose
+    var apiData = {};
+    var countries = {};
+    var currencies = {};
+    var messages = {};
+
+    var canada = {
+        "name": 'Canada',
+        "flag": 'https://restcountries.eu/data/can.svg',
+        "capital": 'Ottawa',
+        "region": 'Northern America',
+        "population": 36155487,
+        "languages": ['English', 'French'],
+        "currency": 'CAD',
+        "callingCodes": '1',
+        "timezones": ['UTC-08:00', 'UTC-07:00', 'UTC-06:00', 'UTC-05:00', 'UTC-04:00', 'UTC-03:30'],
+        "reviews": {}
+    };
+
+    var australia = {
+        "name": 'Australia',
+        "flag": 'https://restcountries.eu/data/aus.svg',
+        "capital": 'Canberra',
+        "region": 'Australia and New Zealand',
+        "population": 24117360,
+        "languages": ['English'],
+        "currency": 'AUD',
+        "callingCodes": '61',
+        "timezones": ['UTC+05:00', 'UTC+06:30', 'UTC+07:00', 'UTC+08:00', 'UTC+09:30', 'UTC+10:00', 'UTC+10:30', 'UTC+11:30'],
+        "reviews": {}
+    };
+
+    var aud = {
+        "code": "AUD",
+        "value": 1.0357
+    };
+
+    var msg1 = {
+        "id": '1',
+        "msg": 'blah1'
+    };
+
+    var msg1234 = {
+        "id": '1234',
+        "msg": 'blah1234'
+    };
+
+    countries[canada.name] = canada;
+    countries[australia.name] = australia;
+    currencies[aud.code] = aud;
+    messages[msg1.id] = msg1;
+    messages[msg1234.id] = msg1234;
+    apiData['Countries'] = countries;
+    apiData['Currencies'] = currencies;
+    apiData['Messages'] = messages;
 
     return { // public interface to the DB layer
         // After we run it once to get all the data we need to the database, we
@@ -165,7 +244,7 @@ const db = (function () {
             });
             getCurrencyAPI().then(info => {
                 var exchangeRates = info['rates'];
-                console.log(exchangeRates);
+                //console.log(exchangeRates);
                 /*var jsdata = JSON.stringify(exchangeRates);
                 var fs = require('fs');
                 fs.writeFile("currencies.json", jsdata);*/
@@ -188,7 +267,7 @@ const db = (function () {
         deleteCountry: function(countryName) {
             delete apiData['Countries'].countryName;
         },
-        
+
         // For Currencies
         getAllCurrencies: function () {
             return apiData['Currencies'];
@@ -217,7 +296,7 @@ const db = (function () {
             apiData['Messages'][messageData.ID] = messageData;
         },
         postMessage: function(messageData) {
-            apiData['Messages'][countryData.ID] = messageData;
+            apiData['Messages'][messageData.ID] = messageData;
         },
         deleteMessage: function(messageID) {
             delete apiData['Messages'].messageID;
