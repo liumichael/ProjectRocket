@@ -23,6 +23,7 @@ When the application is first opened, users are directed to the homepage. Here t
 
 
 ### TODO:
+- **Figure the most important part of our web app: Submitting/Updating actual REVIEWS**
 - Display the reviews in "Other Reviews" in pages (maybe 5 reviews per page or something)
 - <del>Implement the things mentioned in the feedback</del>
 - Implement the <del>front</del> and back end for Sign Up and Log in (session management) **(Front end done. Need to work with the database for login-signup.js to work)**
