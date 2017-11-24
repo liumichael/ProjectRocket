@@ -9,8 +9,7 @@
 ## Web Application Description
 
 ### Important Notes (Design choices, Cool features, etc)
-- For the submit review section, you can hover over the stars to rate your experience.
-- When window width is less than 576px, we chose to move the search button to the top of the input bar so it won't be covered by the autocomplete.
+[To be updated]
 
 ### Description
 
