@@ -5,11 +5,13 @@
 - Student 4: Amna Mahder Bashi (999552345)
 
 
-
 ## Web Application Description
 
 ### Important Notes (Design choices, Cool features, etc)
-[To be updated]
+- If on local machine, app.js is our entry point (run node app.js and the url is localhost:3964)
+- If on Heroku: https://mysterious-hollows-73808.herokuapp.com
+- Heroku git url: https://git.heroku.com/mysterious-hollows-73808.git (You probably need to sign up to Heroku first)
+- Heroku Starting Guide: https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction
 
 ### Description
 
