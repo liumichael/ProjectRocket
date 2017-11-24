@@ -1,4 +1,4 @@
-### Group Members:
+## Group Members:
 - Student 1: Zhen Bang Liu (1002374012)
 - Student 2: Yun-Yi Liu (1002063964)
 - Student 3: Michael Le (1002432183)
@@ -6,13 +6,13 @@
 
 
 
-### Web Application Description
+## Web Application Description
 
-## Important Notes (Design choices, Cool features, etc)
+### Important Notes (Design choices, Cool features, etc)
 - For the submit review section, you can hover over the stars to rate your experience.
 - When window width is less than 576px, we chose to move the search button to the top of the input bar so it won't be covered by the autocomplete.
 
-## Description
+### Description
 
 In Project Rocket, users can share their experiences of a country. It is a web application that allows users to search for a country, submit a review to share their experience of that country, and read other user’s experiences. The end users are those who are seeking information about a country for research, planning a trip and want to get a personal experience of a country, or wanting a place to talk about their experiences in a specific country.
 
