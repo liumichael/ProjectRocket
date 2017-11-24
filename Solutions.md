@@ -24,9 +24,10 @@ When the application is first opened, users are directed to the homepage. Here t
 
 ### TODO:
 - Display the reviews in "Other Reviews" in pages (maybe 5 reviews per page or something)
-- Implement the <del>front</del> and back end for Sign Up and Log in (session management) *(Front end done. Need to work with the database for login-signup.js to work)*
+- <del>Implement the things mentioned in the feedback</del>
+- Implement the <del>front</del> and back end for Sign Up and Log in (session management) **(Front end done. Need to work with the database for login-signup.js to work)**
 - Database
-- Server side (things should be responsive and shown in real-time) *(All the things we need other than the database are done)*
-- <del>Implement a RESTful API that allows individual users to perform the 4 basic REST operations (even if the original API doesn't allow those operations)</del> *(All the things we need other than the database are done)*
-- The API also needs to have <del>3 endpoints GET /api/messages, POST /api/messages, DELETE /api/messages/1234 </del>so admin can push status messages to all users *(Endpoints and front end for pushing the status messages are done. Need to work with the database and actually push the messages to the page)*
+- Server side (things should be responsive and shown in real-time) **(All the things we need other than the database are done)**
+- <del>Implement a RESTful API that allows individual users to perform the 4 basic REST operations (even if the original API doesn't allow those operations)</del> **(All the things we need other than the database are done)**
+- The API also needs to have <del>3 endpoints GET /api/messages, POST /api/messages, DELETE /api/messages/1234 </del>so admin can push status messages to all users **(Endpoints and front end for pushing the status messages are done. Need to work with the database and actually push the messages to the page)**
 - Document the API (clear and concise, demonstrate understanding of RESTful design)
