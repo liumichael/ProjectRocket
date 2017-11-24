@@ -74,7 +74,6 @@ function getCountryInfo(country) {
             $('#errorHandling').hide()
 /*review*/  $('#Reviews').show()
             $('#reviewLine').show()
-	    $('#Reviews').show()
             $('#writeReview').show()
             $('#reviewInput').show()
             $('#existingReview').show()
@@ -86,34 +85,33 @@ function getCountryInfo(country) {
             currencyCode = data[i].currencies[0].code
         },
         error: function(data) {
-	    $('#Reviews').hide()
-	    $('#writeReview').hide()
-	    $('#reviewInput').hide()
-	    $('#existingReview').hide()
-	    $('#rating1').hide()
-            $('#rating2').hide()
-            $('#rating3').hide()
-            $('#rating4').hide()
-            $('#rating5').hide()
-            $('#worldMap').hide()
-            $('#currentTitle').hide()
-            $('#countryName').hide()
-            $('#appDescription').hide()
-            $('#capital').hide()
-            $('#region').hide()
-            $('#currency').hide()
-            $('#currencyConverter').hide()
-            $('#conversionResult').empty()
-            $('#population').hide()
-            $('#code').hide()
-            $('#timezone').hide()
-            $('#flag').hide()
-	    $('#Reviews').hide()
+            $('#writeReview').hide()
+            $('#reviewInput').hide()
+            $('#existingReview').hide()
+            $('#rating1').hide()
+                $('#rating2').hide()
+                $('#rating3').hide()
+                $('#rating4').hide()
+                $('#rating5').hide()
+                $('#worldMap').hide()
+                $('#currentTitle').hide()
+                $('#countryName').hide()
+                $('#appDescription').hide()
+                $('#capital').hide()
+                $('#region').hide()
+                $('#currency').hide()
+                $('#currencyConverter').hide()
+                $('#conversionResult').empty()
+                $('#population').hide()
+                $('#code').hide()
+                $('#timezone').hide()
+                $('#flag').hide()
+            $('#Reviews').hide()
             $('#languages').hide()
             $('#reviewLine').hide()
             $('#errorHandling').html("<p><b>Country Not Found!</b></p> <img class='img-thumbnail mx-auto d-block panel-transparent' src=\"images/errorLogo.png\" alt=\"errorLogo\">")
             $('#errorHandling').show()
-        }
+            }
     });
 }
 
@@ -241,5 +239,5 @@ $(document).ready(function() {
         $("#reviewInput").val('').focus().blur();
         return false
     });
-    
+
 });

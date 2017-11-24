@@ -5,10 +5,20 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var app = express();
 
+
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 
+
 // Routes
+// !!!NOTE that values are hard coded for now!!!
+// !!!NOTE: use -X!!
+// Examples for performing CRUD:
+// curl -XGET http://localhost:3964/api/countries
+// curl -XPUT http://localhost:3964/api/countries/Canada
+// curl -XPOST http://localhost:3964/api/countries
+// curl -XDELETE http://localhost:3964/api/countries/Canada
+
 app.get('/', function (req, res) {
     res.redirect('/index.html');
 });
@@ -22,27 +32,123 @@ app.get('/api', function (req, res) {
     res.send(db.loadAll());
 });
 
+
+// For country API
 app.get('/api/countries', function (req, res) {
     res.send(db.getAllCountries());
 });
 
+app.get('/api/countries/:countryName', function (req, res) {
+    console.dir(req.params.countryName);
+    res.send(db.getCountry(req.params.countryName));
+});
+
+var country = {
+    'Canada': {
+        "name": 'Canada',
+        "flag": 'https://restcountries.eu/data/can.svg',
+        "capital": 'Toronto',
+        "region": 'Northern America',
+        "population": 36155487,
+        "languages": ['English', 'French'],
+        "currency": 'CAD',
+        "callingCodes": '1',
+        "timezones": ['UTC-08:00', 'UTC-07:00', 'UTC-06:00', 'UTC-05:00', 'UTC-04:00', 'UTC-03:30'],
+        "reviews": {}
+    },
+    "Belgium": {
+        "name":"Belgium",
+        "flag":"https://restcountries.eu/data/bel.svg",
+        "capital":"Brussels",
+        "region":"Western Europe",
+        "population":11319511,
+        "languages":["Dutch","French","German"],
+        "currency":"EUR",
+        "callingCodes":["32"],
+        "timezones":["UTC+01:00"],
+        "reviews":{}
+    }
+}
+
+// Post, Put, Delete method don't return anything to the user. They just update
+// the data.
+app.put('/api/countries/:countryName', function (req, res) {
+    console.dir(req.params.countryName);
+    res.send(db.putCountry(req.params.countryName, country['Canada']));
+});
+
+app.post('/api/countries', function (req, res) {
+    res.send(db.postCountry(country["Belgium"]));
+});
+
+app.delete('/api/countries/:countryName', function (req, res) {
+    console.dir(req.params.countryName);
+    res.send(db.deleteCountry(req.params.countryName));
+});
+
+
+// For currencies
+app.get('/api/currencies', function (req, res) {
+    res.send(db.getAllCurrencies());
+});
+
+app.get('/api/currencies/:code', function (req, res) {
+    console.dir(req.params.code);
+    res.send(db.getCurrency(req.params.code));
+});
+
+var currency = {
+    "AUD": {
+        "code": "AUD",
+        "value": 20.0357
+    },
+    "BGN": {
+        "code": "BGN",
+        "value": 1.3066
+    }
+}
+
+// Post and Put method doesn't return anything to the user. They just update the
+// data.
+app.put('/api/currencies/:code', function (req, res) {
+    console.dir(req.params.code);
+    res.send(db.putCurrency(req.params.code, currency["AUD"]));
+});
+
+app.post('/api/currencies', function (req, res) {
+    res.send(db.postCurrency(currency["BGN"]));
+});
+
+app.delete('/api/currencies/:code', function (req, res) {
+    console.dir(req.params.code);
+    res.send(db.deleteCurrency(req.params.code));
+});
+
+// For msg endpoints
 app.get('/api/messages', function (req, res) {
     res.send(db.getAllMessages());
 });
 
+app.get('/api/messages/:id', function (req, res) {
+    console.dir(req.params.id);
+    res.send(db.getMessage(req.params.id));
+});
+
+var message = {
+    'msg2': {
+        id: '2',
+        msg: 'blah2'
+    }
+}
 app.post('/api/messages', function (req, res) {
-    console.dir(req.body);
-    db.postMessage({
-        id: req.body.id,
-        msg: req.body.msg
-    });
-    res.send(db.getMessage(req.body.id));
+    db.postMessage(message['msg2']);
+    res.send(db.getAllMessages());
 });
 
 app.delete('/api/messages/:id', function (req, res) {
-    console.dir(req.params);
+    console.dir(req.params.id);
     db.deleteMessage(req.params.id);
-    res.send("Message deleted");
+    res.send(db.getAllMessages());
 });
 
 
@@ -149,7 +255,7 @@ const db = (function () {
         },
 
         'Messages': {
-            '1': {"id": '1', "msg": 'blah'}, '1234': {"id": '1234', "msg": 'blah'}
+            'msg1': {"id": '1', "msg": 'blah'}, 'msg1234': {"id": '1234', "msg": 'blah'}
         }
     }
     */
@@ -203,8 +309,8 @@ const db = (function () {
     countries[canada.name] = canada;
     countries[australia.name] = australia;
     currencies[aud.code] = aud;
-    messages[msg1.id] = msg1;
-    messages[msg1234.id] = msg1234;
+    messages['msg1'] = msg1;
+    messages['msg1234'] = msg1234;
     apiData['Countries'] = countries;
     apiData['Currencies'] = currencies;
     apiData['Messages'] = messages;
@@ -251,21 +357,22 @@ const db = (function () {
                 return exchangeRates;
             });
         },
+
         // For Countries.
         getAllCountries: function () {
             return apiData['Countries'];
         },
         getCountry: function (countryName) {
-            return apiData['Countries'].countryName;
+            return apiData['Countries'][countryName];
         },
-        putCountry: function(countryData) {
-            apiData['Countries'][countryData.name] = countryData;
+        putCountry: function(countryName, countryData) {
+            apiData['Countries'][countryName] = countryData;
         },
         postCountry: function(countryData) {
             apiData['Countries'][countryData.name] = countryData;
         },
         deleteCountry: function(countryName) {
-            delete apiData['Countries'].countryName;
+            delete apiData['Countries'][countryName];
         },
 
         // For Currencies
@@ -273,16 +380,16 @@ const db = (function () {
             return apiData['Currencies'];
         },
         getCurrency: function (currencyCode) {
-            return apiData['Currencies'].currencyCode;
+            return apiData['Currencies'][currencyCode];
         },
-        putCurrency: function(currencyData) {
-            apiData['Currencies'][currencyData.code] = currencyData;
+        putCurrency: function(currencyCode, currencyData) {
+            apiData['Currencies'][currencyCode] = currencyData;
         },
         postCurrency: function(currencyData) {
             apiData['Currencies'][currencyData.code] = currencyData;
         },
         deleteCurrency: function(currencyCode) {
-            delete apiData['Currencies'].currencyCode;
+            delete apiData['Currencies'][currencyCode];
         },
 
         // For Messages
@@ -290,16 +397,13 @@ const db = (function () {
             return apiData['Messages'];
         },
         getMessage: function (messageID) {
-            return apiData['Messages'].messageID;
-        },
-        putMessage: function(messageData) {
-            apiData['Messages'][messageData.ID] = messageData;
+            return apiData['Messages']['msg' + messageID];
         },
         postMessage: function(messageData) {
-            apiData['Messages'][messageData.ID] = messageData;
+            apiData['Messages']['msg' + messageData.ID] = messageData;
         },
         deleteMessage: function(messageID) {
-            delete apiData['Messages'].messageID;
+            delete apiData['Messages']['msg' + messageID];
         }
     };
 })();
