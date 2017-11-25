@@ -1,24 +1,7 @@
 var currencyCode;
 
 function getCountryInfo(country) {
-    fields = "?fields=capital;currencies;population;flag;timezones;languages;callingCodes;subregion;name"
 
-    // Hard code the result for South and North Korea but might wanna come up with something better.
-    var fullText = "?fullText=true";
-    var kimJongUn = 0
-    if ((country == ("North Korea")) || (country == ("north korea"))) {
-        kimJongUn = 1
-        country = "Korea"
-        fullText = ""
-    }
-    else if ((country == ("South Korea")) || (country == ("south korea")) || (country == ("korea"))) {
-        kimJongUn = -1
-        country = "Korea"
-        fullText = ""
-    }
-    else if (country == "Korea") {
-        fullText = ""
-    }
     // Changed url to our own API
     //var url = "https://restcountries.eu/rest/v2/name/" + country + fullText
     var url = "https://mysterious-hollows-73808.herokuapp.com/api/countries/" + country
@@ -40,8 +23,8 @@ function getCountryInfo(country) {
             var officialLanguages = data.languages
             console.log(officialLanguages)
             var language = ""
-            for (lang in officialLanguages){
-                language += lang + ", "
+            for (index in officialLanguages){
+                language += officialLanguages[index] + ", "
             }
             language = language.replace(/,\s*$/, "");
             $('#languages').html("<p><b> Languages: </b></br>" + language + "</p>")
