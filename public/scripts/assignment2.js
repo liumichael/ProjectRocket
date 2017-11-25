@@ -39,8 +39,8 @@ function getCountryInfo(country) {
 
             var officialLanguages = data.languages
             var language = ""
-            for (index in officialLanguages){
-                language += officialLanguages[index].name + ", "
+            for (lang in officialLanguages){
+                language += lang + ", "
             }
             language = language.replace(/,\s*$/, "");
             $('#languages').html("<p><b> Languages: </b></br>" + language + "</p>")
@@ -120,7 +120,7 @@ function getCurrencyInfo(amount) {
                     $('#conversionResult').html("<p>" + amount + " CAD is " + amount + " " + currencyCode + "</p>")
                 }
                 else {
-                    var result = amount * (data[currencyCode].code)
+                    var result = amount * (data[currencyCode].value)
                     $('#conversionResult').html("<p>" + amount + " CAD is " + result + " " + currencyCode + "</p>")
                 }
             }
