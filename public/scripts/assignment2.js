@@ -19,7 +19,7 @@ function getCountryInfo(country) {
     else if (country == "Korea") {
         fullText = ""
     }
-    // Changed url to search by country full name
+    // Changed url to our own API
     //var url = "https://restcountries.eu/rest/v2/name/" + country + fullText
     var url = "https://mysterious-hollows-73808.herokuapp.com/api/countries/" + country
 
@@ -75,6 +75,7 @@ function getCountryInfo(country) {
             $('#rating4').show()
             $('#rating5').show()
             currencyCode = data.currency
+            console.log(currencyCode)
         },
         error: function(data) {
             $('#writeReview').hide()
@@ -108,17 +109,18 @@ function getCountryInfo(country) {
 }
 
 function getCurrencyInfo(amount) {
-    var url = "http://api.fixer.io/latest?base=CAD"
+    var url = "https://mysterious-hollows-73808.herokuapp.com/api/currencies";
     $.ajax({
         url: url,
+        type: "GET",
         dataType: 'json',
         success: function(data) {
-            if ((currencyCode in data.rates) || (currencyCode == "CAD")){
+            if ((currencyCode in data) || (currencyCode == "CAD")){
                 if (currencyCode == "CAD") {
                     $('#conversionResult').html("<p>" + amount + " CAD is " + amount + " " + currencyCode + "</p>")
                 }
                 else {
-                    var result = amount * (data['rates'][currencyCode])
+                    var result = amount * (data[currencyCode].code)
                     $('#conversionResult').html("<p>" + amount + " CAD is " + result + " " + currencyCode + "</p>")
                 }
             }
