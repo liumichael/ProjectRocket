@@ -33,22 +33,71 @@ p {
     max-width: 100%;
 }
 
+#msg {
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+    font-size: 10pt;
+}
+
 @media only screen and (max-width: 768px) and (orientation: landscape) {
-    #adminMsg {
-        margin-top: 50px;
+    #popup {
+        visibility: hidden;
     }
 }
 
-#statusMsg {
-    width: 30%;
-    overflow-y: scroll;
-    height: 70px;
+/* Popup container */
+#popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
 }
 
-#msg {
-    font-family: 'Roboto', sans-serif;
-    color: #211105;
-    font-size: 10pt;
+/* The actual popup (appears on top) */
+#popup .popuptext {
+    visibility: hidden;
+    min-width: 300px;
+    background-color: #473222;
+    color: #ffffff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 8px 18px;
+    position:absolute;
+    z-index: 1;
+    top: 130%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+
+/* Popup arrow */
+#popup .popuptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 27%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #473222 transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+#popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 0.5s;
+    animation: fadeIn 0.5s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
 
 .img-thumbnail {
