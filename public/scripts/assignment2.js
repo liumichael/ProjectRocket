@@ -119,6 +119,9 @@ function getCurrencyInfo(amount) {
 }
 
 $(document).ready(function() {
+    // Hide the Status message when there is no messages to show.
+    //$('#popup').hide()
+    $('#popup').show()
     $('#currencyConverter').hide()
     $('#Reviews').hide()
     $('#writeReview').hide()
