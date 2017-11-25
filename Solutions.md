@@ -27,11 +27,12 @@ When the application is first opened, users are directed to the homepage. Here t
 
 ### TODO:
 - **Figure the most important part of our web app: Submitting/Updating actual REVIEWS**
-- Display the reviews in "Other Reviews" in pages (maybe 5 reviews per page or something)
-- <del>Implement the things mentioned in the feedback</del>
 - Implement the <del>front</del> and back end for Sign Up and Log in (session management) **(Front end done. Need to work with the database for login-signup.js to work)**
 - Database
-- Server side (things should be responsive and shown in real-time) **(All the things we need other than the database are done)**
-- <del>Implement a RESTful API that allows individual users to perform the 4 basic REST operations (even if the original API doesn't allow those operations)</del> **(All the things we need other than the database are done)**
-- The API also needs to have <del>3 endpoints GET /api/messages, POST /api/messages, DELETE /api/messages/1234 </del>so admin can push status messages to all users **(Endpoints and front end for pushing the status messages are done. Need to work with the database and actually push the messages to the page)** **(The Status Messages right now are hardcoded, not real messages)**
+- Work with the database and actually push the status messages to the page. Hide the status icon when there's no messages at all and show the icon once a messages has been pushed.
 - Document the API (clear and concise, demonstrate understanding of RESTful design)
+- <del>Server side (things should be responsive and shown in real-time)</del> **(All the things we need other than the database are done)**
+- <del>Implement a RESTful API that allows individual users to perform the 4 basic REST operations (even if the original API doesn't allow those operations)</del> **(All the things we need other than the database are done)**
+- <del>The API also needs to have 3 endpoints GET /api/messages, POST /api/messages, DELETE /api/messages/1234 so admin can push status messages to all users </del>
+- Display the reviews in "Other Reviews" in pages (only do this if we have time)
+- <del>Implement the things mentioned in the feedback</del>
