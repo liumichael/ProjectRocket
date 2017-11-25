@@ -38,6 +38,7 @@ function getCountryInfo(country) {
             $('#timezone').html("<p><b> Timezones: </b></br>"+ data.timezones + "</p>")
 
             var officialLanguages = data.languages
+            console.log(officialLanguages)
             var language = ""
             for (lang in officialLanguages){
                 language += lang + ", "
@@ -75,7 +76,6 @@ function getCountryInfo(country) {
             $('#rating4').show()
             $('#rating5').show()
             currencyCode = data.currency
-            console.log(currencyCode)
         },
         error: function(data) {
             $('#writeReview').hide()
