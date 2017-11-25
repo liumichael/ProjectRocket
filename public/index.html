@@ -48,8 +48,11 @@
         <div id="popup" onclick="myFunction()">
             <img src="images/status-msg-icon.png"/>
             <span class="popuptext" id="myPopup">
-                <li id="msg">I'm a hard coded status message :D</li>
-                <li id="msg">The server is currently down</li>
+                <div id="statusMsg">
+                    <h5>Status Message</h5>
+                    <li id="msg">I'm a hard coded status message :D</li>
+                    <li id="msg">The server is currently down blah blah blah blah blah blah blah</li>
+                </div>
             </span>
         </div>
 
@@ -60,7 +63,7 @@
             popup.classList.toggle("show");
         }
         </script>
-        
+
         <script src="scripts/auto-complete.js" type="text/javascript"></script>
         <div class="starter-template">
             <h1 id="currentTitle">Project Rocket</h1>
