@@ -1,5 +1,6 @@
 var express = require('express');
 var port = process.env.PORT || 3964;
+var cors = require('cors');
 //var MongoClient = require('mongodb').MongoClient;
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -8,6 +9,7 @@ var app = express();
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors());
 
 
 // Routes
