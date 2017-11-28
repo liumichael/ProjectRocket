@@ -194,8 +194,9 @@ app.get('/api/messages/:id', function (req, res) {
 
 var message = {
     'msg2': {
-        id: '2',
-        msg: 'blah2'
+        "id": '2',
+        "msg": 'blah2',
+        "read": 'False'
     }
 }
 app.post('/api/messages', function (req, res) {
@@ -321,7 +322,7 @@ const db = (function () {
         },
 
         'Messages': {
-            'msg1': {"id": '1', "msg": 'blah'}, 'msg1234': {"id": '1234', "msg": 'blah'}
+            'msg1': {"id": '1', "msg": 'blah', "read": 'False'}, 'msg1234': {"id": '1234', "msg": 'blah', "read": 'False'}
         }
     }
     */
@@ -364,12 +365,14 @@ const db = (function () {
 
     var msg1 = {
         "id": '1',
-        "msg": 'blah1'
+        "msg": 'blah1',
+        "read": 'False'
     };
 
     var msg1234 = {
         "id": '1234',
-        "msg": 'blah1234'
+        "msg": 'blah1234',
+        "read": 'False'
     };
 
     countries[canada.name] = canada;
@@ -466,7 +469,7 @@ const db = (function () {
             return apiData['Messages']['msg' + messageID];
         },
         postMessage: function(messageData) {
-            apiData['Messages']['msg' + messageData.ID] = messageData;
+            apiData['Messages']['msg' + messageData.id] = messageData;
         },
         deleteMessage: function(messageID) {
             delete apiData['Messages']['msg' + messageID];

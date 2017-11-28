@@ -7,9 +7,7 @@
 ## Important Notes (Design choices, Cool features, etc)
 - If on local machine, app.js is our entry point (run node app.js and the url is localhost:3964)
 - If on Heroku: https://mysterious-hollows-73808.herokuapp.com
-- Note that because now we're using our own API with **https**, country search and all those stuff work only when you run our web app on Heroku (https://mysterious-hollows-73808.herokuapp.com <--You need that https there) and not locally
-- Heroku git url: https://git.heroku.com/mysterious-hollows-73808.git (You probably need to sign up to Heroku first)
-- Heroku Starting Guide: https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction
+- Our search bar provides autocompletion and is **case sensitive** (i.e. typing Canada will bring you to Canada's page but typing canada will bring you to the country-not-found error page)
 
 ## Web Application Description
 
