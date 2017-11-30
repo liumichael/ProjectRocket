@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-var Country = require('../model/country');
-var Currency = require('../model/currency');
-var Message = require('../model/message');
+var Country = require('../models/country');
+var Currency = require('../models/currency');
+var Message = require('../models/message');
 
 
 module.exports = {
