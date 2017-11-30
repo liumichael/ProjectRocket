@@ -2,9 +2,10 @@ var currencyCode;
 
 function getCountryInfo(country) {
 
-    // Changed url to our own API
-    //var url = "https://restcountries.eu/rest/v2/name/" + country + fullText
-    var url = "https://mysterious-hollows-73808.herokuapp.com/api/countries/" + country
+    // Change to this one when running on Heroku
+    //var url = "https://mysterious-hollows-73808.herokuapp.com/api/countries/" + country
+    // Change to this one when testing locally
+    var url = "http://localhost:3964/api/countries/" + country
 
     // Use ajax to handle errors
     $.ajax({
@@ -12,59 +13,60 @@ function getCountryInfo(country) {
         dataType: 'json',
         type: "GET",
         success: function(data) {
-            $('#countryName').text(data.name)
-            $('#region').html("<p><b>Region: </b></br>" + data.region + "</p>")
-            $('#capital').html("<p><b> Capital: </b></br>" + data.capital + "</p>")
-            $('#currency').html("<p><b> Currency: </b>"+ data.currency + "</p>")
-            $('#population').html("<p><b> Population: </b></br>"+ data.population + "</p>")
-            $('#code').html("<p><b> Calling Codes: </b>"+ data.callingCodes + "</p>")
-            $('#timezone').html("<p><b> Timezones: </b></br>"+ data.timezones + "</p>")
+            if (data.length > 0) {
+                $('#countryName').text(data[0].name)
+                $('#region').html("<p><b>Region: </b></br>" + data[0].region + "</p>")
+                $('#capital').html("<p><b> Capital: </b></br>" + data[0].capital + "</p>")
+                $('#currency').html("<p><b> Currency: </b>"+ data[0].currency + "</p>")
+                $('#population').html("<p><b> Population: </b></br>"+ data[0].population + "</p>")
+                $('#code').html("<p><b> Calling Codes: </b>"+ data[0].callingcodes + "</p>")
+                $('#timezone').html("<p><b> Timezones: </b></br>"+ data[0].timezones + "</p>")
 
-            var officialLanguages = data.languages
-            console.log(officialLanguages)
-            var language = ""
-            for (index in officialLanguages){
-                language += officialLanguages[index] + ", "
+                var officialLanguages = data[0].languages
+                console.log(officialLanguages)
+                var language = ""
+                for (index in officialLanguages){
+                    language += officialLanguages[index] + ", "
+                }
+                language = language.replace(/,\s*$/, "");
+                $('#languages').html("<p><b> Languages: </b></br>" + language + "</p>")
+
+                var imageTag = "<img class='img-thumbnail mx-auto d-block' src=" + data[0].flag + " alt=" + data[0].name + "'s Flag>"
+                $('#flag').html(imageTag + "</br>")
+
+                $('#worldMap').hide()
+                $('#currentTitle').hide()
+                $('#countryName').show()
+                $('#appDescription').text("Share your Experience.")
+                $('#appDescription').show()
+                $('#capital').show()
+                $('#region').show()
+                $('#currency').show()
+                $('#currencyConverter').show()
+                $('#conversionResult').empty()
+                $('#population').show()
+                $('#code').show()
+                $('#timezone').show()
+                $('#flag').show()
+                $('#languages').show()
+                $('#errorHandling').hide()
+                $('#Reviews').show()
+                $('#reviewLine').show()
+                $('#writeReview').show()
+                $('#reviewInput').show()
+                $('#existingReview').show()
+                $('#rating1').show()
+                $('#rating2').show()
+                $('#rating3').show()
+                $('#rating4').show()
+                $('#rating5').show()
+                currencyCode = data[0].currency
             }
-            language = language.replace(/,\s*$/, "");
-            $('#languages').html("<p><b> Languages: </b></br>" + language + "</p>")
-
-            var imageTag = "<img class='img-thumbnail mx-auto d-block' src=" + data.flag + " alt=" + data.name + "'s Flag>"
-            $('#flag').html(imageTag + "</br>")
-
-            $('#worldMap').hide()
-            $('#currentTitle').hide()
-            $('#countryName').show()
-            $('#appDescription').text("Share your Experience.")
-            $('#appDescription').show()
-            $('#capital').show()
-            $('#region').show()
-            $('#currency').show()
-            $('#currencyConverter').show()
-            $('#conversionResult').empty()
-            $('#population').show()
-            $('#code').show()
-            $('#timezone').show()
-            $('#flag').show()
-            $('#languages').show()
-            $('#errorHandling').hide()
-/*review*/  $('#Reviews').show()
-            $('#reviewLine').show()
-            $('#writeReview').show()
-            $('#reviewInput').show()
-            $('#existingReview').show()
-            $('#rating1').show()
-            $('#rating2').show()
-            $('#rating3').show()
-            $('#rating4').show()
-            $('#rating5').show()
-            currencyCode = data.currency
-        },
-        error: function(data) {
-            $('#writeReview').hide()
-            $('#reviewInput').hide()
-            $('#existingReview').hide()
-            $('#rating1').hide()
+            else {
+                $('#writeReview').hide()
+                $('#reviewInput').hide()
+                $('#existingReview').hide()
+                $('#rating1').hide()
                 $('#rating2').hide()
                 $('#rating3').hide()
                 $('#rating4').hide()
@@ -82,28 +84,67 @@ function getCountryInfo(country) {
                 $('#code').hide()
                 $('#timezone').hide()
                 $('#flag').hide()
+                $('#Reviews').hide()
+                $('#languages').hide()
+                $('#reviewLine').hide()
+                $('#errorHandling').html("<p><b>Country Not Found!</b></p> <img class='img-thumbnail mx-auto d-block panel-transparent' src=\"images/errorLogo.png\" alt=\"errorLogo\">")
+                $('#errorHandling').show()
+            }
+        },
+        error: function(data) {
+            $('#writeReview').hide()
+            $('#reviewInput').hide()
+            $('#existingReview').hide()
+            $('#rating1').hide()
+            $('#rating2').hide()
+            $('#rating3').hide()
+            $('#rating4').hide()
+            $('#rating5').hide()
+            $('#worldMap').hide()
+            $('#currentTitle').hide()
+            $('#countryName').hide()
+            $('#appDescription').hide()
+            $('#capital').hide()
+            $('#region').hide()
+            $('#currency').hide()
+            $('#currencyConverter').hide()
+            $('#conversionResult').empty()
+            $('#population').hide()
+            $('#code').hide()
+            $('#timezone').hide()
+            $('#flag').hide()
             $('#Reviews').hide()
             $('#languages').hide()
             $('#reviewLine').hide()
             $('#errorHandling').html("<p><b>Country Not Found!</b></p> <img class='img-thumbnail mx-auto d-block panel-transparent' src=\"images/errorLogo.png\" alt=\"errorLogo\">")
             $('#errorHandling').show()
-            }
+        }
     });
 }
 
 function getCurrencyInfo(amount) {
-    var url = "https://mysterious-hollows-73808.herokuapp.com/api/currencies";
+    //var url = "https://mysterious-hollows-73808.herokuapp.com/api/currencies";
+    var url = "http://localhost:3964/api/currencies"
     $.ajax({
         url: url,
         type: "GET",
         dataType: 'json',
         success: function(data) {
-            if ((currencyCode in data) || (currencyCode == "CAD")){
+            var available = 0;
+            var index = 0;
+            for (i in data) {
+                console.log(data[i].code)
+                if (data[i].code == currencyCode) {
+                    available = 1;
+                    index = i;
+                }
+            }
+            if ((available == 1) || (currencyCode == "CAD")){
                 if (currencyCode == "CAD") {
                     $('#conversionResult').html("<p>" + amount + " CAD is " + amount + " " + currencyCode + "</p>")
                 }
                 else {
-                    var result = amount * (data[currencyCode].value)
+                    var result = amount * (data[index].rate)
                     $('#conversionResult').html("<p>" + amount + " CAD is " + result + " " + currencyCode + "</p>")
                 }
             }
@@ -182,7 +223,7 @@ $(document).ready(function() {
         $('#languages').empty()
         $('#errorHandling').hide()
         $("#country").val('').focus().blur()
-	$('#Reviews').hide()
+        $('#Reviews').hide()
         $('#reviewLine').hide()
         $('#writeReview').hide()
         $('#reviewInput').hide()

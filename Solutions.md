@@ -8,6 +8,7 @@
 - If on local machine, app.js is our entry point (run node app.js and the url is localhost:3964)
 - If on Heroku: https://mysterious-hollows-73808.herokuapp.com
 - Our search bar provides autocompletion and is **case sensitive** (i.e. typing Canada will bring you to Canada's page but typing canada will bring you to the country-not-found error page)
+- Post methods allow one insert at a time
 
 ## Web Application Description
 
