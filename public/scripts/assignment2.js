@@ -3,9 +3,9 @@ var currencyCode;
 function getCountryInfo(country) {
 
     // Change to this one when running on Heroku
-    //var url = "https://mysterious-hollows-73808.herokuapp.com/api/countries/" + country
+    var url = "https://mysterious-hollows-73808.herokuapp.com/api/countries/" + country
     // Change to this one when testing locally
-    var url = "http://localhost:3964/api/countries/" + country
+    //var url = "http://localhost:3964/api/countries/" + country
 
     // Use ajax to handle errors
     $.ajax({
@@ -123,8 +123,8 @@ function getCountryInfo(country) {
 }
 
 function getCurrencyInfo(amount) {
-    //var url = "https://mysterious-hollows-73808.herokuapp.com/api/currencies";
-    var url = "http://localhost:3964/api/currencies"
+    var url = "https://mysterious-hollows-73808.herokuapp.com/api/currencies";
+    //var url = "http://localhost:3964/api/currencies"
     $.ajax({
         url: url,
         type: "GET",
