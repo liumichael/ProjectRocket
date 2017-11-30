@@ -6,6 +6,14 @@ module.exports = function(app, passport) {
         res.redirect('/index.html');
     });
 
+    app.get('/login', function (req, res) {
+        res.redirect('/login.html');
+    });
+
+    app.get('/signup', function (req, res) {
+        res.redirect('/signup.html');
+    });
+
     app.get('/api/countries', controller.getAllCountries);
     app.get('/api/countries/:countryName', controller.getCountry);
     app.put('/api/countries/:countryName', controller.putCountry);

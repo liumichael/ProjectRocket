@@ -34,7 +34,7 @@ function getAllCountries(req, res) {
 }
 
 function getCountry(req, res) {
-    Country.find({ name: req.params.countryName }, { _id: 0, __v: 0 }, function (err, country) {
+    Country.find({ name: req.params.countryName.toLowerCase() }, { _id: 0, __v: 0 }, function (err, country) {
         if (err) {
             res.send(err);
         }
