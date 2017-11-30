@@ -12,9 +12,6 @@ var dburl = "mongodb://309:309@ds047478.mlab.com:47478/309teamrocket";
 var mongoose = require('mongoose');
 var app = express();
 
-mongoose.Promise = global.Promise;
-mongoose.connect(dburl);
-
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -94,12 +91,6 @@ app.get('/api', function (req, res) {
     // currency data from the database and call res.send(apiData);
     res.send(db.loadAll());
 });
-
-app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/user', // redirect to the secure profile section
-    failureRedirect: '/signup', // redirect back to the signup page if there is an error
-    failureFlash: true // allow flash messages
-}));
 
 
 // For country API
