@@ -29,6 +29,25 @@ module.exports = function(app, passport) {
     app.post('/api/messages', controller.postMessage);
     app.delete('/api/messages/:id', controller.deleteMessageByID);
 
+
+    // process the signup form
+    // app.post('/signup', passport.authenticate('local-signup', {
+    //     successRedirect: '/', // redirect to the secure profile section
+    //     failureRedirect: '/signup', // redirect back to the signup page if there is an error
+    //     failureFlash: true // allow flash messages
+    // }));
+
+    // process the login form
+    // app.post('/login', passport.authenticate('local-login', {
+    //     successRedirect: '/', // redirect to the secure profile section
+    //     failureRedirect: '/login', // redirect back to the signup page if there is an error
+    //     failureFlash: true // allow flash messages
+    // }));
+
+    // starter code for review db get post
+    // app.post('/review/new', controller.addReview);
+    // app.get('/review/:reviewid', controller.getReview);
+    // app.post('/review/edit/:reviewid', controller.editReview)
 };
 
 function loggedIn(req, res, next) {
