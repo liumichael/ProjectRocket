@@ -29,6 +29,10 @@ module.exports = function(app, passport) {
     app.post('/api/messages', controller.postMessage);
     app.delete('/api/messages/:id', controller.deleteMessageByID);
 
+    // app.get('api/reviews', controller.getAllReview);
+    // app.get('api/reviews/country/:countryName', controller.getCountryReview);
+    // app.get('api/reviews/user/:userName', controller.getUserReview);
+
 
     // process the signup form
     // app.post('/signup', passport.authenticate('local-signup', {

@@ -213,3 +213,20 @@ function deleteMessageByID(req, res) {
         }
     });
 }
+
+
+
+
+
+// function getReview(req, res) {
+//     Review.findOne({ id: req.params.id }, function (err, result) {
+//         if (err) {
+//             res.send(err);
+//         }
+//         else {
+//             var stars = result.stars;
+//             var content = result.content;
+//             res.send(content);
+//         }
+//     });
+// }
