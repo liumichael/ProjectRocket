@@ -21,7 +21,8 @@ mongoose.connect(dburl);
 
 
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(cors());
 app.use(session({
     secret: 'rockets',
