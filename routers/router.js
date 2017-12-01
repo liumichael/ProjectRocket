@@ -35,9 +35,11 @@ module.exports = function(app, passport) {
     app.post('/api/messages', controller.postMessage);
     app.delete('/api/messages/:id', controller.deleteMessageByID);
 
-    // app.get('api/reviews', controller.getAllReview);
-    // app.get('api/reviews/country/:countryName', controller.getCountryReview);
-    // app.get('api/reviews/user/:userName', controller.getUserReview);
+    // app.get('reviews', controller.getAllReview);
+    // app.get('reviews/country/:countryName', controller.getCountryReview);
+    // app.get('reviews/user/:userName', controller.getUserReview);
+    // app.post('reviews', controller.postReview);
+    // app.put('reviews', controller.putReview);
 
 
     // process the signup form
