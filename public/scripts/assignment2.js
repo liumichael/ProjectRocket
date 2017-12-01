@@ -31,7 +31,7 @@ function getCountryInfo(country) {
                 language = language.replace(/,\s*$/, "");
                 $('#languages').html("<p><b> Languages: </b></br>" + language + "</p>")
 
-                var imageTag = "<img class='img-thumbnail mx-auto d-block' src=" + data[0].flag + " alt=" + data[0].name + "'s Flag>"
+                var imageTag = "<img class='img-thumbnail mx-auto d-block' src=" + data[0].flag + " alt='" + data[0].name + "'s Flag'>"
                 $('#flag').html(imageTag + "</br>")
 
                 $('#worldMap').hide()

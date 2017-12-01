@@ -27,30 +27,30 @@ When the application is first opened, users are directed to the homepage. Here t
 #### Countries
 - The endpoints for our country API **aren't** case sensitive
 - All methods automatically turn TestDataFlag into TESTDATAFLAG
-- GET countries example: curl -XGET http://localhost:3964/api/countries
-- GET one country example: curl -XGET http://localhost:3964/api/countries/canada
-- PUT country example: curl -XPUT --data '{ "capital": "blah" }'  --header "Content-Type: application/json" http://localhost:3964/api/countries/canada
-- POST country example: curl -XPOST --data '{ "name": "TestDataFlag", "capital": "blah" }'  --header "Content-Type: application/json" http://localhost:3964/api/countries
+- GET countries example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/countries
+- GET one country example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/countries/canada
+- PUT country example: curl -XPUT --data '{ "capital": "blah" }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/countries/canada
+- POST country example: curl -XPOST --data '{ "name": "TestDataFlag", "capital": "blah" }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/countries
   - Users will see an error message "Error: The field "name" is a required field!" if name field isn't specified. Fields other than "name" can be null
-- DELETE country example: curl -XDELETE http://localhost:3964/api/countries/TestDataFlag
+- DELETE country example: curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/countries/TestDataFlag
 
 
 
 #### Currencies
 - The endpoints for our currency API **are** case sensitive
-- Get currencies example: curl -XGET http://localhost:3964/api/currencies
-- Get one currency example: curl -XGET http://localhost:3964/api/currencies/AUD
-- PUT currency example: curl -XPUT --data '{ "rate": 1 }'  --header "Content-Type: application/json" http://localhost:3964/api/currencies/AUD
-- POST currency example: curl -XPOST --data '{ "code": "CAD", "rate": 1 }'  --header "Content-Type: application/json" http://localhost:3964/api/currencies
-- DELETE currency example: curl -XDELETE http://localhost:3964/api/currencies/CAD
+- Get currencies example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/currencies
+- Get one currency example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD
+- PUT currency example: curl -XPUT --data '{ "rate": 1 }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD
+- POST currency example: curl -XPOST --data '{ "code": "CAD", "rate": 1 }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/currencies
+- DELETE currency example: curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/currencies/CAD
 
 
 
 #### Messages
-- Get messages example: curl -XGET http://localhost:3964/api/messages
-- Get one message example: curl -XGET http://localhost:3964/api/messages/5a20ef313997c26701fb5507
-- POST message example: curl -XPOST --data '{"data":"Testing hehehehe"}' --header 'Content-Type: application/json' http://localhost:3964/api/messages
-- DELETE message example: curl -XDELETE http://localhost:3964/api/messages/5a20ef313997c26701fb5507
+- Get messages example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages
+- Get one message example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507
+- POST message example: curl -XPOST --data '{"data":"Testing hehehehe"}' --header 'Content-Type: application/json' https://mysterious-hollows-73808.herokuapp.com/api/messages
+- DELETE message example: curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507
 
 
 
