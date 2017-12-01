@@ -46,14 +46,18 @@ function getCountry(req, res) {
 
 function putCountry(req, res) {
 
-    console.dir(req.params.countryName);
-    Country.findOneAndUpdate({ name: req.params.countryName }, { capital: "Ottawa" },
+    console.dir(req.params.countryName.toUpperCase());
+    if (req.body.name) {
+        req.body.name = req.body.name.toUpperCase();
+    }
+    console.log(req.body);
+    Country.findOneAndUpdate({ name: req.params.countryName.toUpperCase() }, req.body,
         function (err, country) {
             if (err) {
                 res.send(err);
             }
             else {
-                res.send(req.params.countryName + " updated\n");
+                res.send(req.params.countryName.toUpperCase() + " updated! \nNote that country names get automatically turned into upper case if they weren't before.\n");
             }
     });
 }
@@ -61,31 +65,34 @@ function putCountry(req, res) {
 // If you call this with the same data multiple time, it'll just create duplicates with different _id
 function postCountry(req, res) {
 
-    var newCountry = new Country({
-        name: "TestPost1",
-        flag: "",
-        capital: "TestCapital"
-    });
-    newCountry.save(function (err, country) {
-            if (err) {
-                res.send(err);
+    if (req.body.name) {
+        req.body.name = req.body.name.toUpperCase();
+        console.log(req.body)
+        var newCountry = new Country(req.body);
+        newCountry.save(function (err, country) {
+                if (err) {
+                    res.send(err);
+                }
+                else {
+                    res.send(country + " posted! \nNote that country names get automatically turned into upper case if they weren't before.\n");
+                }
             }
-            else {
-                res.send(country + "\n");
-            }
-        }
-    );
+        );
+    }
+    else {
+        res.send("Error: The field 'name' is a required field!\n")
+    }
 }
 
 function deleteCountry(req, res) {
 
-    console.dir(req.params.countryName);
-    Country.findOneAndRemove({ name: req.params.countryName }, function (err, result) {
+    console.dir(req.params.countryName.toUpperCase());
+    Country.findOneAndRemove({ name: req.params.countryName.toUpperCase() }, function (err, result) {
         if (err) {
             res.send(err);
         }
         else {
-            res.send(req.params.countryName + " deleted\n");
+            res.send(req.params.countryName + " deleted! \nNote that country names get automatically turned into upper case if they weren't before.\n");
         }
     });
 }
@@ -118,7 +125,8 @@ function getCurrency(req, res) {
 function putCurrency(req, res) {
 
     console.dir(req.params.code);
-    Currency.findOneAndUpdate({ code: req.params.code }, { rate: 1.0297 },
+    console.log(req.body);
+    Currency.findOneAndUpdate({ code: req.params.code }, req.body,
         function (err, code) {
             if (err) {
                 res.send(err);
@@ -131,19 +139,22 @@ function putCurrency(req, res) {
 
 function postCurrency(req, res) {
 
-    var newCurrency = new Currency({
-        code: "TWD",
-        rate: 23.29
-    });
-    newCurrency.save(function (err, code) {
-            if (err) {
-                res.send(err);
+    if (req.body.code) {
+        console.log(req.body);
+        var newCurrency = new Currency(req.body);
+        newCurrency.save(function (err, code) {
+                if (err) {
+                    res.send(err);
+                }
+                else {
+                    res.send(code + "\n");
+                }
             }
-            else {
-                res.send(code + "\n");
-            }
-        }
-    );
+        );
+    }
+    else {
+        res.send("Error: The field 'code' is a required field!\n");
+    }
 }
 
 function deleteCurrency(req, res) {
@@ -163,7 +174,7 @@ function deleteCurrency(req, res) {
 
 // Messages
 function getAllMessages(req, res){
-    Message.find({}, { _id: 0, __v: 0 }, function (err, msgs) {
+    Message.find({}, { __v: 0 }, function (err, msgs) {
         if (err) {
             res.send(err);
         }
@@ -174,7 +185,7 @@ function getAllMessages(req, res){
 }
 
 function getMessageByID(req, res) {
-    Message.find({ id: req.params.id }, { _id: 0, __v: 0 }, function (err, msg) {
+    Message.find({ _id: req.params.id }, { __v: 0 }, function (err, msg) {
         if (err) {
             res.send(err);
         }
@@ -185,26 +196,32 @@ function getMessageByID(req, res) {
 }
 
 function postMessage(req, res) {
-    var newMessage = new Message({
-        id: 1234,
-        data: "Testing 1234 hehehehe",
-        read: false
-    });
-    newMessage.save(function (err, msg) {
-            if (err) {
-                res.send(err);
+
+    console.log(req.body);
+    if (req.body.data) {
+        var newMessage = new Message({
+            data: req.body.data,
+            read: false
+        });
+        newMessage.save(function (err, msg) {
+                if (err) {
+                    res.send(err);
+                }
+                else {
+                    res.send(msg + "\n");
+                }
             }
-            else {
-                res.send(msg + "\n");
-            }
-        }
-    );
+        );
+    }
+    else {
+        res.send("Please make sure you add the header: --header 'Content-Type: application/json'\n");
+    }
 }
 
 function deleteMessageByID(req, res) {
 
     console.dir(req.params.id);
-    Message.findOneAndRemove({ id: req.params.id }, function (err, result) {
+    Message.findOneAndRemove({ _id: req.params.id }, function (err, result) {
         if (err) {
             res.send(err);
         }
