@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Sign up</title>
+    <title>Log In</title>
     <link rel="icon" type="image/png" href="images/tab-icon.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,35 +11,38 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="scripts/login-signup.js" type="text/javascript"></script>
+    <!--script src="scripts/login-signup.js" type="text/javascript"></script-->
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #211105;">
-      <a href="index.html" id="home" class="navbar-brand"><img src="images/rocket-logo.png" width=auto><span style=font-size:14pt;>Project Rocket</span></a>
+      <a href="/" id="home" class="navbar-brand"><img src="images/rocket-logo.png" width=auto><span style=font-size:14pt;>Project Rocket</span></a>
 
       <div class="navbar-collapse collapse show" id="navbarsExampleDefault" style="">
         <ul class="navbar-nav mr-auto"></ul>
-        <a href="login.html" button class="btn btn-info"role="button">Log In</a>
+        <a href="/signup" button class="btn btn-info"role="button">Sign Up</a>
       </div>
     </nav>
 
     <main role="main" class="container">
 
         <div class="starter-template">
-            <h1 id="currentTitle">Sign Up for Project Rocket</h1>
-            <p id="greeting">Yes! Come share you experience with us!</p>
+            <h1 id="currentTitle">Log In to Project Rocket</h1>
+            <p id="greeting">Already one of us? Log in to share you experience!</p>
             <img src="images/rocket-login.png" id="login-logo">
-            <!-- code for express posting signup -->
-            <!-- <form id="signupForm" action="/signup"  method="post"> -->
-            <form id="signupForm">
+
+             <!-- show any messages that come back with authentication -->
+            <% if (message.length > 0) { %>
+                <div class="alert alert-danger"><%= message %></div>
+            <% } %>
+
+            <!-- code for express posting login -->
+            <form id="loginForm" action="/login" method="post">
                 <div class="formContainer">
-                    <label><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" id="username" required>
                     <label><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" id="email" required>
+                    <input type="text" placeholder="Enter Email" name="email" required>
                     <label><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" id="pwd" required>
-                    <button type="submit">Sign Up</button>
+                    <input type="password" placeholder="Enter Password" name="password" required>
+                    <button type="submit">Log In</button>
                 </div>
             </form>
 

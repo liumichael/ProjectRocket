@@ -13,6 +13,7 @@ var mongoose = require('mongoose');
 var Country = require('./models/country');
 var Currency = require('./models/currency');
 var Message = require('./models/message');
+var User = require('./models/users');
 var app = express();
 
 mongoose.Promise = global.Promise;
@@ -24,12 +25,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 app.use(session({
     secret: 'rockets',
-    saveUninitialized: false,
-    resave: false
+    saveUninitialized: true,
+    resave: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
+app.set('views', './public');
+app.set('view engine', 'ejs');
 //passport session setup
 //required for persistent login sessions
 
@@ -63,11 +67,10 @@ passport.use('local-login', new LocalStrategy({
 
             // if no user is found, return the message
             if (!user)
-                return done(null, false);
-
+                return done(null, false, req.flash('loginMessage', 'User not found.'));
             // if the user is found but the password is wrong
             if (!user.validPassword(password))
-                return done(null, false);
+                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); 
 
             // all is well, return successful user
             return done(null, user);
@@ -75,17 +78,38 @@ passport.use('local-login', new LocalStrategy({
 
     }));
 
-//authentication
-app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/user', // redirect to the secure profile section
-    failureRedirect: '/signup', // redirect back to the signup page if there is an error
-    failureFlash: true // allow flash messages
+//local signup
+passport.use('local-signup', new LocalStrategy({
+    usernameField : 'email',
+    passwordField : 'password',
+    passReqToCallback : true
+},
+function(req, email, password, done) {
+    User.findOne({ 'local.email' : email}, function(err, user) {
+        if (err)
+            return done(err);
+        //check to see if theres already a user with that email
+        if (user) {
+            return done(null, false, req.flash('signupMessage', 'That email is already taken. Try using another email.'));
+        }
+        else {
+            console.log("user not found");
+            //if there is no user with that email, create the user
+            var newUser = new User();
+            //set the user's local credentials
+            newUser.local.email = email;
+            newUser.local.username = email;
+            newUser.local.password = newUser.generateHash(password);
+
+            //save the user
+            newUser.save(function(err){
+                if (err)
+                    throw err;
+                return done(null, newUser)
+            });
+        }
+    })
 }));
-app.post('/login.html', passport.authenticate(
-    'local-login', {successRedirect: '/index.html',
-                    successFlash: "Welcome Back!",
-                    failureRedirect: '/login.html',
-                    failureFlash: 'Invalid username or password.'}));
 
 // Routes
 require('./routers/router.js')(app, passport);

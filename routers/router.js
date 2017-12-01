@@ -3,16 +3,22 @@ const controller = require('../controllers/controller.js')
 module.exports = function(app, passport) {
 
     app.get('/', function (req, res) {
-        res.redirect('/index.html');
+        res.render('index.ejs', {user: req.user, message: req.flash('logout')});
     });
 
     app.get('/login', function (req, res) {
-        res.redirect('/login.html');
+        res.render('login.ejs', {message: req.flash('loginMessage') });
     });
 
     app.get('/signup', function (req, res) {
-        res.redirect('/signup.html');
+        res.render('signup.ejs', {message: req.flash('signupMessage') });
     });
+
+    app.get('/logout', function (req, res) {
+        req.logout();
+        req.flash('logout', "You have Successfully Logged Out!")
+        res.redirect('/');
+    })
 
     app.get('/api/countries', controller.getAllCountries);
     app.get('/api/countries/:countryName', controller.getCountry);
@@ -35,18 +41,18 @@ module.exports = function(app, passport) {
 
 
     // process the signup form
-    // app.post('/signup', passport.authenticate('local-signup', {
-    //     successRedirect: '/', // redirect to the secure profile section
-    //     failureRedirect: '/signup', // redirect back to the signup page if there is an error
-    //     failureFlash: true // allow flash messages
-    // }));
+    app.post('/signup', passport.authenticate('local-signup', {
+         successRedirect: '/', // redirect to the secure profile section
+         failureRedirect: '/signup', // redirect back to the signup page if there is an error
+         failureFlash: true // allow flash messages
+    }));
 
     // process the login form
-    // app.post('/login', passport.authenticate('local-login', {
-    //     successRedirect: '/', // redirect to the secure profile section
-    //     failureRedirect: '/login', // redirect back to the signup page if there is an error
-    //     failureFlash: true // allow flash messages
-    // }));
+    app.post('/login', passport.authenticate('local-login', {
+         successRedirect: '/', // redirect to the secure profile section
+         failureRedirect: '/login', // redirect back to the signup page if there is an error
+         failureFlash: true // allow flash messages
+    }));
 
     // starter code for review db get post
     // app.post('/review/new', controller.addReview);
