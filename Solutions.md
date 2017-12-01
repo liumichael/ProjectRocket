@@ -51,9 +51,9 @@ When the application is first opened, users are directed to the homepage. Here t
 
 - PUT currency example: curl -XPUT --data '{ "rate": 1 }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD
 
-- POST currency example: curl -XPOST --data '{ "code": "CAD", "rate": 1 }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/currencies
+- POST currency example: curl -XPOST --data '{ "code": "KPW", "rate": 699.12 }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/currencies
 
-- DELETE currency example: curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/currencies/CAD
+- DELETE currency example: curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/currencies/KPW
 
 
 
