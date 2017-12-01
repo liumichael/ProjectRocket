@@ -10,7 +10,7 @@
 - Our search bar provides autocompletion
 - When searching for a country, it is better to choose a country name that is suggested by the autocompletion because common names won't work (ex: you need to type United States of America instead of US, USA, America, or United States)
 - Post methods allow one insert at a time
-- Our API collections: Countries and Currencies **(Detailed API documentation is written in the section after Web Application Description)**
+- Our API collections: Countries and Currencies **(Detailed [API documentation](https://github.com/FallCSC309/assignment-3-teamrocket/blob/master/Solutions.md#web-application-description) is written in the section after Web Application Description)**
 - For post and put, have to include **--header "Content-Type: application/json"**
 - The name field in a country is stored as all upper case (CRUD methods for country automatically change the name field to upper case for the users).
 
