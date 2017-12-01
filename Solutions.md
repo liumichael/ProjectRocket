@@ -7,7 +7,8 @@
 ## Important Notes (Design choices, Cool features, etc)
 - If on local machine, app.js is our entry point (run node app.js and the url is localhost:3964)
 - If on Heroku: https://mysterious-hollows-73808.herokuapp.com
-- Our search bar provides autocompletion and is **case sensitive** (i.e. typing Canada will bring you to Canada's page but typing canada will bring you to the country-not-found error page)
+- Our search bar provides autocompletion
+- When searching for a country, it is better to choose a country name that is suggested by the autocompletion because common names won't work (ex: you need to type United States of America instead of US, USA, America, or United States)
 - Post methods allow one insert at a time
 - Our API collections: Countries and Currencies **(Detailed API documentation is written in the section after Web Application Description)**
 
