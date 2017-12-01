@@ -303,22 +303,22 @@ function postReview(req, res) {
 
     newReview.save();
 
-    Country.update({
-            name: req.params.name.toUpperCase() // name: req.params.body.toUpperCase()
-        }, {
-            $push: {
-                reviews: newReview
-            }
-        }, {
-            upsert: true
-        },
-        function(err, result) {
-            if (err) {
-                res.send(err);
-            } else {
-                res.send("Review posted!");
-            }
-        });
+    // Country.update({
+    //         name: req.params.name.toUpperCase() // name: req.params.body.toUpperCase()
+    //     }, {
+    //         $push: {
+    //             reviews: newReview
+    //         }
+    //     }, {
+    //         upsert: true
+    //     },
+    //     function(err, result) {
+    //         if (err) {
+    //             res.send(err);
+    //         } else {
+    //             res.send("Review posted!");
+    //         }
+    //     });
 }
 
 function putReview(req, res) {
