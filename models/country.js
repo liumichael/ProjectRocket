@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
 // var bcrypt   = require('bcrypt-nodejs');
 
-var ReviewSchema = mongoose.model('Review').schema;
-
 // define the schema for our user model
 var countrySchema = mongoose.Schema({
 
@@ -15,7 +13,6 @@ var countrySchema = mongoose.Schema({
     currency: String,
     callingcodes: String,
     timezones: [String],
-    reviews: [ReviewSchema]
 
 });
 
