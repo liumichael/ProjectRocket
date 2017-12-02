@@ -18,7 +18,7 @@ module.exports = function(app, passport) {
         req.logout();
         req.flash('logout', "You have Successfully Logged Out!")
         res.redirect('/');
-    })
+    });
 
     app.get('/api/countries', controller.getAllCountries);
     app.get('/api/countries/:countryName', controller.getCountry);
@@ -36,6 +36,9 @@ module.exports = function(app, passport) {
     app.delete('/api/messages/:id', controller.deleteMessageByID);
 
     app.get('/profile', controller.getProfile);
+
+    //get the new username in profile
+    app.post('/change-username', controller.changeUsername);
 
     // app.get('reviews', controller.getAllReview);
     // app.get('reviews/country/:countryName', controller.getCountryReview);

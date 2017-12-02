@@ -33,7 +33,16 @@
                         <h1 id="username">
                             <%= user %>
                         </h1>
-                        <hr>
+
+
+                        <form action="/change-username" method="post" class="form-inline  justify-content-center">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="username">
+                            </div>
+                            <button type="submit" class="btn btn-default">Change Username</button>
+                        </form>    
+
+
                         <p>
                             Your Reviews:
                         </p>

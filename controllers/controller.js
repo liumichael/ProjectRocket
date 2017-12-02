@@ -3,6 +3,7 @@ var Country = require('../models/country');
 var Currency = require('../models/currency');
 var Message = require('../models/message');
 var Review = require('../models/review');
+var User = require('../models/users');
 
 
 module.exports = {
@@ -23,7 +24,8 @@ module.exports = {
     getAllReview: getAllReview,
     getCountryReview: getCountryReview,
     getUserReview: getUserReview,
-    getProfile: getProfile
+    getProfile: getProfile,
+    changeUsername: changeUsername
 }
 
 // Countries
@@ -371,6 +373,21 @@ function getProfile(req, res) {
     });
 }
 
+function changeUsername(req, res){
+    User.findOneAndUpdate({
+        username: req.user.local.username
+    }, {
+        $set: {username: req.body.username}
+
+    }, function(err, response) {
+        if (err) {
+            res.send(err);
+        }
+        else {
+            res.redirect('/profile')
+        }
+    });
+}
 
 function newId() {
     return new Date().valueOf();;
