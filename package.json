@@ -17,10 +17,13 @@
     "passport-local": "^1.0.0",
     "request": "^2.83.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
+    "devstart": "nodemon app.js"
   },
   "repository": {
     "type": "git",
