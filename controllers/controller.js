@@ -61,7 +61,6 @@ function putCountry(req, res) {
     if (req.body.name) {
         req.body.name = req.body.name.toUpperCase();
     }
-    console.log(req.body);
     Country.findOneAndUpdate({
             name: req.params.countryName.toUpperCase()
         }, req.body,
@@ -79,7 +78,6 @@ function postCountry(req, res) {
 
     if (req.body.name) {
         req.body.name = req.body.name.toUpperCase();
-        console.log(req.body)
         var newCountry = new Country(req.body);
         newCountry.save(function(err, country) {
             if (err) {
@@ -89,7 +87,7 @@ function postCountry(req, res) {
             }
         });
     } else {
-        res.send("Error: The field 'name' is a required field!\n")
+        res.send("If you're passing in JSON data, please add the header --header 'Content-Type: application/json'\nPlease make sure the data you pass in has the name attribute, as the field 'name' is a required field!");
     }
 }
 
@@ -140,34 +138,43 @@ function getCurrency(req, res) {
 
 function putCurrency(req, res) {
 
-    console.dir(req.params.code);
-    console.log(req.body);
-    Currency.findOneAndUpdate({
-            code: req.params.code
-        }, req.body,
-        function(err, code) {
-            if (err) {
-                res.send(err);
-            } else {
-                res.send(req.params.code + " updated\n");
-            }
-        });
+    if ((typeof(req.body.rate) != "undefined") && (typeof(req.body.rate) != "number")) {
+        res.send("Error: the value of rate has to be a number\n");
+    }
+    else {
+        Currency.findOneAndUpdate({
+                code: req.params.code
+            }, req.body,
+            function(err, code) {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(req.params.code + " updated\n");
+                }
+            });
+    }
+
 }
 
 function postCurrency(req, res) {
 
-    if (req.body.code) {
+    if (req.body.code && req.body.rate) {
         console.log(req.body);
-        var newCurrency = new Currency(req.body);
-        newCurrency.save(function(err, code) {
-            if (err) {
-                res.send(err);
-            } else {
-                res.send(code + "\n");
-            }
-        });
+        if (typeof(req.body.rate) != "number") {
+            res.send("Error: the value of rate has to be a number\n");
+        }
+        else {
+            var newCurrency = new Currency(req.body);
+            newCurrency.save(function(err, code) {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send(code + "\n");
+                }
+            });
+        }
     } else {
-        res.send("Error: The field 'code' is a required field!\n");
+        res.send("If you're passing in JSON data, please add the header --header 'Content-Type: application/json'\nPlease make sure the data you pass in has attributes code and rate, as the fields 'code' and 'rate' are required fields!");
     }
 }
 
@@ -230,7 +237,7 @@ function postMessage(req, res) {
             }
         });
     } else {
-        res.send("Please make sure you add the header: --header 'Content-Type: application/json'\n");
+        res.send("If you're passing in JSON data, please add the header --header 'Content-Type: application/json'\nPlease make sure the data you pass in has the data attribute, as the field 'data' is a required field!\n");
     }
 }
 

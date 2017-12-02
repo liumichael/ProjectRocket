@@ -27,45 +27,77 @@ When the application is first opened, users are directed to the homepage. Here t
 #### Countries
 - The endpoints for our country API **aren't** case sensitive
 
-- All methods automatically turn TestDataFlag into TESTDATAFLAG
+- All methods automatically turn a country name to all upper case (TestDataFlag into TESTDATAFLAG)
 
-- GET countries example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/countries
 
-- GET one country example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/countries/canada
+- GET method:
+  - GET countries example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/countries
 
-- PUT country example: curl -XPUT --data '{ "capital": "blah" }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/countries/canada
+  - GET one country example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/countries/canada
 
-- POST country example: curl -XPOST --data '{ "name": "TestDataFlag", "capital": "blah" }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/countries
-  - Users will see an error message "Error: The field "name" is a required field!" if name field isn't specified. Fields other than "name" can be null
 
-- DELETE country example: curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/countries/TestDataFlag
+- PUT method:
+  - PUT country example *with JSON data* : curl -XPUT --data '{ "capital": "blah" }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/countries/canada
+
+  - PUT country example *with urlencoded data* : curl -XPUT --data "capital=blah" https://mysterious-hollows-73808.herokuapp.com/api/countries/canada
+
+
+- POST method:
+  - Users will see an error message if the data they pass in doesn't have the attribute **name**. Fields other than "name" can be undefined but "name" is a required field.
+
+  - POST country example *with JSON data*: curl -XPOST --data '{ "name": "TestDataFlag", "capital": "blah" }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/countries
+
+  - POST country example *with urlencoded data*: curl -XPOST --data "name=TestDataFlag&capital=blah" https://mysterious-hollows-73808.herokuapp.com/api/countries
+
+
+- DELETE method:
+  - DELETE country example: curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/countries/TestDataFlag
 
 
 
 #### Currencies
 - The endpoints for our currency API **are** case sensitive
 
-- Get currencies example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/currencies
+- GET method:
+  - Get currencies example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/currencies
 
-- Get one currency example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD
+  - Get one currency example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD
 
-- PUT currency example: curl -XPUT --data '{ "rate": 1 }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD
 
-- POST currency example: curl -XPOST --data '{ "code": "KPW", "rate": 699.12 }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/currencies
+- PUT method:
+  - Users will see an error message if the data they pass in has the attribute rate but the value of rate isn't a number
 
-- DELETE currency example: curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/currencies/KPW
+  - PUT currency example *with JSON data*: curl -XPUT --data '{ "rate": 1 }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD
+
+  - PUT currency example *with urlencoded data*: curl -XPUT --data "rate=1" https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD
+
+
+- POST method:
+  - Users will see an error message if the data they pass in doesn't have attributes **code** and **rate**, or if the value of rate isn't a number
+
+  - POST currency example *with JSON data*: curl -XPOST --data '{ "code": "KPW", "rate": 699.12 }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/currencies
+
+  - POST currency example *with urlencoded data*: curl -XPOST --data "code=KPW&rate=699.12" https://mysterious-hollows-73808.herokuapp.com/api/currencies
+
+
+- DELETE method:
+  - DELETE currency example: curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/currencies/KPW
 
 
 
 #### Messages
-- Get messages example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages
+- GET method:
+  - Get messages example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages
 
-- Get one message example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507
+  - Get one message example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507
 
-- POST message example: curl -XPOST --data '{"data":"Testing hehehehe"}' --header 'Content-Type: application/json' https://mysterious-hollows-73808.herokuapp.com/api/messages
+- POST method:
+  - POST message example *with JSON data*: curl -XPOST --data '{"data":"Testing hehehehe"}' --header 'Content-Type: application/json' https://mysterious-hollows-73808.herokuapp.com/api/messages
 
+  - POST message example *with urlencoded data*: curl -XPOST --data "data=Testing hehehehe" https://mysterious-hollows-73808.herokuapp.com/api/messages
 
-- DELETE message example: curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507
+- DELETE method:
+  - DELETE message example: curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507
 
 
 
