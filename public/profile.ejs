@@ -33,6 +33,10 @@
                         <h1 id="username">
                             <%= user %>
                         </h1>
+                        <hr>
+                        <p>
+                            Your Reviews:
+                        </p>
                     </div>
                     <div class="col-sm-2"></div>
                 </div>
@@ -44,9 +48,7 @@
                             <ul>
                                 <% for(var i=0; i < userReviews.length; i++) { %>
 
-                                    <h2><%= userReviews[i].countryName%></h2>
-
-                                    <br>
+                                    <h3><%= userReviews[i].countryName%></h3>
 
                                     <% if(userReviews[i].rate == 5) {%>
                                         <img src="../images/star-on.png" width=30px>
@@ -86,7 +88,9 @@
 
                                     <br>
 
-                                    <textarea class="existingReview" readonly name="Review" cols="90" rows="25" style="opacity: 1;"><%= userReviews[i].content %></textarea><br>
+                                    <textarea class="existingReview" readonly name="Review" cols="90" rows="25" style="opacity: 1;"><%= userReviews[i].content %></textarea>
+
+                                    <br><br>
 
                                 <% } %>
                             </ul>
