@@ -22,7 +22,8 @@ module.exports = {
     deleteMessageByID: deleteMessageByID,
     getAllReview: getAllReview,
     getCountryReview: getCountryReview,
-    getUserReview: getUserReview
+    getUserReview: getUserReview,
+    getProfile: getProfile
 }
 
 // Countries
@@ -341,6 +342,26 @@ function putReview(req, res) {
                 res.send("Review changed!");
             }
         });
+}
+
+function getProfile(req, res) {
+
+    Review.find({
+        username: req.user.local.username
+    }, {
+        _id: 0,
+        __v: 0
+    }, function(err, reviews) {
+        if (err) {
+            res.send(err);
+        } else {
+            console.log(reviews);
+            res.render('profile.ejs', {
+                user: req.user.local.username,
+                userReviews: reviews
+            });
+        }
+    });
 }
 
 

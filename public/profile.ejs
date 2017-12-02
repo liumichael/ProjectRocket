@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="../bootstrap_css/bootstrap.min.css" rel="stylesheet">
+    <link href="../styles/style.css" rel="stylesheet">
     <link href="../styles/login-signup-style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -30,7 +31,7 @@
                     <div class="col-sm-2"></div>
                     <div class="col-sm-8">
                         <h1 id="username">
-                            
+                            <%= user %>
                         </h1>
                     </div>
                     <div class="col-sm-2"></div>
@@ -40,19 +41,55 @@
                     <div class="col-sm-2"></div>
                     <div class="col-sm-8" id="Reviews"><br>
                         <form class="form-group" id="existingReview">
-                            <img src="../images/star-on.png" width=30px>
-                            <img src="../images/star-on.png" width=30px>
-                            <img src="../images/star-on.png" width=30px>
-                            <img src="../images/star-on.png" width=30px>
-                            <img src="../images/star-off.png" width=30px><br>
-                            <textarea class="existingReview" readonly name="Review1" cols="90" rows="25" style="opacity: 1;">Wonderful country with a lot to see!</textarea><br>
-                            <br>
-                            <img src="../images/star-on.png" width=30px>
-                            <img src="../images/star-on.png" width=30px>
-                            <img src="../images/star-on.png" width=30px>
-                            <img src="../images/star-on.png" width=30px>
-                            <img src="../images/star-on.png" width=30px><br>
-                            <textarea class="existingReview" readonly name="Review2" cols="90" rows="25" style="opacity: 1;">Highly recommended vacation destination.</textarea><br>
+                            <ul>
+                                <% for(var i=0; i < userReviews.length; i++) { %>
+
+                                    <h2><%= userReviews[i].countryName%></h2>
+
+                                    <br>
+
+                                    <% if(userReviews[i].rate == 5) {%>
+                                        <img src="../images/star-on.png" width=30px>
+                                        <img src="../images/star-on.png" width=30px>
+                                        <img src="../images/star-on.png" width=30px>
+                                        <img src="../images/star-on.png" width=30px>
+                                        <img src="../images/star-on.png" width=30px>
+                                    <% } %>
+                                    <% if(userReviews[i].rate == 4) {%>
+                                        <img src="../images/star-on.png" width=30px>
+                                        <img src="../images/star-on.png" width=30px>
+                                        <img src="../images/star-on.png" width=30px>
+                                        <img src="../images/star-on.png" width=30px>
+                                        <img src="../images/star-off.png" width=30px>
+                                    <% } %>
+                                    <% if(userReviews[i].rate == 3) {%>
+                                        <img src="../images/star-on.png" width=30px>
+                                        <img src="../images/star-on.png" width=30px>
+                                        <img src="../images/star-on.png" width=30px>
+                                        <img src="../images/star-off.png" width=30px>
+                                        <img src="../images/star-off.png" width=30px>
+                                    <% } %>
+                                    <% if(userReviews[i].rate == 2) {%>
+                                        <img src="../images/star-on.png" width=30px>
+                                        <img src="../images/star-on.png" width=30px>
+                                        <img src="../images/star-off.png" width=30px>
+                                        <img src="../images/star-off.png" width=30px>
+                                        <img src="../images/star-off.png" width=30px>
+                                    <% } %>
+                                    <% if(userReviews[i].rate == 1) {%>
+                                        <img src="../images/star-on.png" width=30px>
+                                        <img src="../images/star-off.png" width=30px>
+                                        <img src="../images/star-off.png" width=30px>
+                                        <img src="../images/star-off.png" width=30px>
+                                        <img src="../images/star-off.png" width=30px>
+                                    <% } %>
+
+                                    <br>
+
+                                    <textarea class="existingReview" readonly name="Review" cols="90" rows="25" style="opacity: 1;"><%= userReviews[i].content %></textarea><br>
+
+                                <% } %>
+                            </ul>
                         </form>
                     </div>
                 </div>
