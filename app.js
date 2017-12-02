@@ -21,8 +21,10 @@ mongoose.connect(dburl);
 
 
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cors());
 app.use(session({
     secret: 'rockets',
@@ -71,7 +73,7 @@ passport.use('local-login', new LocalStrategy({
                 return done(null, false, req.flash('loginMessage', 'User not found.'));
             // if the user is found but the password is wrong
             if (!user.validPassword(password))
-                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); 
+                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
 
             // all is well, return successful user
             return done(null, user);

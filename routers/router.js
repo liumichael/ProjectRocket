@@ -35,6 +35,10 @@ module.exports = function(app, passport) {
     app.post('/api/messages', controller.postMessage);
     app.delete('/api/messages/:id', controller.deleteMessageByID);
 
+    app.get('/profile', function (req, res) {
+        res.render('profile.ejs');
+    });
+
     // app.get('reviews', controller.getAllReview);
     // app.get('reviews/country/:countryName', controller.getCountryReview);
     // app.get('reviews/user/:userName', controller.getUserReview);
