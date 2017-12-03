@@ -335,21 +335,19 @@ function getUserReview(req, res) {
 }
 
 function postReview(req, res) {
-    var rId = newId();
-
-    var newReview = new Review({
-        username: req.body.username, // username: req.params.username,
-        countryName: req.body.countryName, // countryName: req.params.countryName,
-        rate: req.body.rate, // rate: req.params.rate,
-        content: req.body.content // content: req.params.content
+     var newReview = new Review({
+         username: req.user.local.username, 
+         countryName: req.body.countryName, 
+         rate: req.body.rating, 
+         content: req.body.content 
     });
 
-    newReview.save(function(err, country) {
-        if (err) {
-            res.send(err);
-        } else {
-            res.send("review posted!");
-        }
+     newReview.save(function(err, country) {
+         if (err) {
+             res.send(err);
+         } else {
+             res.redirect('/');
+         }
     });
 }
 

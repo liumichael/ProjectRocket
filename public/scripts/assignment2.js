@@ -15,6 +15,7 @@ function getCountryInfo(country) {
         success: function(data) {
             if (data.length > 0) {
                 $('#countryName').text(data[0].name)
+                $('#countryForm').attr('value', data[0].name)
                 $('#region').html("<p><b>Region: </b></br>" + data[0].region + "</p>")
                 $('#capital').html("<p><b> Capital: </b></br>" + data[0].capital + "</p>")
                 $('#currency').html("<p><b> Currency: </b>"+ data[0].currency + "</p>")
@@ -343,12 +344,23 @@ $(document).ready(function() {
         $("#currencyInput").val('').focus().blur();
         return false
     });
-    $('#writeReview').submit(function () {
-        alert("Thank you for your review!")
-        console.log("User submitted review")
-        $("#reviewInput").val('').focus().blur();
-        return false
-    });
+//     $('#writeReview').submit(function () {
+//         alert("Thank you for your review!")
+//         var radios = document.getElementsByName('rating');
+//         for (var i = 0, length = radios.length; i < length; i++)
+//         {
+//         if (radios[i].checked)
+//         {
+//         alert("rating: " +radios[i].value);
+//         // only one radio can be logically checked, don't check the rest
+//         break;
+//  }
+// }
+//         console.log("User submitted review")
+//         $("#reviewInput").val('').focus().blur();
+//         return false
+//     });
+
     $(document).click(function () {
         getMessageInfo();
     });

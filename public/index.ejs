@@ -162,37 +162,39 @@
     	    <div class="col-sm-2"></div>
     	    <div class="col-sm-8" id="Reviews"><br>
     	    <div class="wrapper">
-    	        <p><b>Rate and Review Country</b></p>
 
+                <% if (user){ %> 
+    	        <p><b>Rate and Review Country</b></p>
                 <form class="form-group" action="/reviews"  method="post" id="writeReview">
 
                     <span class="rating">
-                        <input id="rating5" type="radio" name="rating" value="5">
+                        <input id="rating5" type="radio" name="rating" value="5" checked>
                         <label for="rating5">5</label>
                         <input id="rating4" type="radio" name="rating" value="4">
                         <label for="rating4">4</label>
                         <input id="rating3" type="radio" name="rating" value="3">
                         <label for="rating3">3</label>
-                        <input id="rating2" type="radio" name="rating" value="2" checked>
+                        <input id="rating2" type="radio" name="rating" value="2">
                         <label for="rating2">2</label>
                         <input id="rating1" type="radio" name="rating" value="1">
                         <label for="rating1">1</label>
                     </span>
 
                     <input type="hidden" name="username" value="<%= user %>" />
+                    <input type="hidden" name="countryName" id="countryForm" value=""/>
 
-                    <input id="userRating" name="rate"  name="rating" value="2">
+                    <!--<input id="userRating" name="rate"  name="rating" value="2">-->
 
                     <textarea id="reviewInput" name = "content" placeholder="Write your own review of this country!" cols="90" rows="25" wrap="soft|hard" style="opacity: 1;"></textarea><br>
 
                     <button class="btn btn-info" style="float: right" type="submit" id="reviewSubmit">Submit Review</button>
                 </form>
-
             </div>
+             <% } %>
 
             <br>
 
-            <p><b>Other Reviews</b></p>
+            <p><b>Reviews</b></p>
             <form class="form-group" id="existingReview">
                 <!-- <img src="images/star-on.png" width=30px>
                 <img src="images/star-on.png" width=30px>
