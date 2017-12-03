@@ -39,7 +39,7 @@ function getCountryInfo(country) {
                 $('#worldMap').hide()
                 $('#currentTitle').hide()
                 $('#countryName').show()
-                $('#appDescription').text("Share your Experience.")
+                $('#appDescription').text("Sign Up or Log In to Share your Experience.")
                 $('#appDescription').show()
                 $('#capital').show()
                 $('#region').show()
