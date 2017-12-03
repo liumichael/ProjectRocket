@@ -309,55 +309,37 @@ function postReview(req, res) {
     var rId = newId();
 
     var newReview = new Review({
-        id: rId,
-        username: req.params.username, // username: req.body.username,
-        countryName: req.params.countryName, // countryName: req.body.countryName,
-        rate: req.params.rate, // rate: req.body.rate,
-        content: req.params.content // content: req.body.content
-
+        username: req.body.username, // username: req.params.username,
+        countryName: req.body.countryName, // countryName: req.params.countryName,
+        rate: req.body.rate, // rate: req.params.rate,
+        content: req.body.content // content: req.params.content
     });
 
     newReview.save();
-
-    // Country.update({
-    //         name: req.params.name.toUpperCase() // name: req.params.body.toUpperCase()
-    //     }, {
-    //         $push: {
-    //             reviews: newReview
-    //         }
-    //     }, {
-    //         upsert: true
-    //     },
-    //     function(err, result) {
-    //         if (err) {
-    //             res.send(err);
-    //         } else {
-    //             res.send("Review posted!");
-    //         }
-    //     });
 }
 
-// function putReview(req, res) {
-//
-//     GroupDeck.findOneAndUpdate({
-//             id: req.params.id // id: req.body.id
-//         }, {
-//             $set: {
-//                 rate: req.params.rate, // rate: req.body.rate,
-//                 content: req.params.content // rate: req.body.content
-//             }
-//         }, {
-//             upsert: true
-//         },
-//         function(err, result) {
-//             if (err) {
-//                 res.status(404);
-//                 res.send(err);
-//             } else {
-//                 res.send("Review changed!");
-//             }
-//         });
-// }
+function putReview(req, res) {
+
+    Review.findOneAndUpdate({
+            username: req.body.username, // id: req.body.id
+            countryName: req.body.countryName
+        }, {
+            $set: {
+                rate: req.body.rate, // rate: req.params.rate,
+                content: req.body.content // rate: req.params.content
+            }
+        }, {
+            upsert: true
+        },
+        function(err, result) {
+            if (err) {
+                res.status(404);
+                res.send(err);
+            } else {
+                res.send("Review changed!");
+            }
+        });
+}
 
 function getProfile(req, res) {
 
@@ -395,6 +377,6 @@ function changeUsername(req, res){
     });
 }
 
-function newId() {
-    return new Date().valueOf();;
-}
+// function newId() {
+//     return new Date().valueOf();;
+// }

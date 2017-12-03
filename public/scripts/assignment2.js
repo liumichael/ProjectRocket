@@ -34,6 +34,8 @@ function getCountryInfo(country) {
                 var imageTag = "<img class='img-thumbnail mx-auto d-block' src=" + data[0].flag + " alt=\"Country Flag\">"
                 $('#flag').html(imageTag + "</br>")
 
+                getReviewByCountry(data[0].name);
+
                 $('#worldMap').hide()
                 $('#currentTitle').hide()
                 $('#countryName').show()
@@ -118,6 +120,61 @@ function getCountryInfo(country) {
             $('#reviewLine').hide()
             $('#errorHandling').html("<p><b>Country Not Found!</b></p> <img class='img-thumbnail mx-auto d-block panel-transparent' src=\"images/errorLogo.png\" alt=\"errorLogo\">")
             $('#errorHandling').show()
+        }
+    });
+}
+
+function getReviewByCountry(countryName) {
+    // var url = "https://mysterious-hollows-73808.herokuapp.com/reviews/country/" + countryName;
+    var url = "/reviews/country/" + countryName;
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        dataType: 'json',
+        success: function(countryReviews) {
+            var text;
+            for(var i=0; i < countryReviews.length; i++){
+                if(data[i].rate >= 1){
+                    text = text + '<img src="../images/star-on.png" width=30px>';
+                }
+                if(data[i].rate >= 2){
+                    text = text + '<img src="../images/star-on.png" width=30px>';
+                }
+                if(data[i].rate >= 3){
+                    text = text + '<img src="../images/star-on.png" width=30px>';
+                }
+                if(data[i].rate >= 4){
+                    text = text + '<img src="../images/star-on.png" width=30px>';
+                }
+                if(data[i].rate >= 5){
+                    text = text + '<img src="../images/star-on.png" width=30px>';
+                }
+                if(data[i].rate == 1){
+                    text = text + '<img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px>';
+                }
+                if(data[i].rate == 2){
+                    text = text + '<img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px>';
+                }
+                if(data[i].rate == 3){
+                    text = text + '<img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px>';
+                }
+                if(data[i].rate == 4){
+                    text = text + '<img src="../images/star-off.png" width=30px>';
+                }
+
+                text = text + '<br>';
+
+                text = text + '<textarea class="existingReview" readonly name="Review" cols="90" rows="25" style="opacity: 1;">' + userReviews[i].content + '</textarea>';
+
+                text = text + '<br><br>';
+            }
+
+            $('#existingReview').html(text);
+
+        },
+        error: function(data) {
+            alert("Get review failed.");
         }
     });
 }
