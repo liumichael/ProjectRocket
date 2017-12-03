@@ -133,41 +133,45 @@ function getReviewByCountry(countryName) {
         type: "GET",
         dataType: 'json',
         success: function(countryReviews) {
-            var text;
+            var text = '';
             for(var i=0; i < countryReviews.length; i++){
-                if(data[i].rate >= 1){
-                    text = text + '<img src="../images/star-on.png" width=30px>';
+                if(countryReviews[i].rate >= 1){
+                    text += '<img src="../images/star-on.png" width=30px>';
                 }
-                if(data[i].rate >= 2){
-                    text = text + '<img src="../images/star-on.png" width=30px>';
+                if(countryReviews[i].rate >= 2){
+                    text += '<img src="../images/star-on.png" width=30px>';
                 }
-                if(data[i].rate >= 3){
-                    text = text + '<img src="../images/star-on.png" width=30px>';
+                if(countryReviews[i].rate >= 3){
+                    text += '<img src="../images/star-on.png" width=30px>';
                 }
-                if(data[i].rate >= 4){
-                    text = text + '<img src="../images/star-on.png" width=30px>';
+                if(countryReviews[i].rate >= 4){
+                    text += '<img src="../images/star-on.png" width=30px>';
                 }
-                if(data[i].rate >= 5){
-                    text = text + '<img src="../images/star-on.png" width=30px>';
+                if(countryReviews[i].rate >= 5){
+                    text += '<img src="../images/star-on.png" width=30px>';
                 }
-                if(data[i].rate == 1){
-                    text = text + '<img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px>';
+                if(countryReviews[i].rate == 1){
+                    text += '<img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px>';
                 }
-                if(data[i].rate == 2){
-                    text = text + '<img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px>';
+                if(countryReviews[i].rate == 2){
+                    text += '<img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px>';
                 }
-                if(data[i].rate == 3){
-                    text = text + '<img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px>';
+                if(countryReviews[i].rate == 3){
+                    text += '<img src="../images/star-off.png" width=30px><img src="../images/star-off.png" width=30px>';
                 }
-                if(data[i].rate == 4){
-                    text = text + '<img src="../images/star-off.png" width=30px>';
+                if(countryReviews[i].rate == 4){
+                    text += '<img src="../images/star-off.png" width=30px>';
                 }
 
-                text = text + '<br>';
+                text += '<br>';
 
-                text = text + '<textarea class="existingReview" readonly name="Review" cols="90" rows="25" style="opacity: 1;">' + userReviews[i].content + '</textarea>';
+                text += '<textarea class="existingReview" readonly name="Review" cols="90" rows="25" style="opacity: 1;">' + countryReviews[i].content + '</textarea>';
 
-                text = text + '<br><br>';
+                text += '<h5>Reviewed By: ';
+                text += countryReviews[i].username;
+                text += '</h5>';
+
+                text += '<br><br>';
             }
 
             $('#existingReview').html(text);
