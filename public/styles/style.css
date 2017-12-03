@@ -33,26 +33,28 @@ p {
     max-width: 100%;
 }
 
-#statusMsg {
-    overflow-y: scroll;
-    height: 70px;
-}
-
 h4 {
     font-family: 'Roboto', sans-serif;
     font-size: 1.3rem;
 }
 
-h5 {
+#status {
+    color: #211105;
     font-size: 13pt;
     margin-bottom: 15px;
 }
 
 #msg {
     font-family: 'Roboto', sans-serif;
+    text-align: left;
     color: #ffffff;
     font-size: 10pt;
     margin-bottom: 8px;
+}
+
+#statusMsg {
+    overflow-y: scroll;
+    /*height: 70px;*/
 }
 
 @media only screen and (max-width: 768px) {
@@ -72,8 +74,8 @@ h5 {
 
 /* The actual popup (appears on top) */
 #popup .popuptext {
-    visibility: hidden;
-    min-width: 300px;
+    /*visibility: hidden;*/
+    min-width: 250px;
     background-color: #473222;
     color: #ffffff;
     text-align: left;
@@ -100,14 +102,14 @@ h5 {
 }
 
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
-#popup .show {
+/*#popup .show {
     visibility: visible;
     -webkit-animation: fadeIn 0.5s;
     animation: fadeIn 0.5s
-}
+}*/
 
 /* Add animation (fade in the popup) */
-@-webkit-keyframes fadeIn {
+/*@-webkit-keyframes fadeIn {
     from {opacity: 0;}
     to {opacity: 1;}
 }
@@ -115,7 +117,7 @@ h5 {
 @keyframes fadeIn {
     from {opacity: 0;}
     to {opacity: 1;}
-}
+}*/
 
 .img-thumbnail {
     margin: 30px;

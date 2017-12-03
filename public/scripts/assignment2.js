@@ -23,7 +23,7 @@ function getCountryInfo(country) {
                 $('#timezone').html("<p><b> Timezones: </b></br>"+ data[0].timezones + "</p>")
 
                 var officialLanguages = data[0].languages
-                console.log(officialLanguages)
+                //console.log(officialLanguages)
                 var language = ""
                 for (index in officialLanguages){
                     language += officialLanguages[index] + ", "
@@ -208,10 +208,60 @@ function getCurrencyInfo(amount) {
     });
 }
 
+function getMessageInfo() {
+    var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages";
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        dataType: 'json',
+        success: function(msg) {
+            var notRead = [];
+            console.log(msg);
+            console.log(msg[0].read);
+            for (var i = 0; i < msg.length; i++) {
+                if (msg[i].read == false) {
+                    notRead.push(msg[i]);
+                }
+            }
+            console.log(notRead);
+            if (notRead.length == 0) {
+                $('#popup').hide();
+            }
+            else {
+                var text = '<p id="msg">' + notRead[0].data + '</p>';
+                $('#statusMsg').html(text);
+                $('#popup').show();
+                $('#myPopup').show().delay(5000).fadeOut();
+                setMessageToRead(notRead[0]._id);
+            }
+        },
+        error: function(msg) {
+            console.log("Get status message failed.");
+        }
+    });
+}
+
+function setMessageToRead(msg_id) {
+
+    //var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages/" + msg_id;
+    var url = "http://localhost:3964/api/messages/" + msg_id;
+    $.ajax({
+        url: url,
+        type: "PUT",
+        success: function(msg) {
+            console.log("Successfully set " + msg_id + " to read!");
+        },
+        error: function(msg) {
+            console.log("Failed to set message " + msg_id + " to read.");
+        }
+    });
+
+}
+
 $(document).ready(function() {
     // Hide the Status message when there is no messages to show.
-    //$('#popup').hide()
-    $('#popup').show()
+    $('#popup').hide();
     $('#currencyConverter').hide()
     $('#Reviews').hide()
     $('#writeReview').hide()
@@ -271,7 +321,7 @@ $(document).ready(function() {
         $('#reviewLine').hide()
         $('#writeReview').hide()
         $('#reviewInput').hide()
-        $('#existingReview').hide();
+        $('#existingReview').hide()
     });
     $('#currencyConvert').submit(function () {
         $('#conversionResult').empty()
@@ -298,6 +348,9 @@ $(document).ready(function() {
         console.log("User submitted review")
         $("#reviewInput").val('').focus().blur();
         return false
+    });
+    $(document).click(function () {
+        getMessageInfo();
     });
 
 });

@@ -1,64 +1,57 @@
-// Note that this is only for testing sign up. We need a database and set userData to the data obtained
-// from the database
-var userData = {};
+function getMessageInfo() {
+    var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages";
 
-
-$(document).ready(function() {
-    $('#loginForm').submit(function () {
-        var email = $('#email').val();
-        var pwd = $('#pwd').val();
-        console.log("User loggin in")
-        console.log(email);
-        console.log(pwd);
-        // Check if the username and pwd match the data in the database
-        if (email in userData) {
-            if (userData[email].pwd == pwd) {
-                alert("Welcome back!");
+    $.ajax({
+        url: url,
+        type: "GET",
+        dataType: 'json',
+        success: function(msg) {
+            var notRead = [];
+            console.log(msg);
+            console.log(msg[0].read);
+            for (var i = 0; i < msg.length; i++) {
+                if (msg[i].read == false) {
+                    notRead.push(msg[i]);
+                }
+            }
+            console.log(notRead);
+            if (notRead.length == 0) {
+                $('#popup').hide();
             }
             else {
-                alert("Wrong password! Please try again.");
+                var text = '<p id="msg">' + notRead[0].data + '</p>';
+                $('#statusMsg').html(text);
+                $('#popup').show();
+                $('#myPopup').show().delay(5000).fadeOut();
+                setMessageToRead(notRead[0]._id);
             }
+        },
+        error: function(msg) {
+            console.log("Get status message failed.");
         }
-        else {
-            console.log("There is no account associated with this email.");
-            alert("There is no account associated with this email. Sign up and join us!");
-        }
-        $("#email").val('').focus().blur();
-        $("#pwd").val('').focus().blur();
-        // Make email the key of the schema
-
-        return false
     });
-});
+}
+
+function setMessageToRead(msg_id) {
+
+    //var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages/" + msg_id;
+    var url = "http://localhost:3964/api/messages/" + msg_id;
+    $.ajax({
+        url: url,
+        type: "PUT",
+        success: function(msg) {
+            console.log("Successfully set " + msg_id + " to read!");
+        },
+        error: function(msg) {
+            console.log("Failed to set message " + msg_id + " to read.");
+        }
+    });
+
+}
 
 $(document).ready(function() {
-    $('#signupForm').submit(function () {
-        var email = $('#email').val();
-        var username = $('#username').val();
-        var pwd = $('#pwd').val();
-        console.log("User signing up");
-        //console.log(email);
-        //console.log(username);
-        //console.log(pwd);
-        // Store user data in the database
-        // Hard code for now
-        var userInfo = {};
-        userInfo['email'] = email;
-        userInfo['username'] = username;
-        userInfo['pwd'] = pwd;
-        if (email in userData) {
-            console.log("There is an account associated with this email already.");
-            alert("There is an account associated with this email already. If you already have an account, please try logging in.");
-        }
-        else {
-            userData[email] = userInfo;
-            alert("Yay! You're good to go!");
-        }
-        $("#email").val('').focus().blur();
-        $("#pwd").val('').focus().blur();
-        $("#username").val('').focus().blur();
-        // Make email the key of the schema
-
-        return false
+    $('#popup').hide();
+    $(document).click(function () {
+        getMessageInfo();
     });
 });

@@ -112,3 +112,66 @@ button:hover {
         float: none;
     }
 }
+
+#status {
+    color: #211105;
+    font-size: 13pt;
+    margin-bottom: 15px;
+}
+
+#msg {
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+    color: #ffffff;
+    font-size: 10pt;
+    margin-bottom: 8px;
+}
+
+#statusMsg {
+    overflow-y: scroll;
+    /*height: 70px;*/
+}
+
+@media only screen and (max-width: 768px) {
+    #popup {
+        margin-top: 50px;
+    }
+}
+
+/* Popup container */
+#popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    margin-left: 50px;
+}
+
+/* The actual popup (appears on top) */
+#popup .popuptext {
+    /*visibility: hidden;*/
+    min-width: 250px;
+    background-color: #473222;
+    color: #ffffff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 8px 18px;
+    position:absolute;
+    z-index: 1;
+    top: 130%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+
+/* Popup arrow */
+#popup .popuptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 27%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #473222 transparent;
+}
