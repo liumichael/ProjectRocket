@@ -2,27 +2,59 @@
 - Student 1: Zhen Bang Liu (1002374012)
 - Student 2: Yun-Yi Liu (1002063964)
 - Student 3: Michael Le (1002432183)
-- Student 4: Amna Mahder Bashi (999552345)
 
-## Important Notes (Design choices, Cool features, etc)
+
+
+## Important Notes
 - If on local machine, app.js is our entry point (run node app.js and the url is localhost:3964)
 - If on Heroku: https://mysterious-hollows-73808.herokuapp.com
-- Our search bar provides autocompletion
-- When searching for a country, it is better to choose a country name that is suggested by the autocompletion because common names won't work (ex: you need to type United States of America instead of US, USA, America, or United States)
+- When searching for a country, it is better to choose a country name that is suggested by the autocompletion or make sure that you spell it correctly because common names aren't valid inputs (ex: you need to type United States of America instead of US, USA, America, or United States)
 - Post methods allow one insert at a time
-- Our API collections: Countries and Currencies **(Detailed [API documentation](https://github.com/FallCSC309/assignment-3-teamrocket/blob/master/Solutions.md#web-application-description) is written in the section after Web Application Description)**
-- For post and put, have to include **--header "Content-Type: application/json"**
-- The name field in a country is stored as all upper case (CRUD methods for country automatically change the name field to upper case for the users).
+- Our API collections are Countries and Currencies **(Detailed [API documentation](https://github.com/FallCSC309/assignment-3-teamrocket/blob/master/Solutions.md#web-application-description) is written in the section after Web Application Description)**
+- When passing in JSON data for post and put methods, please indicate it with the header **--header "Content-Type: application/json"**
+- The letters in the name field in a country are upper case (CRUD methods for country automatically change the name field to upper case for the users). This makes our search bar not case sensitive (i.e. canada, Canada, CaNadA all work). We believe this will allow the users to search for a country more conveniently
 
-## Web Application Description
 
-Project Rocket is a web application that allows users to search for a country, submit a review to share their travelling experiences of that country, and read other user’s experiences.
 
-When the application is first opened, users are directed to the homepage. Here they can type a country in the search bar (with auto complete) and information of the country will show up. This information includes the country name, flag, capital, region, population, official languages, currency, calling code, and time zones. It also includes a currency converter, where a user can enter a number and it will convert CAD to the respective country's currency. If users misspell a country or type in a country that doesn’t exist, an error page will show up. Below the country information, users can see the "Rate and Review Country" section where they can hover over the stars to rate their travel experience and write a review for that country. If users wish to go back to the homepage, they can click on the logo on the top left corner.
+## Web Application Features (Not done yet)
+
+##### Project Description
+
+- Project Rocket is a web application that allows users to search for a country, submit a review to share their travel experiences of that country, and read other users' experiences (Basically like yelp but instead of writing reviews and rating restaurants, we rate and write reviews on how good it is to travel to a certain country)
+
+- Users can search for a country with the search bar. Our search bar provides autocompletion and will show a list of all countries whose country names' contain the letters that are typed in by the users
+
+- The rocket logo on the top left corner redirects users back to the homepage and the login/signup buttons redirect users to the corresponding pages
+
+- If the admin pushes some status messages, they'll show on the top left part of our page and below the logo
+
+- When users type in a valid country name and press Search, that country's page will show up
+  - This page includes information about that country such as country name, flag, capital, region, population, official languages, currency, calling codes, and timezones
+
+  - It also includes a currency converter, where users can enter an amount of money in CAD and it will convert that amount to the respective country's currency if the currency is supported by our API
+
+  - Below the country information, users can see the "Rate and Review Country" section where they can hover over the stars to rate their travel experience and submit a review for that country, given that the users are logged in
+
+  - The "Other Reviews" section is where users can see the experiences shared by other users. All users can see this section no matter if they are logged in or not
+
+- The users get redirected to an error page if some invalid input was entered in the search bar
+
+##### Session Management
+
+- If users aren't logged in, they can only view other people's review but won't be able to submit their own review
+
+- When users are logged in, the buttons on the top right corner change from login/signup to profile/logout
+  - Clicking on the Profile button redirects users to their profile page where they can change their user name and see the reviews that they submitted
+
+  - Clicking on the Logout button logs the users out of the system
+
 
 [New features to be updated here]
 
-## RESTful API Documentation
+
+
+## RESTful API Documentation (Not done yet)
+- We have two collections in our API, Countries and Currencies.
 
 #### Countries
 - The endpoints for our country API **aren't** case sensitive
@@ -98,17 +130,3 @@ When the application is first opened, users are directed to the homepage. Here t
 
 - DELETE method:
   - DELETE message example: curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507
-
-
-
-### TODO:
-- **Figure the most important part of our web app: Submitting/Updating actual REVIEWS**
-- Demonstrate some sort of session management
-- Implement the <del>front</del> and back end for Sign Up and Log in (session management) **(Front end done. Need to work with the database for login-signup.js to work)**
-- <del>Database</del>
-- Work with the database to actually push the status messages to the page. Only display a msg that hasn't been read yet. Display only 1 msg at a time.
-- Document the API (clear and concise, demonstrate understanding of RESTful design)
-- <del>Implement a RESTful API that allows individual users to perform the 4 basic REST operations (even if the original API doesn't allow those operations)</del>
-- <del>The API also needs to have 3 endpoints GET /api/messages, POST /api/messages, DELETE /api/messages/1234 so admin can push status messages to all users </del>
-- Display the reviews in "Other Reviews" in pages (only do this if we have time)
-- <del>Implement the things mentioned in the feedback</del>

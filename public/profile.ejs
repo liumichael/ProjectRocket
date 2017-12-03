@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="../bootstrap_css/bootstrap.min.css" rel="stylesheet">
     <link href="../styles/style.css" rel="stylesheet">
-    <link href="../styles/login-signup-style.css" rel="stylesheet">
+    <!--<link href="../styles/login-signup-style.css" rel="stylesheet">-->
     <link href="https://fonts.googleapis.com/css?family=Roboto|Ubuntu" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -34,18 +34,21 @@
                             <%= user %>
                         </h1>
 
-
+                        <!--
                         <form action="/change-username" method="post" class="form-inline  justify-content-center">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="username">
                             </div>
                             <button type="submit" class="btn btn-default">Change Username</button>
-                        </form>    
+                        </form>-->
+                        <form action="/change-username" method="post" class="form-horizontal">
+                            <div class="username-group">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Enter new username" id="usernameInput" style="font-family: 'Ubuntu', sans-serif;">
+                                <button class="btn btn-primary btn-lg outline" type="submit">Change Username</button>
+                            </div>
+                        </form>
 
-
-                        <p>
-                            Your Reviews:
-                        </p>
+                        <h3>Your Reviews:</h3>
                     </div>
                     <div class="col-sm-2"></div>
                 </div>
@@ -54,10 +57,10 @@
                     <div class="col-sm-2"></div>
                     <div class="col-sm-8" id="Reviews"><br>
                         <form class="form-group" id="existingReview">
-                            <ul>
+                            <!--<ul> Having this will mess up the responsiveness-->
                                 <% for(var i=0; i < userReviews.length; i++) { %>
 
-                                    <h3><%= userReviews[i].countryName%></h3>
+                                    <h4><%= userReviews[i].countryName%></h4>
 
                                     <% if(userReviews[i].rate == 5) {%>
                                         <img src="../images/star-on.png" width=30px>
@@ -102,9 +105,10 @@
                                     <br><br>
 
                                 <% } %>
-                            </ul>
+                            <!--</ul>-->
                         </form>
                     </div>
+                    <div class="col-sm-2"></div>
                 </div>
 
             </div>
