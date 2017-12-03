@@ -377,7 +377,7 @@ function getProfile(req, res) {
         __v: 0
     }, function(err, reviews) {
         if (err) {
-            res.redirect('/index'));
+            res.send(err);
         } else {
             console.log(reviews);
             res.render('profile.ejs', {
