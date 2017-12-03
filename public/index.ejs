@@ -73,17 +73,17 @@
         <div class="starter-template">
             <!--Display logout message here -->
             <% if ( message.length > 0 ) { %>
-                <div class="alert alert-success">                    
-                    <%= message %>    
+                <div class="alert alert-success">
+                    <%= message %>
                 </div>
             <% } %>
 
 
             <h1 id="currentTitle">Project Rocket</h1>
-            
+
             <!--Display username here -->
             <% if (user) { %>
-                <p> Welcome back, <%= user.local.username %>!</p>
+                <p> Welcome back, <%= user.local.username %>! Share your experience with us!</p>
             <% } else if (!user) { %>
                 <p id="appDescription">Search for a Country. Share your Experience.</p>
             <% }%>
@@ -204,8 +204,8 @@
                 <img src="images/star-on.png" width=30px><br>
                 <textarea class="existingReview" readonly name="Review2" cols="90" rows="25" style="opacity: 1;">Highly recommended vacation destination.</textarea><br>
             </form>
-            <div class="col-sm-2"></div>
             </div>
+            <div class="col-sm-2"></div>
         </div>
         <!-- reviews end here -->
         <div class="row">
