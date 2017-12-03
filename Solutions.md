@@ -18,7 +18,7 @@
 
 ## Web Application Features (Not done yet)
 
-##### Project Description
+### Project Description
 
 - Project Rocket is a web application that allows users to search for a country, submit a review to share their travel experiences of that country, and read other users' experiences (Basically like yelp but instead of writing reviews and rating restaurants, we rate and write reviews on how good it is to travel to a certain country)
 
@@ -39,7 +39,7 @@
 
 - The users get redirected to an error page if some invalid input was entered in the search bar
 
-##### Session Management
+### Session Management
 
 - If users aren't logged in, they can only view other people's review but won't be able to submit their own review
 
@@ -49,7 +49,7 @@
   - Clicking on the Logout button logs the users out of the system
 
 
-##### Status Messages
+### Status Messages
 
 - Changes will show when users click on anywhere (that is not a clickable button/input form) on the page
 
@@ -74,7 +74,7 @@
 ## RESTful API Documentation (Not done yet)
 - We have two collections in our API, Countries and Currencies.
 
-#### Countries
+### Countries
 - The endpoints for our country API **aren't** case sensitive
 
 - All methods automatically turn a country name to all upper case (TestDataFlag into TESTDATAFLAG)
@@ -105,7 +105,7 @@
 
 
 
-#### Currencies
+### Currencies
 - The endpoints for our currency API **are** case sensitive
 
 - GET method:
@@ -135,7 +135,7 @@
 
 
 
-#### Messages
+### Messages
 - GET method:
   - Get messages example: curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages
 
