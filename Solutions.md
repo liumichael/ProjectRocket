@@ -49,7 +49,15 @@
   - Clicking on the Logout button logs the users out of the system
 
 
-[New features to be updated here]
+##### Status Messages
+
+- Changes will show when users click on anywhere on the page
+
+- For testing status messages:
+  - 
+
+
+[To be updated]
 
 
 

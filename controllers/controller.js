@@ -19,8 +19,10 @@ module.exports = {
     deleteCurrency: deleteCurrency,
     getAllMessages: getAllMessages,
     getMessageByID: getMessageByID,
+    putMessageByID: putMessageByID,
     postMessage: postMessage,
     deleteMessageByID: deleteMessageByID,
+    deleteAllMessages: deleteAllMessages,
     getAllReview: getAllReview,
     getCountryReview: getCountryReview,
     getUserReview: getUserReview,
@@ -223,6 +225,22 @@ function getMessageByID(req, res) {
     });
 }
 
+// For changing the read flag to true once a message has been read
+function putMessageByID(req, res) {
+    Message.findOneAndUpdate({
+            _id: req.params.id
+        }, {
+            read: true
+        },
+        function(err, code) {
+            if (err) {
+                res.send(err + "req.params.id\n");
+            } else {
+                res.send(req.params.id + " updated\n");
+            }
+        });
+}
+
 function postMessage(req, res) {
 
     console.log(req.body);
@@ -257,7 +275,16 @@ function deleteMessageByID(req, res) {
     });
 }
 
-
+function deleteAllMessages(req, res) {
+    Message.remove({},
+        function(err, msgs) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.json(msgs);
+            }
+        });
+}
 
 
 

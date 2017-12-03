@@ -50,24 +50,16 @@
 
     <main role="main" class="container">
 
-        <div id="popup" onclick="myFunction()">
-            <img src="images/status-msg-icon.png"/>
+        <div id="popup">
+            <div>
+                <img img src="images/status-msg-icon.png" src="images/status-msg-icon.png"/>
+                <span id="status">Status Message</span>
+            </div>
             <span class="popuptext" id="myPopup">
                 <div id="statusMsg">
-                    <h5>Status Message</h5>
-                    <li id="msg">I'm a hard coded status message :D</li>
-                    <li id="msg">The server is currently down blah blah blah blah blah blah blah</li>
                 </div>
             </span>
         </div>
-
-        <script>
-        // When the user clicks on div, open the popup
-        function myFunction() {
-            var popup = document.getElementById("myPopup");
-            popup.classList.toggle("show");
-        }
-        </script>
 
         <script src="scripts/auto-complete.js" type="text/javascript"></script>
         <div class="starter-template">
