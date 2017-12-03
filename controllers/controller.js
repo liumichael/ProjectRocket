@@ -276,25 +276,31 @@ function getAllReview(req, res) {
 
 
 function getCountryReview(req, res) {
-    Country.findOne({
-        name: req.params.countryName.toUpperCase() // name: req.body.countryName.toUpperCase()
-    }, function(err, result) {
+    Review.find({
+        countryName: req.params.countryName.toUpperCase() // name: req.body.countryName.toUpperCase()
+    }, {
+        _id: 0,
+        __v: 0
+    }, function(err, reviews) {
         if (err) {
             res.send(err);
         } else {
-            res.send(result.reviews);
+            res.json(reviews);
         }
     });
 }
 
 function getUserReview(req, res) {
     Review.find({
-        username: req.params.username // username: req.body.username
-    }, function(err, result) {
+        username: req.params.userName
+    }, {
+        _id: 0,
+        __v: 0
+    }, function(err, reviews) {
         if (err) {
             res.send(err);
         } else {
-            res.send(result);
+            res.json(reviews);
         }
     });
 }
@@ -331,27 +337,27 @@ function postReview(req, res) {
     //     });
 }
 
-function putReview(req, res) {
-
-    GroupDeck.findOneAndUpdate({
-            id: req.params.id // id: req.body.id
-        }, {
-            $set: {
-                rate: req.params.rate, // rate: req.body.rate,
-                content: req.params.content // rate: req.body.content
-            }
-        }, {
-            upsert: true
-        },
-        function(err, result) {
-            if (err) {
-                res.status(404);
-                res.send(err);
-            } else {
-                res.send("Review changed!");
-            }
-        });
-}
+// function putReview(req, res) {
+//
+//     GroupDeck.findOneAndUpdate({
+//             id: req.params.id // id: req.body.id
+//         }, {
+//             $set: {
+//                 rate: req.params.rate, // rate: req.body.rate,
+//                 content: req.params.content // rate: req.body.content
+//             }
+//         }, {
+//             upsert: true
+//         },
+//         function(err, result) {
+//             if (err) {
+//                 res.status(404);
+//                 res.send(err);
+//             } else {
+//                 res.send("Review changed!");
+//             }
+//         });
+// }
 
 function getProfile(req, res) {
 

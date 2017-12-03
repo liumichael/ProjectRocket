@@ -40,11 +40,11 @@ module.exports = function(app, passport) {
     //get the new username in profile
     app.post('/change-username', controller.changeUsername);
 
-    // app.get('reviews', controller.getAllReview);
-    // app.get('reviews/country/:countryName', controller.getCountryReview);
-    // app.get('reviews/user/:userName', controller.getUserReview);
-    // app.post('reviews', controller.postReview);
-    // app.put('reviews', controller.putReview);
+    app.get('/reviews', controller.getAllReview);
+    app.get('/reviews/country/:countryName', controller.getCountryReview);
+    app.get('/reviews/user/:userName', controller.getUserReview);
+    // app.post('/reviews', controller.postReview);
+    // app.put('/reviews', controller.putReview);
 
 
     // process the signup form
