@@ -120,7 +120,7 @@ function getReviewByCountry(countryName) {
         success: function(countryReviews) {
             var text = '';
             if (countryReviews.length == 0){
-                text += '<h3>No reviews for this country yet. Would you like to share your experience? </h3>';
+                text += '<h3 style="margin-bottom: 100px; text-align: center;">No reviews for this country yet. Would you like to share your experience? </h3>';
             }
             for(var i=0; i < countryReviews.length; i++){
                 if(countryReviews[i].rate >= 1){
