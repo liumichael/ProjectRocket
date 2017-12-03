@@ -57,22 +57,12 @@ function getCountryInfo(country) {
                 $('#writeReview').show()
                 $('#reviewInput').show()
                 $('#existingReview').show()
-                $('#rating1').show()
-                $('#rating2').show()
-                $('#rating3').show()
-                $('#rating4').show()
-                $('#rating5').show()
                 currencyCode = data[0].currency
             }
             else {
                 $('#writeReview').hide()
                 $('#reviewInput').hide()
                 $('#existingReview').hide()
-                $('#rating1').hide()
-                $('#rating2').hide()
-                $('#rating3').hide()
-                $('#rating4').hide()
-                $('#rating5').hide()
                 $('#worldMap').hide()
                 $('#currentTitle').hide()
                 $('#countryName').hide()
@@ -97,11 +87,6 @@ function getCountryInfo(country) {
             $('#writeReview').hide()
             $('#reviewInput').hide()
             $('#existingReview').hide()
-            $('#rating1').hide()
-            $('#rating2').hide()
-            $('#rating3').hide()
-            $('#rating4').hide()
-            $('#rating5').hide()
             $('#worldMap').hide()
             $('#currentTitle').hide()
             $('#countryName').hide()
@@ -134,6 +119,9 @@ function getReviewByCountry(countryName) {
         dataType: 'json',
         success: function(countryReviews) {
             var text = '';
+            if (countryReviews.length == 0){
+                text += '<h3>No reviews for this country yet. Would you like to share your experience? </h3>';
+            }
             for(var i=0; i < countryReviews.length; i++){
                 if(countryReviews[i].rate >= 1){
                     text += '<img src="../images/star-on.png" width=30px>';
@@ -229,11 +217,6 @@ $(document).ready(function() {
     $('#writeReview').hide()
     $('#reviewInput').hide()
     $('#existingReview').hide()
-    $('#rating1').hide()
-    $('#rating2').hide()
-    $('#rating3').hide()
-    $('#rating4').hide()
-    $('#rating5').hide()
     $('#countrySearch').submit(function () {
         var info = $('#country').val()
         if (!info){
@@ -288,12 +271,7 @@ $(document).ready(function() {
         $('#reviewLine').hide()
         $('#writeReview').hide()
         $('#reviewInput').hide()
-        $('#existingReview').hide()
-        $('#rating1').hide()
-        $('#rating2').hide()
-        $('#rating3').hide()
-        $('#rating4').hide()
-        $('#rating5').hide();
+        $('#existingReview').hide();
     });
     $('#currencyConvert').submit(function () {
         $('#conversionResult').empty()

@@ -57,6 +57,11 @@
                     <div class="col-sm-2"></div>
                     <div class="col-sm-8" id="Reviews"><br>
                         <form class="form-group" id="existingReview">
+
+                            <% if(userReviews.length == 0) { %>
+                                <h4>No Reviews Yet! Search For a Country to Share Your Experience</h4>
+                            <% } %>
+
                             <!--<ul> Having this will mess up the responsiveness-->
                                 <% for(var i=0; i < userReviews.length; i++) { %>
 
