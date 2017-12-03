@@ -336,10 +336,10 @@ function getUserReview(req, res) {
 
 function postReview(req, res) {
      var newReview = new Review({
-         username: req.user.local.username, 
-         countryName: req.body.countryName, 
-         rate: req.body.rating, 
-         content: req.body.content 
+         username: req.user.local.username,
+         countryName: req.body.countryName,
+         rate: req.body.rating,
+         content: req.body.content
     });
 
      newReview.save(function(err, country) {
@@ -385,7 +385,7 @@ function getProfile(req, res) {
         if (err) {
             res.send(err);
         } else {
-            console.log(reviews);
+            // console.log(reviews);
             res.render('profile.ejs', {
                 user: req.user.local.username,
                 userReviews: reviews
