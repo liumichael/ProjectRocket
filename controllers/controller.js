@@ -391,11 +391,10 @@ function getProfile(req, res) {
 
 function changeUsername(req, res){
     User.findOneAndUpdate({
-        username: req.user.local.username
+        'local.email': req.user.local.email
     }, {
-        $set: {username: req.body.username}
-
-    }, function(err, response) {
+        $set: { 'local.username': req.body.username }
+    }, function(err) {
         if (err) {
             res.send(err);
         }
