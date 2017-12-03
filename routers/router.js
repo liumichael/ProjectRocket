@@ -39,6 +39,8 @@ module.exports = function(app, passport) {
 
     app.get('/profile', controller.getProfile);
 
+    app.get('/users', controller.getAllUsers);
+
     //get the new username in profile
     app.post('/change-username', controller.changeUsername);
 

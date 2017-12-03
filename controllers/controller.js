@@ -27,7 +27,8 @@ module.exports = {
     getCountryReview: getCountryReview,
     getUserReview: getUserReview,
     getProfile: getProfile,
-    changeUsername: changeUsername
+    changeUsername: changeUsername,
+    getAllUsers: getAllUsers
 }
 
 // Countries
@@ -400,6 +401,20 @@ function changeUsername(req, res){
         }
         else {
             res.redirect('/profile')
+        }
+    });
+}
+
+// For checking if user's username gets updated correctly
+function getAllUsers(req, res) {
+    User.find({}, {
+        _id: 0,
+        __v: 0
+    }, function(err, countries) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json(countries);
         }
     });
 }
