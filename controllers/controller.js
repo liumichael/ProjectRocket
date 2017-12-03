@@ -26,6 +26,7 @@ module.exports = {
     getAllReview: getAllReview,
     getCountryReview: getCountryReview,
     getUserReview: getUserReview,
+    postReview: postReview,
     getProfile: getProfile,
     changeUsername: changeUsername,
     getAllUsers: getAllUsers
@@ -343,7 +344,13 @@ function postReview(req, res) {
         content: req.body.content // content: req.params.content
     });
 
-    newReview.save();
+    newReview.save(function(err, country) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send("review posted!");
+        }
+    });
 }
 
 function putReview(req, res) {

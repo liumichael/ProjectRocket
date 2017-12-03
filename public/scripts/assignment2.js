@@ -353,4 +353,28 @@ $(document).ready(function() {
         getMessageInfo();
     });
 
+    $('rating5').click(function() {
+       $('userRating').val(5);
+    });
+
+    $('rating4').click(function() {
+       $('userRating').val(4);
+    });
+
+    $('rating3').click(function() {
+       $('userRating').val(3);
+    });
+
+    $('rating2').click(function() {
+       $('userRating').val(2);
+    });
+
+    $('rating1').click(function() {
+       $('userRating').val(1);
+    });
+
+});
+
+$('#writeReview input').on('change', function() {
+   alert($('input[name=rating]:checked', '#writeReview').val());
 });
