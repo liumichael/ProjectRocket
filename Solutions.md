@@ -51,10 +51,20 @@
 
 ##### Status Messages
 
-- Changes will show when users click on anywhere on the page
+- Changes will show when users click on anywhere (that is not a clickable button/input form) on the page
+
+- If there are messages that users haven't read yet, the messages will show on the top left corner one at a time. The next message will show as soon as users click on anywhere on the page. Otherwise, the message will fade after 5 seconds and the next message will wait until the users click on the page
+
+- If users have read all the messages, nothing will show on the top left corner
 
 - For testing status messages:
-  - 
+  - Run curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages to check all the messages
+  - Remember only the ones that haven't been read will show on the page, one at a time
+  - Run curl -XPOST --data "data=blah" https://mysterious-hollows-73808.herokuapp.com/api/messages
+  - If you run get before clicking anywhere on the page, you should see that the read attribute of the message you just posted is false
+  - Click anywhere on the page and the message will show
+  - Run get again and you should see that the read attribute is now true
+
 
 
 [To be updated]

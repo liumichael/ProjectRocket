@@ -229,7 +229,7 @@ function getMessageInfo() {
                 $('#popup').hide();
             }
             else {
-                var text = '<li id="msg">' + notRead[0].data + '</li>';
+                var text = '<p id="msg">' + notRead[0].data + '</p>';
                 $('#statusMsg').html(text);
                 $('#popup').show();
                 $('#myPopup').show().delay(5000).fadeOut();

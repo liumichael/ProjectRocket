@@ -33,11 +33,6 @@ p {
     max-width: 100%;
 }
 
-#statusMsg {
-    overflow-y: scroll;
-    height: 70px;
-}
-
 h4 {
     font-family: 'Roboto', sans-serif;
     font-size: 1.3rem;
@@ -51,9 +46,15 @@ h4 {
 
 #msg {
     font-family: 'Roboto', sans-serif;
+    text-align: left;
     color: #ffffff;
     font-size: 10pt;
     margin-bottom: 8px;
+}
+
+#statusMsg {
+    overflow-y: scroll;
+    /*height: 70px;*/
 }
 
 @media only screen and (max-width: 768px) {
