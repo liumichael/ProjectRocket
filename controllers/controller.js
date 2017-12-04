@@ -395,20 +395,31 @@ function getProfile(req, res) {
 }
 
 function changeUsername(req, res){
-    User.findOneAndUpdate({
-        'local.email': req.user.local.email
+    Review.update({
+        'username' : req.user.local.username
     }, {
-        $set: { 'local.username': req.body.username }
-    }, function(err) {
+        $set: { 'username': req.body.username }
+    }, {multi: true},
+     function(err) {
         if (err) {
             res.send(err);
         }
-        else {
+        else{
+            User.findOneAndUpdate({
+            'local.email': req.user.local.email
+            }, {
+            $set: { 'local.username': req.body.username }
+            }, function(err) {
+            if (err) {
+                res.send(err);
+            }
+            else {
             res.redirect('/profile')
+                }
+            });
         }
-    });
+    } )
 }
-
 // For checking if user's username gets updated correctly
 function getAllUsers(req, res) {
     User.find({}, {

@@ -194,6 +194,7 @@ function getOwnCountryReview(countryName) {
                 $(':radio').attr("disabled", true)
                 $('#selfReviewTitle').html("<b>Edit or Delete Your Review</b>");
                 $('#reviewInput').val(countryReviews[i].content)
+                $('#reviewInput').attr('placeholder', '');
                 $('#reviewInput').prop("disabled", true);
                 $('#deleteReview').attr('style', 'float: right')
                 $('#editReview').attr('style', 'float: right')
