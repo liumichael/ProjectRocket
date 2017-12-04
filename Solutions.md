@@ -14,9 +14,9 @@
 
 - Post methods allow one insert at a time
 
-- **(Detailed [API documentation](https://github.com/FallCSC309/assignment-3-teamrocket/blob/master/Solutions.md#RESTful-API-Documentation) is written in the section after Web Application Features)**
+- **Detailed [API documentation](https://github.com/FallCSC309/assignment-3-teamrocket/blob/master/Solutions.md#restful-api-documentation) is written in the section after Web Application Features**
 
-- **Other important features regarding session management and status messages are written in [Web Application Feature Section](https://github.com/FallCSC309/assignment-3-teamrocket/blob/master/Solutions.md#Web-Application-Features)**
+- **Other important features regarding session management and status messages are written in [Web Application Feature Section](https://github.com/FallCSC309/assignment-3-teamrocket/blob/master/Solutions.md#web-application-features)**
 
 - When passing in JSON data for post and put methods, please indicate it with the header **--header "Content-Type: application/json"**
 
