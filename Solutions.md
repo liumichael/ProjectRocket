@@ -233,22 +233,22 @@ but ```https://mysterious-hollows-73808.herokuapp.com/api/currencies/aud``` is n
 
     - Get messages by id example:
     ```
+    // This get method returns all messages that have an id = 0
     curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages/0
     ```
-        - This get method returns all messages that have an id = 0
 
     - Get messages by user example:
     ```
+    // This get method returns all messages that belong to user abc@mail.com
     curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages/users/abc@mail.com
     ```
-      - This get method returns all messages that belong to user abc@mail.com
 
   - PUT method:
     - Put one message by id and user email example:
     ```
+    // This put method updates the message's read flag attribute to true after the user abc@mail.com has read the message with id = 0
     curl -XPUT https://mysterious-hollows-73808.herokuapp.com/api/messages/0/abc@mail.com
     ```
-      - This put method updates the message's read flag attribute to true after the user abc@mail.com has read the message with id = 0
 
   - POST method:
     - POST one message to all users example *with JSON data*:
