@@ -235,7 +235,7 @@ but ```https://mysterious-hollows-73808.herokuapp.com/api/currencies/aud``` is n
     ```
     curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages/0
     ```
-      - This get method returns all messages that have an id = 0
+        - This get method returns all messages that have an id = 0
 
     - Get messages by user example:
     ```
