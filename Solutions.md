@@ -134,10 +134,10 @@ but ```https://mysterious-hollows-73808.herokuapp.com/api/currencies/aud``` is n
 
   - GET method:
     - GET all countries example:
-    ```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/countries```
+      -```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/countries```
 
     - GET one country example:
-    ```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/countries/canada```
+      -```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/countries/canada```
 
   - PUT method:
     - PUT one country example *with JSON data* :
