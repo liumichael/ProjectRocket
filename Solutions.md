@@ -2,7 +2,7 @@
 - Student 1: Zhen Bang Liu (1002374012)
 - Student 2: Yun-Yi Liu (1002063964)
 - Student 3: Michael Le (1002432183)
-
+- Student 4: Amna Mahder Bashi (999552345)
 
 ## Important Notes
 
