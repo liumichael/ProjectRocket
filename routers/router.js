@@ -3,7 +3,7 @@ const controller = require('../controllers/controller.js');
 module.exports = function(app, passport) {
 
     app.get('/', function (req, res) {
-        res.render('index.ejs', {user: req.user, message: req.flash('logout')});
+        res.render('index.ejs', {user: req.user, message: req.flash('message')});
     });
 
     app.get('/login', function (req, res) {
@@ -16,7 +16,7 @@ module.exports = function(app, passport) {
 
     app.get('/logout', function (req, res) {
         req.logout();
-        req.flash('logout', "You have Successfully Logged Out!")
+        req.flash('message', "You have Successfully Logged Out!")
         res.redirect('/');
     });
 
@@ -48,8 +48,8 @@ module.exports = function(app, passport) {
     app.get('/reviews/country/:countryName', controller.getCountryReview);
     app.get('/reviews/user/:userName', controller.getUserReview);
     app.post('/reviews', controller.postReview);
-    // app.put('/reviews', controller.putReview);
-
+    app.post('/deleteReview', controller.deleteReview);
+    app.post('/putReview', controller.putReview);
 
     // process the signup form
     app.post('/signup', passport.authenticate('local-signup', {

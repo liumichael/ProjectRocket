@@ -35,6 +35,7 @@ function getCountryInfo(country) {
                 var imageTag = "<img class='img-thumbnail mx-auto d-block' src=" + data[0].flag + " alt=\"Country Flag\">"
                 $('#flag').html(imageTag + "</br>")
 
+                getOwnCountryReview(data[0].name)
                 getReviewByCountry(data[0].name);
 
                 $('#worldMap').hide()
@@ -113,7 +114,6 @@ function getCountryInfo(country) {
 function getReviewByCountry(countryName) {
     // var url = "https://mysterious-hollows-73808.herokuapp.com/reviews/country/" + countryName;
     var url = "/reviews/country/" + countryName;
-
     $.ajax({
         url: url,
         type: "GET",
@@ -165,6 +165,53 @@ function getReviewByCountry(countryName) {
 
             $('#existingReview').html(text);
 
+        },
+        error: function(data) {
+            alert("Get review failed.");
+        }
+    });
+}
+
+function getOwnCountryReview(countryName) {
+    // var url = "https://mysterious-hollows-73808.herokuapp.com/reviews/country/" + countryName;
+
+    var url = "/reviews/country/" + countryName;
+    $.ajax({
+        url: url,
+        type: "GET",
+        dataType: 'json',
+        success: function(countryReviews) {
+            var i=0;
+            var found = false
+            for(i; i < countryReviews.length; i++){
+                if (countryReviews[i].username == $('#username').val()){
+                    found = true
+                    break
+                }
+            }
+            if (found){
+                $('#rating'+countryReviews[i].rate).prop("checked", true);
+                $('#star').attr("value", countryReviews[i].rate);
+                $(':radio').attr("disabled", true)
+                $('#selfReviewTitle').html("<b>Edit or Delete Your Review</b>");
+                $('#reviewInput').val(countryReviews[i].content)
+                $('#reviewInput').attr('placeholder', '');
+                $('#reviewInput').prop("disabled", true);
+                $('#deleteReview').attr('style', 'float: right')
+                $('#editReview').attr('style', 'float: right')
+                $('#reviewSubmit').attr("style", 'display: none')
+            }
+            else {
+                $('#rating5').prop("checked", true);
+                $(':radio').attr("disabled", false)
+                $('#selfReviewTitle').html("<b>Rate and Review Country</b>");
+                $('#reviewInput').val("")
+                $('#reviewInput').attr('placeholder', 'Write your own review of this country!')
+                $('#reviewInput').prop("disabled", false);
+                $('#reviewSubmit').attr("style", 'float: right')
+                $('#deleteReview').attr('style', 'display: none')
+                $('#editReview').attr('style', 'display: none')
+            }
         },
         error: function(data) {
             alert("Get review failed.");
@@ -344,49 +391,35 @@ $(document).ready(function() {
         $("#currencyInput").val('').focus().blur();
         return false
     });
-//     $('#writeReview').submit(function () {
-//         alert("Thank you for your review!")
-//         var radios = document.getElementsByName('rating');
-//         for (var i = 0, length = radios.length; i < length; i++)
-//         {
-//         if (radios[i].checked)
-//         {
-//         alert("rating: " +radios[i].value);
-//         // only one radio can be logically checked, don't check the rest
-//         break;
-//  }
-// }
-//         console.log("User submitted review")
-//         $("#reviewInput").val('').focus().blur();
-//         return false
-//     });
 
     $(document).click(function () {
         getMessageInfo();
     });
 
-    $('rating5').click(function() {
-       $('userRating').val(5);
-    });
+    //when edit button is clicked
+    $(document).ready(function() {
+        $("#editReview").click(function(){
+            $('#reviewInput').prop("disabled", false);
+            $('#reviewSubmit').attr("style", 'float: right')
+            $(':radio').attr("disabled", false)
+            $('#reviewSubmit').attr("formaction", '/putReview');
 
-    $('rating4').click(function() {
-       $('userRating').val(4);
-    });
+            if ($(this).text() == "Edit"){
+                $(this).text("Cancel");
+            }
+            else {
+                $(this).text("Edit");
+                $('#reviewInput').prop("disabled", true);
+                $('#reviewSubmit').attr("style", 'display: none');
+                $('#reviewSubmit').attr("formaction", '/reviews');
+                $(':radio').attr("disabled", true)
+                var star = $('#star').attr('value');
+                $('#rating'+star).prop("checked", true);
 
-    $('rating3').click(function() {
-       $('userRating').val(3);
-    });
-
-    $('rating2').click(function() {
-       $('userRating').val(2);
-    });
-
-    $('rating1').click(function() {
-       $('userRating').val(1);
-    });
-
+            }
+            return false;
+    }); 
+});
 });
 
-$('#writeReview input').on('change', function() {
-   alert($('input[name=rating]:checked', '#writeReview').val());
-});
+

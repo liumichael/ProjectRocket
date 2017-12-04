@@ -28,6 +28,8 @@ module.exports = {
     getCountryReview: getCountryReview,
     getUserReview: getUserReview,
     postReview: postReview,
+    deleteReview: deleteReview,
+    putReview: putReview,
     getProfile: getProfile,
     changeUsername: changeUsername,
     getAllUsers: getAllUsers
@@ -370,14 +372,28 @@ function postReview(req, res) {
     });
 }
 
+function deleteReview(req, res){
+    Review.remove({
+        username: req.user.local.username, countryName: req.body.countryName 
+    }, function(err){
+        if (err){
+            return res.send(err);
+        } else{
+            req.flash('message', "You have Successfully Deleted Your Review!");
+            res.redirect('/');
+        }
+    }
+    )
+}
+
 function putReview(req, res) {
 
     Review.findOneAndUpdate({
-            username: req.body.username, // id: req.body.id
+            username: req.user.local.username,
             countryName: req.body.countryName
         }, {
             $set: {
-                rate: req.body.rate, // rate: req.params.rate,
+                rate: req.body.rating, // rate: req.params.rate,
                 content: req.body.content // rate: req.params.content
             }
         }, {
@@ -388,7 +404,9 @@ function putReview(req, res) {
                 res.status(404);
                 res.send(err);
             } else {
-                res.send("Review changed!");
+                //res.send("Review changed!");
+                req.flash('message', "You have Successfully Edited Your Review!");
+                res.redirect('/');
             }
         });
 }
@@ -414,20 +432,31 @@ function getProfile(req, res) {
 }
 
 function changeUsername(req, res){
-    User.findOneAndUpdate({
-        'local.email': req.user.local.email
+    Review.update({
+        'username' : req.user.local.username
     }, {
-        $set: { 'local.username': req.body.username }
-    }, function(err) {
+        $set: { 'username': req.body.username }
+    }, {multi: true},
+     function(err) {
         if (err) {
             res.send(err);
         }
-        else {
+        else{
+            User.findOneAndUpdate({
+            'local.email': req.user.local.email
+            }, {
+            $set: { 'local.username': req.body.username }
+            }, function(err) {
+            if (err) {
+                res.send(err);
+            }
+            else {
             res.redirect('/profile')
+                }
+            });
         }
-    });
+    } )
 }
-
 // For checking if user's username gets updated correctly
 function getAllUsers(req, res) {
     User.find({}, {

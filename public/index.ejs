@@ -50,7 +50,11 @@
 
     <main role="main" class="container">
 
+        <% if (locals.user) { %>
         <div id="popup">
+        <% } else {%>
+        <div id="popup" style="display: none;">
+        <% } %>
             <div>
                 <img img src="images/status-msg-icon.png" src="images/status-msg-icon.png"/>
                 <span id="status">Status Message</span>
@@ -76,6 +80,7 @@
             <!--Display username here -->
             <% if (user) { %>
                 <p> Welcome back, <%= user.local.username %>! Share your experience with us!</p>
+                <input type="hidden" id="username" value="<%=user.local.username%>"/>
             <% } else if (!user) { %>
                 <p id="appDescription">Search for a Country. Share your Experience.</p>
             <% }%>
@@ -163,10 +168,9 @@
     	    <div class="col-sm-8" id="Reviews"><br>
     	    <div class="wrapper">
 
-                <% if (user){ %> 
-    	        <p><b>Rate and Review Country</b></p>
-                <form class="form-group" action="/reviews"  method="post" id="writeReview">
-
+                <% if (user){ %>
+    	               <p id='selfReviewTitle'><b>Rate and Review Country</b></p>
+                       <form class="form-group" action="/reviews"  method="post" id="writeReview">
                     <span class="rating">
                         <input id="rating5" type="radio" name="rating" value="5" checked>
                         <label for="rating5">5</label>
@@ -180,17 +184,16 @@
                         <label for="rating1">1</label>
                     </span>
 
-                    <input type="hidden" name="username" value="<%= user %>" />
                     <input type="hidden" name="countryName" id="countryForm" value=""/>
-
-                    <!--<input id="userRating" name="rate"  name="rating" value="2">-->
+                    <input type="hidden" name="rate" id="star" value=""/>
 
                     <textarea id="reviewInput" name = "content" placeholder="Write your own review of this country!" cols="90" rows="25" wrap="soft|hard" style="opacity: 1;"></textarea><br>
+                    <button class="btn btn-info" style="display: none"type="submit" formaction="/deleteReview" id="deleteReview">Delete</button>
+                    <button class="btn btn-info" style="display: none"type="submit" id="editReview">Edit</button>
+                    <button class="btn btn-info" style="float: right" type="submit" id="reviewSubmit">Submit</button>
 
-                    <button class="btn btn-info" style="float: right" type="submit" id="reviewSubmit">Submit Review</button>
                 </form>
-            </div>
-             <% } %>
+            <% }  %>
 
             <br>
 
