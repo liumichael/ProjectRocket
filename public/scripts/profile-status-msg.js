@@ -1,5 +1,5 @@
 function getMessageInfo(email) {
-    var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages/users" + email;
+    var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages/users/" + email;
     //var url = "http://localhost:3964/api/messages/users/" + email;
 
     $.ajax({
