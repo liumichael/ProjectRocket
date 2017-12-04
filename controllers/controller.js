@@ -374,7 +374,7 @@ function postReview(req, res) {
 
 function deleteReview(req, res){
     Review.remove({
-        username: req.user.local.username, countryName: req.body.countryName 
+        username: req.user.local.username, countryName: req.body.countryName
     }, function(err){
         if (err){
             return res.send(err);
@@ -424,7 +424,8 @@ function getProfile(req, res) {
         } else {
             // console.log(reviews);
             res.render('profile.ejs', {
-                user: req.user.local.username,
+                user: req.user,
+                username: req.user.local.username,
                 userReviews: reviews
             });
         }
