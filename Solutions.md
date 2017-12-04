@@ -92,7 +92,7 @@
 
 ## RESTful API Documentation
 
-- We have 3 kinds of resources in our API: Country, Currency, and Message, and therefore 3 collections: Countries, Currencies, and Messages  
+- We have 3 kinds of resources in our API: [Country](https://github.com/FallCSC309/assignment-3-teamrocket/blob/master/Solutions.md#countries), [Currency](https://github.com/FallCSC309/assignment-3-teamrocket/blob/master/Solutions.md#currencies), and [Message](https://github.com/FallCSC309/assignment-3-teamrocket/blob/master/Solutions.md#messages), and therefore 3 collections: Countries, Currencies, and Messages  
 
   - A Country resource has attributes country name (letter are all upper case), flag, capital city, region, population, official languages, calling codes, and timezones  
 
