@@ -61,6 +61,11 @@
                 </div>
             </span>
         </div>
+        <script>
+            $(document).click(function () {
+                getMessageInfo("<%= email %>");
+            });
+        </script>
         <% } %>
 
         <script src="scripts/auto-complete.js" type="text/javascript"></script>

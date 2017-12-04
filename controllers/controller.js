@@ -20,6 +20,7 @@ module.exports = {
     deleteCurrency: deleteCurrency,
     getAllMessages: getAllMessages,
     getMessageByID: getMessageByID,
+    getMessageByUser: getMessageByUser,
     putMessageByIDAndUser: putMessageByIDAndUser,
     postMessage: postMessage,
     deleteMessageByID: deleteMessageByID,
@@ -232,20 +233,37 @@ function getMessageByID(req, res) {
     });
 }
 
+function getMessageByUser(req, res) {
+
+    Message.find({
+        user: req.params.email
+    }, {
+        _id: 0,
+        __v: 0
+    }, function(err, msg) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json(msg);
+        }
+    });
+}
+
+
 // For changing the read flag to true once a message has been read
 function putMessageByIDAndUser(req, res) {
 
     Message.findOneAndUpdate({
             id: req.params.id,
-            user: req.user.local.email
+            user: req.params.email
         }, {
             read: true
         },
-        function(err, code) {
+        function(err, msg) {
             if (err) {
-                res.send(err + "req.params.id\n");
+                res.send(err);
             } else {
-                res.send(req.params.id + " updated\n");
+                res.send(req.params.id + " " + req.params.email + " updated\n");
             }
         });
 }
@@ -367,6 +385,7 @@ function postReview(req, res) {
          if (err) {
              res.send(err);
          } else {
+             req.flash('message', "You have Successfully Submitted Your Review!");
              res.redirect('/');
          }
     });
@@ -412,24 +431,30 @@ function putReview(req, res) {
 }
 
 function getProfile(req, res) {
+    if (req.user) {
+        Review.find({
+            username: req.user.local.username
+        }, {
+            _id: 0,
+            __v: 0
+        }, function(err, reviews) {
+            if (err) {
+                res.send(err);
+            } else {
+                // console.log(reviews);
+                res.render('profile.ejs', {
+                    user: req.user,
+                    username: req.user.local.username,
+                    email: req.user.local.email,
+                    userReviews: reviews
+                });
+            }
+        });
+    }
+    else {
+        res.redirect('/');
+    }
 
-    Review.find({
-        username: req.user.local.username
-    }, {
-        _id: 0,
-        __v: 0
-    }, function(err, reviews) {
-        if (err) {
-            res.send(err);
-        } else {
-            // console.log(reviews);
-            res.render('profile.ejs', {
-                user: req.user,
-                username: req.user.local.username,
-                userReviews: reviews
-            });
-        }
-    });
 }
 
 function changeUsername(req, res){
