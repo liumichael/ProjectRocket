@@ -16,8 +16,6 @@
 
 - When searching for a country, it is better to choose a country name that is suggested by the autocompletion or make sure that you spell it correctly because common names aren't valid inputs (e.g. you need to type United States of America instead of US, USA, America, or United States)
 
-- Post methods allow one insert at a time
-
 - When passing in JSON data for post and put methods, please indicate it with the header **--header "Content-Type: application/json"**
 
 - The letters in the name field in a country are upper case (CRUD methods for country automatically change the name field to upper case for the users). This makes our search bar not case sensitive (i.e. canada, Canada, CaNadA all work). We make this decision because we believe that this will allow the users to search for a country more conveniently
@@ -105,7 +103,7 @@
 
   - A Currency resource has attributes code and rate, where code is the currency code of a country and rate is the amount in that currency with respect to 1 Canadian Dollar (i.e. the rate value for AUD is 1.0297 because 1.0297 AUD = 1 CAD)  
 
-  - A Message resource has attributes data, read, and user, where data is the actual message,  read is a flag that indicates if the message has been read (true) or not (false), and user is the existing user in our system.
+  - A Message resource has attributes id, data, read, and user, where data is the actual message,  read is a flag that indicates if the message has been read (true) or not (false), and user is the existing user in our system.
 
 - All of post, get, put, delete operations are implemented for our resources
 
@@ -232,38 +230,43 @@ but ```https://mysterious-hollows-73808.herokuapp.com/api/currencies/aud``` is n
     ```
     curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages
     ```
-    
-    - Get one message by id example: 
+
+    - Get messages by id example:
     ```
     curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages/0
     ```
+      - This get method returns all messages that have an id = 0
+
+    - Get messages by user example:
+    ```
+    curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages/users/abc@mail.com
+    ```
+      - This get method returns all messages that belong to user abc@mail.com
 
   - PUT method:
-    - Put one message by id example: 
+    - Put one message by id and user email example:
     ```
-    curl -XPUT https://mysterious-hollows-73808.herokuapp.com/api/messages/0
+    curl -XPUT https://mysterious-hollows-73808.herokuapp.com/api/messages/0/abc@mail.com
     ```
-    
-      - This put method is for updating the message's read flag attribute to true after the user has read the message
+      - This put method updates the message's read flag attribute to true after the user abc@mail.com has read the message with id = 0
 
   - POST method:
-    - POST one message example *with JSON data*:
+    - POST one message to all users example *with JSON data*:
     ```
     curl -XPOST --data '{"data":"Testing hehehehe"}' --header 'Content-Type: application/json' https://mysterious-hollows-73808.herokuapp.com/api/messages
     ```
 
-    - POST one message example *with urlencoded data*:
+    - POST one message to all users example *with urlencoded data*:
     ```
     curl -XPOST --data "data=Testing hehehehe" https://mysterious-hollows-73808.herokuapp.com/api/messages
     ```
 
   - DELETE method:
-    - DELETE one message by id example: 
+    - DELETE one message by id example:
     ```
     curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/messages/0
     ```
-    - DELETE all messages example: 
+    - DELETE all messages example:
     ```
     curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/messages
     ```
-

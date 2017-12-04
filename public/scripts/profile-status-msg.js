@@ -1,6 +1,6 @@
 function getMessageInfo(email) {
-    //var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages";
-    var url = "http://localhost:3964/api/messages/users/" + email;
+    var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages/users" + email;
+    //var url = "http://localhost:3964/api/messages/users/" + email;
 
     $.ajax({
         url: url,
@@ -35,8 +35,8 @@ function getMessageInfo(email) {
 
 function setMessageToRead(msg_id, email) {
 
-    //var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages/" + msg_id;
-    var url = "http://localhost:3964/api/messages/" + msg_id + "/" + email;
+    var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages/" + msg_id + "/" + email;
+    //var url = "http://localhost:3964/api/messages/" + msg_id + "/" + email;
     $.ajax({
         url: url,
         type: "PUT",
