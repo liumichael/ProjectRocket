@@ -257,7 +257,8 @@ function getCurrencyInfo(amount) {
 }
 
 function getMessageInfo() {
-    var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages";
+    //var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages";
+    var url = "http://localhost:3964/api/messages/"
 
     $.ajax({
         url: url,
@@ -292,8 +293,8 @@ function getMessageInfo() {
 
 function setMessageToRead(msg_id) {
 
-    var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages/" + msg_id;
-    //var url = "http://localhost:3964/api/messages/" + msg_id;
+    //var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages/" + msg_id;
+    var url = "http://localhost:3964/api/messages/" + msg_id;
     $.ajax({
         url: url,
         type: "PUT",
@@ -418,8 +419,6 @@ $(document).ready(function() {
 
             }
             return false;
-    }); 
+    });
 });
 });
-
-

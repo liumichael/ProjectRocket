@@ -20,6 +20,7 @@ module.exports = {
     deleteCurrency: deleteCurrency,
     getAllMessages: getAllMessages,
     getMessageByID: getMessageByID,
+    getMessageByUser: getMessageByUser,
     putMessageByIDAndUser: putMessageByIDAndUser,
     postMessage: postMessage,
     deleteMessageByID: deleteMessageByID,
@@ -220,6 +221,22 @@ function getAllMessages(req, res) {
 function getMessageByID(req, res) {
     Message.find({
         id: req.params.id
+    }, {
+        _id: 0,
+        __v: 0
+    }, function(err, msg) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json(msg);
+        }
+    });
+}
+
+function getMessageByUser(req, res) {
+
+    Message.find({
+        user: req.params.email
     }, {
         _id: 0,
         __v: 0

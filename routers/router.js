@@ -32,6 +32,7 @@ module.exports = function(app, passport) {
     app.delete('/api/currencies/:code', controller.deleteCurrency);
     app.get('/api/messages', controller.getAllMessages);
     app.get('/api/messages/:id', controller.getMessageByID);
+    app.get('/api/messages/users/:email', controller.getMessageByUser);
     app.put('/api/messages/:id', controller.putMessageByIDAndUser);
     app.post('/api/messages', controller.postMessage);
     app.delete('/api/messages/:id', controller.deleteMessageByID);
