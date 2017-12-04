@@ -22,7 +22,7 @@ function getMessageInfo(email) {
             else {
                 var text = '<p id="msg">' + notRead[0].data + '</p>';
                 $('#statusMsg').html(text);
-                $('#popup').show();
+                $('#popup').show().delay(5000).fadeOut();
                 $('#myPopup').show().delay(5000).fadeOut();
                 setMessageToRead(notRead[0].id, email);
             }

@@ -309,7 +309,7 @@ function postMessage(req, res) {
                         res.send(err);
                     }
                     else {
-                        res.send(msgs);
+                        res.send(req.body.data + "posted!\n");
                     }
                 });
             }
@@ -340,7 +340,7 @@ function deleteAllMessages(req, res) {
             if (err) {
                 res.send(err);
             } else {
-                res.json(msgs);
+                res.send("All messages deleted!\n");
             }
         });
 }
