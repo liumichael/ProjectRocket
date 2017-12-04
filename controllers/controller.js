@@ -4,6 +4,7 @@ var Currency = require('../models/currency');
 var Message = require('../models/message');
 var Review = require('../models/review');
 var User = require('../models/users');
+var msgID = 0;
 
 
 module.exports = {
@@ -19,7 +20,7 @@ module.exports = {
     deleteCurrency: deleteCurrency,
     getAllMessages: getAllMessages,
     getMessageByID: getMessageByID,
-    putMessageByID: putMessageByID,
+    putMessageByIDAndUser: putMessageByIDAndUser,
     postMessage: postMessage,
     deleteMessageByID: deleteMessageByID,
     deleteAllMessages: deleteAllMessages,
@@ -205,6 +206,7 @@ function deleteCurrency(req, res) {
 // Messages
 function getAllMessages(req, res) {
     Message.find({}, {
+        _id: 0,
         __v: 0
     }, function(err, msgs) {
         if (err) {
@@ -217,8 +219,9 @@ function getAllMessages(req, res) {
 
 function getMessageByID(req, res) {
     Message.find({
-        _id: req.params.id
+        id: req.params.id
     }, {
+        _id: 0,
         __v: 0
     }, function(err, msg) {
         if (err) {
@@ -230,9 +233,11 @@ function getMessageByID(req, res) {
 }
 
 // For changing the read flag to true once a message has been read
-function putMessageByID(req, res) {
+function putMessageByIDAndUser(req, res) {
+
     Message.findOneAndUpdate({
-            _id: req.params.id
+            id: req.params.id,
+            user: req.user.local.email
         }, {
             read: true
         },
@@ -247,20 +252,34 @@ function putMessageByID(req, res) {
 
 function postMessage(req, res) {
 
-    console.log(req.body);
+    var messages = [];
     if (req.body.data) {
-        var newMessage = new Message({
-            data: req.body.data,
-            read: false
-        });
-        newMessage.save(function(err, msg) {
+        User.find({}, function (err, users) {
             if (err) {
                 res.send(err);
             } else {
-                res.send(msg + "\n");
+                for (var i = 0; i < users.length; i ++) {
+                    var msg = {
+                        id: msgID,
+                        data: req.body.data,
+                        read: false,
+                        user: users[i].local.email
+                    }
+                    messages.push(msg);
+                }
+                msgID += 1;
+                Message.create(messages, function (err, msgs) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    else {
+                        res.send(msgs);
+                    }
+                });
             }
         });
-    } else {
+    }
+    else {
         res.send("If you're passing in JSON data, please add the header --header 'Content-Type: application/json'\nPlease make sure the data you pass in has the data attribute, as the field 'data' is a required field!\n");
     }
 }
@@ -268,8 +287,8 @@ function postMessage(req, res) {
 function deleteMessageByID(req, res) {
 
     console.dir(req.params.id);
-    Message.findOneAndRemove({
-        _id: req.params.id
+    Message.remove({
+        id: req.params.id
     }, function(err, result) {
         if (err) {
             res.send(err);
@@ -443,11 +462,11 @@ function getAllUsers(req, res) {
     User.find({}, {
         _id: 0,
         __v: 0
-    }, function(err, countries) {
+    }, function(err, users) {
         if (err) {
             res.send(err);
         } else {
-            res.json(countries);
+            res.json(users);
         }
     });
 }

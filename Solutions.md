@@ -105,7 +105,7 @@
 
   - A Currency resource has attributes code and rate, where code is the currency code of a country and rate is the amount in that currency with respect to 1 Canadian Dollar (i.e. the rate value for AUD is 1.0297 because 1.0297 AUD = 1 CAD)  
 
-  - A Message resource has attributes data and read, where data is the actual message and read is a flag that indicates if the message has been read (true) or not (false). We use the \_id attribute that mongoDB generated as the ID of a message
+  - A Message resource has attributes data, read, and user, where data is the actual message,  read is a flag that indicates if the message has been read (true) or not (false), and user is the existing user in our system.
 
 - All of post, get, put, delete operations are implemented for our resources
 
@@ -123,7 +123,7 @@
 
   - '/api/currencies/[currency code]' refers to a single currency resource in the currency collection (e.g. '/api/currencies/AUD' refers to Australian Dollar AUD in the currency collection)
 
-  - '/api/messages/[\_id]' refers to a single message resource in the message collection (e.g. '/api/messages/5a20ef313997c26701fb5507' refers to the message with \_id = 5a20ef313997c26701fb5507 in the message collection)
+  - '/api/messages/[id]' refers to a single message resource in the message collection (e.g. '/api/messages/0' refers to the message with id = 0 in the message collection)
 
 - The endpoints for our currencies and messages **are** case sensitive
 (i.e. ```https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD``` is valid
@@ -232,19 +232,19 @@ but ```https://mysterious-hollows-73808.herokuapp.com/api/currencies/aud``` is n
     ```
     curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages
     ```
-
-    - Get one message by \_id example:
+    
+    - Get one message by id example: 
     ```
-    curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507
+    curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages/0
     ```
 
   - PUT method:
-    - Put one message by \_id example:
+    - Put one message by id example: 
     ```
-    curl -XPUT https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507
+    curl -XPUT https://mysterious-hollows-73808.herokuapp.com/api/messages/0
     ```
-      - This put method is for updating the message's read flag attribute to
-      true after the user has read the message
+    
+      - This put method is for updating the message's read flag attribute to true after the user has read the message
 
   - POST method:
     - POST one message example *with JSON data*:
@@ -258,11 +258,12 @@ but ```https://mysterious-hollows-73808.herokuapp.com/api/currencies/aud``` is n
     ```
 
   - DELETE method:
-    - DELETE one message by \_id example:
+    - DELETE one message by id example: 
     ```
-    curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507
+    curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/messages/0
     ```
-    - DELETE all messages example:
+    - DELETE all messages example: 
     ```
     curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/messages
     ```
+
