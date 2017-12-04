@@ -257,11 +257,13 @@ but ```https://mysterious-hollows-73808.herokuapp.com/api/currencies/aud``` is n
   - POST method:
     - POST one message to all users example *with JSON data*:
     ```
+    // This post method posts a message (with the same id and data) to all users in our system
     curl -XPOST --data '{"data":"Testing hehehehe"}' --header 'Content-Type: application/json' https://mysterious-hollows-73808.herokuapp.com/api/messages
     ```
 
     - POST one message to all users example *with urlencoded data*:
     ```
+    // This post method posts a message (with the same id and data) to all users in our system
     curl -XPOST --data "data=Testing hehehehe" https://mysterious-hollows-73808.herokuapp.com/api/messages
     ```
 
