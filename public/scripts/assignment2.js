@@ -35,6 +35,7 @@ function getCountryInfo(country) {
                 var imageTag = "<img class='img-thumbnail mx-auto d-block' src=" + data[0].flag + " alt=\"Country Flag\">"
                 $('#flag').html(imageTag + "</br>")
 
+                getOwnCountryReview(data[0].name)
                 getReviewByCountry(data[0].name);
 
                 $('#worldMap').hide()
@@ -113,7 +114,6 @@ function getCountryInfo(country) {
 function getReviewByCountry(countryName) {
     // var url = "https://mysterious-hollows-73808.herokuapp.com/reviews/country/" + countryName;
     var url = "/reviews/country/" + countryName;
-
     $.ajax({
         url: url,
         type: "GET",
@@ -165,6 +165,51 @@ function getReviewByCountry(countryName) {
 
             $('#existingReview').html(text);
 
+        },
+        error: function(data) {
+            alert("Get review failed.");
+        }
+    });
+}
+
+function getOwnCountryReview(countryName) {
+    // var url = "https://mysterious-hollows-73808.herokuapp.com/reviews/country/" + countryName;
+
+    var url = "/reviews/country/" + countryName;
+    $.ajax({
+        url: url,
+        type: "GET",
+        dataType: 'json',
+        success: function(countryReviews) {
+            var i=0;
+            var found = false
+            for(i; i < countryReviews.length; i++){
+                if (countryReviews[i].username == $('#username').val()){
+                    found = true
+                    break
+                }
+            }
+            if (found){
+                $('#rating'+countryReviews[i].rate).prop("checked", true);
+                $(':radio').attr("disabled", true)
+                $('#selfReviewTitle').html("<b>Edit or Delete Your Review</b>");
+                $('#reviewInput').val(countryReviews[i].content)
+                $('#reviewInput').prop("disabled", true);
+                $('#deleteReview').attr('style', 'float: right')
+                $('#editReview').attr('style', 'float: right')
+                $('#reviewSubmit').attr("style", 'display: none')
+            }
+            else {
+                $('#rating5').prop("checked", true);
+                $(':radio').attr("disabled", false)
+                $('#selfReviewTitle').html("<b>Rate and Review Country</b>");
+                $('#reviewInput').val("")
+                $('#reviewInput').attr('placeholder', 'Write your own review of this country!')
+                $('#reviewInput').prop("disabled", false);
+                $('#reviewSubmit').attr("style", 'float: right')
+                $('#deleteReview').attr('style', 'display: none')
+                $('#editReview').attr('style', 'display: none')
+            }
         },
         error: function(data) {
             alert("Get review failed.");

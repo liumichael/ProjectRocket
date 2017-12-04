@@ -248,7 +248,7 @@ div > p {
 }
 .rating > input{
     opacity: 0;
-    margin-right: -100%;
+    position: absolute;
 }
 
 .rating > label{
