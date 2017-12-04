@@ -3,7 +3,12 @@ const controller = require('../controllers/controller.js');
 module.exports = function(app, passport) {
 
     app.get('/', function (req, res) {
-        res.render('index.ejs', {user: req.user, message: req.flash('message')});
+        if (req.user) {
+            res.render('index.ejs', {user: req.user, email: req.user.local.email, message: req.flash('message')});
+        }
+        else {
+            res.render('index.ejs', {user: req.user, message: req.flash('message')});
+        }
     });
 
     app.get('/login', function (req, res) {
@@ -33,7 +38,6 @@ module.exports = function(app, passport) {
     app.get('/api/messages', controller.getAllMessages);
     app.get('/api/messages/:id', controller.getMessageByID);
     app.get('/api/messages/users/:email', controller.getMessageByUser);
-    app.get('/api/messages/:id/:email', controller.getMessageByIDAndUser);
     app.put('/api/messages/:id/:email', controller.putMessageByIDAndUser);
     app.post('/api/messages', controller.postMessage);
     app.delete('/api/messages/:id', controller.deleteMessageByID);

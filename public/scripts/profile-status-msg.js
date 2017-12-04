@@ -1,6 +1,6 @@
-function getMessageInfo() {
+function getMessageInfo(email) {
     //var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages";
-    var url = "http://localhost:3964/api/messages";
+    var url = "http://localhost:3964/api/messages/users/" + email;
 
     $.ajax({
         url: url,
@@ -24,7 +24,7 @@ function getMessageInfo() {
                 $('#statusMsg').html(text);
                 $('#popup').show();
                 $('#myPopup').show().delay(5000).fadeOut();
-                setMessageToRead(notRead[0]._id);
+                setMessageToRead(notRead[0].id, email);
             }
         },
         error: function(msg) {
@@ -33,10 +33,10 @@ function getMessageInfo() {
     });
 }
 
-function setMessageToRead(msg_id) {
+function setMessageToRead(msg_id, email) {
 
     //var url = "https://mysterious-hollows-73808.herokuapp.com/api/messages/" + msg_id;
-    var url = "http://localhost:3964/api/messages/" + msg_id;
+    var url = "http://localhost:3964/api/messages/" + msg_id + "/" + email;
     $.ajax({
         url: url,
         type: "PUT",
@@ -52,7 +52,4 @@ function setMessageToRead(msg_id) {
 
 $(document).ready(function() {
     $('#popup').hide();
-    $(document).click(function () {
-        getMessageInfo();
-    });
 });
