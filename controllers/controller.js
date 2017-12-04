@@ -309,7 +309,7 @@ function postMessage(req, res) {
                         res.send(err);
                     }
                     else {
-                        res.send(req.body.data + "posted!\n");
+                        res.send(req.body.data + " posted!\n");
                     }
                 });
             }
