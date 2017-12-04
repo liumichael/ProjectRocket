@@ -133,66 +133,87 @@ but ```https://mysterious-hollows-73808.herokuapp.com/api/currencies/aud``` is n
   - All methods automatically turn a country name to all upper case as we want to enforce the name attribute to be all upper case in our database(e.g. canada automatically becomes CANADA in our database)
 
   - GET method:
-    - GET all countries example: ```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/countries```
+    - GET all countries example:
+    ```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/countries```
 
-    - GET one country example: ```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/countries/canada```
+    - GET one country example:
+    ```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/countries/canada```
 
   - PUT method:
-    - PUT one country example *with JSON data* : ```curl -XPUT --data '{ "capital": "blah" }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/countries/canada```
+    - PUT one country example *with JSON data* :
+    ```curl -XPUT --data '{ "capital": "blah" }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/countries/canada```
 
-    - PUT one country example *with urlencoded data* : ```curl -XPUT --data "capital=blah" https://mysterious-hollows-73808.herokuapp.com/api/countries/canada```
+    - PUT one country example *with urlencoded data* :
+    ```curl -XPUT --data "capital=blah" https://mysterious-hollows-73808.herokuapp.com/api/countries/canada```
 
   - POST method:
     - Users will see an error message if the data they pass in doesn't have the attribute **name**. Fields other than "name" can be undefined but "name" is a required field.
 
-    - POST one country example *with JSON data*: ```curl -XPOST --data '{ "name": "TestDataFlag", "capital": "blah" }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/countries```
+    - POST one country example *with JSON data*:
+    ```curl -XPOST --data '{ "name": "TestDataFlag", "capital": "blah" }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/countries```
 
-    - POST one country example *with urlencoded data*: ```curl -XPOST --data "name=TestDataFlag&capital=blah" https://mysterious-hollows-73808.herokuapp.com/api/countries```
+    - POST one country example *with urlencoded data*:
+    ```curl -XPOST --data "name=TestDataFlag&capital=blah" https://mysterious-hollows-73808.herokuapp.com/api/countries```
 
   - DELETE method:
-    - DELETE one country example: ```curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/countries/TestDataFlag```
+    - DELETE one country example:
+    ```curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/countries/TestDataFlag```
 
   ### Currencies
 
   - GET method:
-    - Get all currencies example: ```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/currencies```
+    - Get all currencies example:
+    ```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/currencies```
 
-    - Get one currency example: ```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD```
+    - Get one currency example:
+    ```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD```
 
   - PUT method:
     - Users will see an error message if the data they pass in has the attribute rate but the value of rate isn't a number
 
-    - PUT one currency example *with JSON data*: ```curl -XPUT --data '{ "rate": 1 }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD```
+    - PUT one currency example *with JSON data*:
+    ```curl -XPUT --data '{ "rate": 1 }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD```
 
-    - PUT one currency example *with urlencoded data*: ```curl -XPUT --data "rate=1" https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD```
+    - PUT one currency example *with urlencoded data*:
+    ```curl -XPUT --data "rate=1" https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD```
 
   - POST method:
     - Users will see an error message if the data they pass in doesn't have attributes **code** and **rate**, or if the value of rate isn't a number
 
-    - POST one currency example *with JSON data*: ```curl -XPOST --data '{ "code": "KPW", "rate": 699.12 }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/currencies```
+    - POST one currency example *with JSON data*:
+    ```curl -XPOST --data '{ "code": "KPW", "rate": 699.12 }'  --header "Content-Type: application/json" https://mysterious-hollows-73808.herokuapp.com/api/currencies```
 
-    - POST one currency example *with urlencoded data*: ```curl -XPOST --data "code=KPW&rate=699.12" https://mysterious-hollows-73808.herokuapp.com/api/currencies```
+    - POST one currency example *with urlencoded data*:
+    ```curl -XPOST --data "code=KPW&rate=699.12" https://mysterious-hollows-73808.herokuapp.com/api/currencies```
 
   - DELETE method:
-    - DELETE one currency example: ```curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/currencies/KPW```
+    - DELETE one currency example:
+    ```curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/currencies/KPW```
 
   ### Messages
 
   - GET method:
-    - Get all messages example: ```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages```
+    - Get all messages example:
+    ```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages```
 
-    - Get one message by \_id example: ```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507```
+    - Get one message by \_id example:
+    ```curl -XGET https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507```
 
   - PUT method:
-    - Put one message by \_id example: ```curl -XPUT https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507```
+    - Put one message by \_id example:
+    ```curl -XPUT https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507```
       - This put method is for updating the message's read flag attribute to
       true after the user has read the message
 
   - POST method:
-    - POST one message example *with JSON data*: ```curl -XPOST --data '{"data":"Testing hehehehe"}' --header 'Content-Type: application/json' https://mysterious-hollows-73808.herokuapp.com/api/messages```
+    - POST one message example *with JSON data*:
+    ```curl -XPOST --data '{"data":"Testing hehehehe"}' --header 'Content-Type: application/json' https://mysterious-hollows-73808.herokuapp.com/api/messages```
 
-    - POST one message example *with urlencoded data*: ```curl -XPOST --data "data=Testing hehehehe" https://mysterious-hollows-73808.herokuapp.com/api/messages```
+    - POST one message example *with urlencoded data*:
+    ```curl -XPOST --data "data=Testing hehehehe" https://mysterious-hollows-73808.herokuapp.com/api/messages```
 
   - DELETE method:
-    - DELETE one message by \_id example: ```curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507```
-    - DELETE all messages example: ```curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/messages```
+    - DELETE one message by \_id example:
+    ```curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/messages/5a20ef313997c26701fb5507```
+    - DELETE all messages example:
+    ```curl -XDELETE https://mysterious-hollows-73808.herokuapp.com/api/messages```
