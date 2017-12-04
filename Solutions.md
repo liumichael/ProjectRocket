@@ -122,7 +122,7 @@
 (i.e. https://mysterious-hollows-73808.herokuapp.com/api/currencies/AUD is valid
 but https://mysterious-hollows-73808.herokuapp.com/api/currencies/aud is not valid)
 
-- The endpoints for our countries **are not** case sensitive because of we want to make it more convenient for users to search for a country with out web app, as mentioned [here](https://github.com/FallCSC309/assignment-3-teamrocket/blob/master/Solutions.md#important-notes)
+- The endpoints for our countries **are not** case sensitive because of we want to make it more convenient for users to search for a country with out web app, as mentioned in the last bullet point [here](https://github.com/FallCSC309/assignment-3-teamrocket/blob/master/Solutions.md#important-notes)
 
 - **Important!** Because the default Content-type is 'application/x-www-form-urlencoded', if you want to pass in JSON data for post and put methods, please include a header *--header "Content-Type: application/json"* to indicate that the data being passed in is JSON. If you pass in urlencoded data, then there is no header needed
 
