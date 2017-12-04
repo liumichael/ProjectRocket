@@ -402,6 +402,7 @@ $(document).ready(function() {
             $('#reviewInput').prop("disabled", false);
             $('#reviewSubmit').attr("style", 'float: right')
             $(':radio').attr("disabled", false)
+            $('#reviewSubmit').attr("formaction", '/putReview');
 
             if ($(this).text() == "Edit"){
                 $(this).text("Cancel");
@@ -409,7 +410,8 @@ $(document).ready(function() {
             else {
                 $(this).text("Edit");
                 $('#reviewInput').prop("disabled", true);
-                $('#reviewSubmit').attr("style", 'display: none')
+                $('#reviewSubmit').attr("style", 'display: none');
+                $('#reviewSubmit').attr("formaction", '/reviews');
                 $(':radio').attr("disabled", true)
                 var star = $('#star').attr('value');
                 $('#rating'+star).prop("checked", true);

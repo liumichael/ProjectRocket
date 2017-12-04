@@ -28,6 +28,7 @@ module.exports = {
     getUserReview: getUserReview,
     postReview: postReview,
     deleteReview: deleteReview,
+    putReview: putReview,
     getProfile: getProfile,
     changeUsername: changeUsername,
     getAllUsers: getAllUsers
@@ -359,7 +360,8 @@ function deleteReview(req, res){
         if (err){
             return res.send(err);
         } else{
-            res.redirect('/')
+            req.flash('message', "You have Successfully Deleted Your Review!");
+            res.redirect('/');
         }
     }
     )
@@ -368,11 +370,11 @@ function deleteReview(req, res){
 function putReview(req, res) {
 
     Review.findOneAndUpdate({
-            username: req.body.username, // id: req.body.id
+            username: req.user.local.username,
             countryName: req.body.countryName
         }, {
             $set: {
-                rate: req.body.rate, // rate: req.params.rate,
+                rate: req.body.rating, // rate: req.params.rate,
                 content: req.body.content // rate: req.params.content
             }
         }, {
@@ -383,7 +385,9 @@ function putReview(req, res) {
                 res.status(404);
                 res.send(err);
             } else {
-                res.send("Review changed!");
+                //res.send("Review changed!");
+                req.flash('message', "You have Successfully Edited Your Review!");
+                res.redirect('/');
             }
         });
 }
