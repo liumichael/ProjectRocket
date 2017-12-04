@@ -21,6 +21,7 @@ module.exports = {
     getAllMessages: getAllMessages,
     getMessageByID: getMessageByID,
     getMessageByUser: getMessageByUser,
+    getMessageByIDAndUser: getMessageByIDAndUser,
     putMessageByIDAndUser: putMessageByIDAndUser,
     postMessage: postMessage,
     deleteMessageByID: deleteMessageByID,
@@ -249,20 +250,39 @@ function getMessageByUser(req, res) {
     });
 }
 
+function getMessageByIDAndUser(req, res) {
+
+    Message.find({
+            id: req.params.id,
+            user: req.params.email
+        }, {
+            _id: 0,
+            __v: 0
+        },
+        function(err, msg) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.json(msg);
+            }
+        });
+}
+
+
 // For changing the read flag to true once a message has been read
 function putMessageByIDAndUser(req, res) {
 
     Message.findOneAndUpdate({
             id: req.params.id,
-            user: req.user.local.email
+            user: req.params.email
         }, {
             read: true
         },
-        function(err, code) {
+        function(err, msg) {
             if (err) {
-                res.send(err + "req.params.id\n");
+                res.send(err);
             } else {
-                res.send(req.params.id + " updated\n");
+                res.send(req.params.id + " " + req.params.email + " updated\n");
             }
         });
 }

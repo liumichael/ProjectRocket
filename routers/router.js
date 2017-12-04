@@ -33,7 +33,8 @@ module.exports = function(app, passport) {
     app.get('/api/messages', controller.getAllMessages);
     app.get('/api/messages/:id', controller.getMessageByID);
     app.get('/api/messages/users/:email', controller.getMessageByUser);
-    app.put('/api/messages/:id', controller.putMessageByIDAndUser);
+    app.get('/api/messages/:id/:email', controller.getMessageByIDAndUser);
+    app.put('/api/messages/:id/:email', controller.putMessageByIDAndUser);
     app.post('/api/messages', controller.postMessage);
     app.delete('/api/messages/:id', controller.deleteMessageByID);
     app.delete('/api/messages', controller.deleteAllMessages);
