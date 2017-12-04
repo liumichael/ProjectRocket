@@ -4,7 +4,7 @@ var Currency = require('../models/currency');
 var Message = require('../models/message');
 var Review = require('../models/review');
 var User = require('../models/users');
-var msgID = 0;
+var MsgID = require('../models/messageID');
 
 
 module.exports = {
@@ -33,8 +33,12 @@ module.exports = {
     putReview: putReview,
     getProfile: getProfile,
     changeUsername: changeUsername,
-    getAllUsers: getAllUsers
+    getAllUsers: getAllUsers,
+    loadMsgID: loadMsgID,
+    getMsgID: getMsgID,
+    deleteMsgID: deleteMsgID
 }
+
 
 // Countries
 function getAllCountries(req, res) {
@@ -271,6 +275,15 @@ function putMessageByIDAndUser(req, res) {
 function postMessage(req, res) {
 
     var messages = [];
+    var msgID = 0;
+    MsgID.find({}, function (err, id) {
+        if (err) {
+            res.send(err);
+        } else {
+            msgID = id[0].id;
+        }
+    });
+
     if (req.body.data) {
         User.find({}, function (err, users) {
             if (err) {
@@ -285,7 +298,12 @@ function postMessage(req, res) {
                     }
                     messages.push(msg);
                 }
-                msgID += 1;
+                var newMsgID = msgID + 1;
+                MsgID.findOneAndUpdate({ id: msgID }, { id: newMsgID }, function(err, msg) {
+                        if (err) {
+                            res.send(err);
+                        }
+                    });
                 Message.create(messages, function (err, msgs) {
                     if (err) {
                         res.send(err);
@@ -493,6 +511,39 @@ function getAllUsers(req, res) {
             res.send(err);
         } else {
             res.json(users);
+        }
+    });
+}
+
+// For initializing the global variable message ID (I'm too lazy to search up how to do serialization but we still don't want msgID to get reseted everytime we restart the server)
+function loadMsgID(req, res)  {
+
+    var msgID = new MsgID({id: 0});
+    msgID.save(function(err, id) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(id);
+        }
+    });
+}
+
+function getMsgID(req, res)  {
+    MsgID.find({}, function(err, id) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.json(id);
+        }
+    });
+}
+
+function deleteMsgID(req, res)  {
+    MsgID.remove({}, function(err, id) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(id);
         }
     });
 }

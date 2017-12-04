@@ -25,6 +25,7 @@ module.exports = function(app, passport) {
         res.redirect('/');
     });
 
+    // RESTful API routes
     app.get('/api/countries', controller.getAllCountries);
     app.get('/api/countries/:countryName', controller.getCountry);
     app.put('/api/countries/:countryName', controller.putCountry);
@@ -70,6 +71,12 @@ module.exports = function(app, passport) {
          failureRedirect: '/login', // redirect back to the signup page if there is an error
          failureFlash: true // allow flash messages
     }));
+
+    // For the global variable msgID
+    app.post('/loadMsgID', controller.loadMsgID);
+    app.get('/getMsgID', controller.getMsgID);
+    app.delete('/deleteMsgID', controller.deleteMsgID);
+
 
     // starter code for review db get post
     // app.post('/review/new', controller.addReview);
