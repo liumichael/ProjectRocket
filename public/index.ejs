@@ -50,7 +50,11 @@
 
     <main role="main" class="container">
 
+        <% if (locals.user) { %>
         <div id="popup">
+        <% } else {%>
+        <div id="popup" style="display: none;">
+        <% } %>
             <div>
                 <img img src="images/status-msg-icon.png" src="images/status-msg-icon.png"/>
                 <span id="status">Status Message</span>
@@ -164,7 +168,7 @@
     	    <div class="col-sm-8" id="Reviews"><br>
     	    <div class="wrapper">
 
-                <% if (user){ %> 
+                <% if (user){ %>
     	               <p id='selfReviewTitle'><b>Rate and Review Country</b></p>
                        <form class="form-group" action="/reviews"  method="post" id="writeReview">
                     <span class="rating">
