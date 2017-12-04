@@ -10,13 +10,13 @@
 
 - If on Heroku: https://mysterious-hollows-73808.herokuapp.com
 
-- When searching for a country, it is better to choose a country name that is suggested by the autocompletion or make sure that you spell it correctly because common names aren't valid inputs (e.g. you need to type United States of America instead of US, USA, America, or United States)
-
-- Post methods allow one insert at a time
-
 - **Detailed [API documentation](https://github.com/FallCSC309/assignment-3-teamrocket/blob/master/Solutions.md#restful-api-documentation) is written in the section after Web Application Features**
 
 - **Other important features regarding session management and status messages are written in [Web Application Feature Section](https://github.com/FallCSC309/assignment-3-teamrocket/blob/master/Solutions.md#web-application-features)**
+
+- When searching for a country, it is better to choose a country name that is suggested by the autocompletion or make sure that you spell it correctly because common names aren't valid inputs (e.g. you need to type United States of America instead of US, USA, America, or United States)
+
+- Post methods allow one insert at a time
 
 - When passing in JSON data for post and put methods, please indicate it with the header **--header "Content-Type: application/json"**
 
