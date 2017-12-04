@@ -191,6 +191,7 @@ function getOwnCountryReview(countryName) {
             }
             if (found){
                 $('#rating'+countryReviews[i].rate).prop("checked", true);
+                $('#star').attr("value", countryReviews[i].rate);
                 $(':radio').attr("disabled", true)
                 $('#selfReviewTitle').html("<b>Edit or Delete Your Review</b>");
                 $('#reviewInput').val(countryReviews[i].content)
@@ -390,49 +391,33 @@ $(document).ready(function() {
         $("#currencyInput").val('').focus().blur();
         return false
     });
-//     $('#writeReview').submit(function () {
-//         alert("Thank you for your review!")
-//         var radios = document.getElementsByName('rating');
-//         for (var i = 0, length = radios.length; i < length; i++)
-//         {
-//         if (radios[i].checked)
-//         {
-//         alert("rating: " +radios[i].value);
-//         // only one radio can be logically checked, don't check the rest
-//         break;
-//  }
-// }
-//         console.log("User submitted review")
-//         $("#reviewInput").val('').focus().blur();
-//         return false
-//     });
 
     $(document).click(function () {
         getMessageInfo();
     });
 
-    $('rating5').click(function() {
-       $('userRating').val(5);
-    });
+    //when edit button is clicked
+    $(document).ready(function() {
+        $("#editReview").click(function(){
+            $('#reviewInput').prop("disabled", false);
+            $('#reviewSubmit').attr("style", 'float: right')
+            $(':radio').attr("disabled", false)
 
-    $('rating4').click(function() {
-       $('userRating').val(4);
-    });
+            if ($(this).text() == "Edit"){
+                $(this).text("Cancel");
+            }
+            else {
+                $(this).text("Edit");
+                $('#reviewInput').prop("disabled", true);
+                $('#reviewSubmit').attr("style", 'display: none')
+                $(':radio').attr("disabled", true)
+                var star = $('#star').attr('value');
+                $('#rating'+star).prop("checked", true);
 
-    $('rating3').click(function() {
-       $('userRating').val(3);
-    });
-
-    $('rating2').click(function() {
-       $('userRating').val(2);
-    });
-
-    $('rating1').click(function() {
-       $('userRating').val(1);
-    });
-
+            }
+            return false;
+    }); 
+});
 });
 
-$('#writeReview input').on('change', function() {
-   alert($('input[name=rating]:checked', '#writeReview').val());
-});
+

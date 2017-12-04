@@ -48,6 +48,8 @@ module.exports = function(app, passport) {
     app.get('/reviews/country/:countryName', controller.getCountryReview);
     app.get('/reviews/user/:userName', controller.getUserReview);
     app.post('/reviews', controller.postReview);
+    app.post('/deleteReview', controller.deleteReview);
+
     // app.put('/reviews', controller.putReview);
 
 

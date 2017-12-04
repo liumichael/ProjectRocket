@@ -27,6 +27,7 @@ module.exports = {
     getCountryReview: getCountryReview,
     getUserReview: getUserReview,
     postReview: postReview,
+    deleteReview: deleteReview,
     getProfile: getProfile,
     changeUsername: changeUsername,
     getAllUsers: getAllUsers
@@ -349,6 +350,19 @@ function postReview(req, res) {
              res.redirect('/');
          }
     });
+}
+
+function deleteReview(req, res){
+    Review.remove({
+        username: req.user.local.username, countryName: req.body.countryName 
+    }, function(err){
+        if (err){
+            return res.send(err);
+        } else{
+            res.redirect('/')
+        }
+    }
+    )
 }
 
 function putReview(req, res) {

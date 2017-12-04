@@ -181,9 +181,10 @@
                     </span>
 
                     <input type="hidden" name="countryName" id="countryForm" value=""/>
+                    <input type="hidden" name="rate" id="star" value=""/>
 
                     <textarea id="reviewInput" name = "content" placeholder="Write your own review of this country!" cols="90" rows="25" wrap="soft|hard" style="opacity: 1;"></textarea><br>
-                    <button class="btn btn-info" style="display: none"type="submit" id="deleteReview">Delete</button>
+                    <button class="btn btn-info" style="display: none"type="submit" formaction="/deleteReview" id="deleteReview">Delete</button>
                     <button class="btn btn-info" style="display: none"type="submit" id="editReview">Edit</button>
                     <button class="btn btn-info" style="float: right" type="submit" id="reviewSubmit">Submit</button>
 
